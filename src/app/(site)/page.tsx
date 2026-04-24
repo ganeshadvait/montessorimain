@@ -1,4 +1,5 @@
 import HeroSection from "../../../components/hero-curiosity";
+import AwardsStripe from "../../../components/awards-stripe";
 import Philosophy from "../../../components/philosophy";
 import Features from "../../../components/schoolfeatures";
 import Programs from "../../../components/programs";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <main className="font-sans">
       <HeroSection />
+      <AwardsStripe />
       <Philosophy />
       <Features />
       <Programs />
