@@ -591,7 +591,7 @@ export default function GsapExpandingHeader() {
               Member Login
             </button>
             <button className="menu-link w-full py-3.5 rounded-full bg-[#a3e635] text-black text-base font-medium hover:bg-[#bef264] transition-colors cursor-pointer">
-              Join Osmo
+              Join Montessori
             </button>
           </div>
         </div>
