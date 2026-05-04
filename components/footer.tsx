@@ -38,30 +38,14 @@ const MailIcon = () => (
     </svg>
 );
 
-// Footer Badge Components
-const ProgramsBadge = () => (
-    <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-black/10 bg-[#f4b423] flex items-center justify-center text-[var(--palette-ink)] font-semibold">
-        3+
-    </div>
-);
+// Footer Badge Components — neutral mono
+const monoBadge =
+    "w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-black/15 bg-white flex items-center justify-center text-black font-semibold";
 
-const HoursBadge = () => (
-    <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-black/10 bg-[#40c5c3] flex items-center justify-center text-white font-semibold">
-        8
-    </div>
-);
-
-const VisitBadge = () => (
-    <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-black/10 bg-[#d64279] flex items-center justify-center text-white font-semibold">
-        V
-    </div>
-);
-
-const ParentBadge = () => (
-    <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-black/10 bg-[#df3350] flex items-center justify-center text-white font-semibold">
-        P
-    </div>
-);
+const ProgramsBadge = () => <div className={monoBadge}>3+</div>;
+const HoursBadge = () => <div className={monoBadge}>8</div>;
+const VisitBadge = () => <div className={monoBadge}>V</div>;
+const ParentBadge = () => <div className={monoBadge}>P</div>;
 
 // Logo Component
 const SchoolLogo = () => (
@@ -112,7 +96,7 @@ export default function Footerone() {
     ];
 
     return (
-        <footer className="bg-[#f7f7f7] text-[var(--palette-ink)] ">
+        <footer className="bg-white text-black">
             {/* Top Section - Logo and Social Icons */}
             <div className="max-w-7xl mx-auto px-8 lg:px-12">
                 <div className="flex flex-col md:flex-row justify-between items-center py-8 gap-6">
@@ -125,7 +109,7 @@ export default function Footerone() {
                                 key={index}
                                 href={social.href}
                                 aria-label={social.label}
-                                className="w-10 h-10 rounded-full bg-white border border-black/10 flex items-center justify-center text-[var(--palette-magenta)] shadow-sm hover:bg-[var(--palette-sun)] hover:text-[var(--palette-ink)] transition-colors"
+                                className="w-10 h-10 rounded-full bg-white border border-black/15 flex items-center justify-center text-black shadow-sm hover:bg-black hover:text-white transition-colors"
                             >
                                 {social.icon}
                             </Link>
@@ -140,7 +124,7 @@ export default function Footerone() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 py-12">
                     {/* About School */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-6 text-[var(--palette-ink)]">About Montessori School</h3>
+                        <h3 className="text-lg font-semibold mb-6 text-black">About Montessori School</h3>
                         <p className="text-black/70 text-sm leading-relaxed">
                             A child-centered school with prepared classrooms, warm guidance, and hands-on
                             learning for toddler, primary, and elementary years.
@@ -149,13 +133,13 @@ export default function Footerone() {
 
                     {/* Useful Link */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-6 text-[var(--palette-ink)]">Useful Links</h3>
+                        <h3 className="text-lg font-semibold mb-6 text-black">Useful Links</h3>
                         <ul className="space-y-3">
                             {usefulLinks.map((link, index) => (
                                 <li key={index}>
                                     <Link
                                         href={link.href}
-                                        className="text-black/70 text-sm hover:text-[var(--palette-magenta)] transition-colors"
+                                        className="text-black/70 text-sm hover:text-black transition-colors"
                                     >
                                         {link.label}
                                     </Link>
@@ -166,13 +150,13 @@ export default function Footerone() {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-6 text-[var(--palette-ink)]">School Info</h3>
+                        <h3 className="text-lg font-semibold mb-6 text-black">School Info</h3>
                         <div className="space-y-4">
                             {contactInfo.map((contact, index) => (
                                 <div key={index} className="flex items-center gap-3">
                                     {contact.flag}
                                     <div>
-                                        <p className="text-[var(--palette-ink)] text-sm font-medium">{contact.title}</p>
+                                        <p className="text-black text-sm font-medium">{contact.title}</p>
                                         <p className="text-black/60 text-xs">{contact.location}</p>
                                     </div>
                                 </div>
@@ -182,7 +166,7 @@ export default function Footerone() {
                         {/* Email Button */}
                         <Link
                             href="mailto:admissions@montessorischool.com"
-                            className="inline-flex items-center gap-3 mt-6 px-5 py-3 bg-[var(--palette-magenta)] text-white rounded-lg hover:bg-[var(--palette-coral)] transition-colors"
+                            className="inline-flex items-center gap-3 mt-6 px-5 py-3 bg-black text-white rounded-lg hover:bg-black/85 transition-colors"
                         >
                             <MailIcon />
                             <span className="text-sm">admissions@montessorischool.com</span>
@@ -191,13 +175,13 @@ export default function Footerone() {
 
                     {/* Legal */}
                     <div>
-                        <h3 className="text-lg font-semibold mb-6 text-[var(--palette-ink)]">School Policies</h3>
+                        <h3 className="text-lg font-semibold mb-6 text-black">School Policies</h3>
                         <ul className="space-y-3">
                             {legalLinks.map((link, index) => (
                                 <li key={index}>
                                     <Link
                                         href={link.href}
-                                        className="text-black/70 text-sm hover:text-[var(--palette-magenta)] transition-colors"
+                                        className="text-black/70 text-sm hover:text-black transition-colors"
                                     >
                                         {link.label}
                                     </Link>

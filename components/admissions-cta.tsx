@@ -55,20 +55,18 @@ export default function AdmissionsCTA() {
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a
                   href="#book-tour"
-                  className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-[15px] font-semibold text-[var(--palette-ink)] shadow-[0_12px_40px_-10px_rgba(0,0,0,0.35)] transition-transform hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-[14px] font-semibold transition-transform hover:-translate-y-0.5"
+                  style={{ background: "#dff58a", color: "#0d2622" }}
                 >
-                  <Calendar size={18} />
-                  Book a School Tour
-                  <ArrowRight
-                    size={18}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
+                  BOOK A SCHOOL TOUR
+                  <ArrowRight size={16} strokeWidth={2.2} />
                 </a>
                 <a
                   href="#request-info"
-                  className="inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/10 px-7 py-4 text-[15px] font-semibold text-white backdrop-blur-xl hover:bg-white/20 transition-colors"
+                  className="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-xl px-7 py-3.5 text-[14px] font-semibold text-white hover:bg-white/20 transition-colors"
                 >
-                  Request a Prospectus
+                  REQUEST A PROSPECTUS
+                  <ArrowRight size={16} strokeWidth={2.2} />
                 </a>
               </div>
             </div>

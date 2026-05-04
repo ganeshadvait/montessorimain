@@ -1,5 +1,5 @@
 //File :- components/hero-curiosity.tsx
-import { Phone, ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowRight, Phone } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 
 const POSTER_IMAGE =
@@ -108,11 +108,12 @@ export default function HeroCuriosity() {
             </span>
             <a
               href="tel:+910000000000"
-              className="inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-[15px] font-semibold text-white shadow-[0_10px_30px_-10px_rgba(223,51,80,0.55)] transition-transform hover:-translate-y-0.5"
-              style={{ background: "var(--palette-coral)" }}
+              className="inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-[14px] font-semibold transition-transform hover:-translate-y-0.5"
+              style={{ background: "#dff58a", color: "#0d2622" }}
             >
-              <Phone size={18} strokeWidth={2.2} />
-              Call Now
+              <Phone size={16} strokeWidth={2.2} />
+              CALL NOW
+              <ArrowRight size={16} strokeWidth={2.2} />
             </a>
           </div>
         </div>
