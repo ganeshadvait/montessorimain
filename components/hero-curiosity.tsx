@@ -32,7 +32,11 @@ const LinkedinIcon = (props: IconProps) => (
   </svg>
 );
 
-const socials: { Icon: ComponentType<IconProps>; href: string; label: string }[] = [
+const socials: {
+  Icon: ComponentType<IconProps>;
+  href: string;
+  label: string;
+}[] = [
   { Icon: YoutubeIcon, href: "#", label: "YouTube" },
   { Icon: InstagramIcon, href: "#", label: "Instagram" },
   { Icon: FacebookIcon, href: "#", label: "Facebook" },
@@ -109,7 +113,7 @@ export default function HeroCuriosity() {
             <a
               href="tel:+910000000000"
               className="inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-[14px] font-semibold transition-transform hover:-translate-y-0.5"
-              style={{ background: "#dff58a", color: "#0d2622" }}
+              style={{ background: "#d73572", color: "#ffffff" }}
             >
               <Phone size={16} strokeWidth={2.2} />
               CALL NOW

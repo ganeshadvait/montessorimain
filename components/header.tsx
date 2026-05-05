@@ -228,26 +228,26 @@ export default function GsapExpandingHeader() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1rem)] max-w-3xl font-aeonik"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1rem)] max-w-3xl "
     >
       {/* Header Bar */}
       <div
         ref={headerRef}
-        className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-6 py-3 flex items-center justify-between relative z-10"
+        className="bg-white border border-[#e5e5e5] rounded-xl px-6 py-3 flex items-center justify-between relative z-10"
       >
         {/* Left - Menu */}
         <button
           onClick={toggleMenu}
-          className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors cursor-pointer"
+          className="flex items-center gap-3 text-black hover:text-[var(--palette-magenta)] transition-colors cursor-pointer"
         >
           <div className="w-5 h-5 relative flex items-center justify-center">
             <div
               ref={bar1Ref}
-              className="absolute w-full h-[2px] bg-white rounded-full top-[6px]"
+              className="absolute w-full h-[2px] bg-black rounded-full top-[6px]"
             />
             <div
               ref={bar2Ref}
-              className="absolute w-full h-[2px] bg-white rounded-full bottom-[6px]"
+              className="absolute w-full h-[2px] bg-black rounded-full bottom-[6px]"
             />
           </div>
           <span className="text-base font-medium">Menu</span>
@@ -255,17 +255,17 @@ export default function GsapExpandingHeader() {
 
         {/* Center - Logo */}
         <div className="absolute left-1/2 -translate-x-1/2">
-          <span className="text-white text-md md:text-xl font-bold tracking-wide">
+          <span className="text-black text-md md:text-xl font-bold tracking-wide">
             Montessori Prime
           </span>
         </div>
 
         {/* Right - Actions */}
         <div className="flex items-center gap-3">
-          <button className="hidden md:block px-5 py-2 rounded-full border border-[#555] text-white text-sm font-medium hover:border-white transition-colors cursor-pointer">
+          <button className="hidden md:block px-5 py-2 rounded-full border border-[#d73572] text-[#d73572] text-sm font-medium hover:bg-[#d73572] hover:text-white transition-colors cursor-pointer">
             Application
           </button>
-          <button className="px-5 py-2 rounded-full bg-[#a3e635] text-black text-sm font-medium hover:bg-[#bef264] transition-colors cursor-pointer">
+          <button className="px-5 py-2 rounded-full bg-[#d73572] text-white text-sm font-medium hover:bg-[#b82b60] transition-colors cursor-pointer">
             Join Us
           </button>
         </div>
@@ -274,13 +274,13 @@ export default function GsapExpandingHeader() {
       {/* Mega Menu */}
       <div
         ref={menuContentRef}
-        className="overflow-hidden bg-[#1a1a1a] border border-t-0 border-[#2a2a2a] rounded-b-xl"
+        className="overflow-hidden bg-[#f5f5f7] border border-t-0 border-[#e5e5e5] rounded-b-xl shadow-[0_30px_60px_-20px_rgba(0,0,0,0.15)]"
         style={{ height: 0, opacity: 0 }}
       >
         {/* Desktop Layout */}
         <div className="hidden md:grid grid-cols-[1fr_1fr_1fr] gap-5 p-6">
           {/* Column 1 - About Us */}
-          <div className="menu-col border border-[#2a2a2a] rounded-2xl p-8 flex flex-col bg-[#312E2E]/60">
+          <div className="menu-col border border-[#e5e5e5] rounded-2xl p-8 flex flex-col bg-white">
             <h3 className="text-[#666] text-[11px] font-medium tracking-[0.25em] uppercase mb-8">
               About Us
             </h3>
@@ -288,7 +288,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Our Leader and Teachers
                 </a>
@@ -296,7 +296,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   House System
                 </a>
@@ -304,7 +304,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   School Calendar
                 </a>
@@ -312,7 +312,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Career
                 </a>
@@ -320,7 +320,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Infrastructure and Facilities
                 </a>
@@ -328,7 +328,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Testimonials
                 </a>
@@ -336,7 +336,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors"
+                  className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors"
                 >
                   Documents
                 </a>
@@ -346,7 +346,7 @@ export default function GsapExpandingHeader() {
             <div className="mt-auto pt-8">
               <a
                 href="#"
-                className="menu-link text-white text-2xl font-medium hover:text-gray-300 transition-colors flex items-center gap-3"
+                className="menu-link text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors flex items-center gap-3"
               >
                 Virtual Tour
               </a>
@@ -354,7 +354,7 @@ export default function GsapExpandingHeader() {
           </div>
 
           {/* Column 2 - Explore */}
-          <div className="menu-col rounded-2xl p-10 flex flex-col justify-between">
+          <div className="menu-col rounded-2xl p-10 flex flex-col justify-between ">
             <div>
               <h3 className="text-[#666] text-[11px] font-medium tracking-[0.25em] uppercase mb-8">
                 Explore
@@ -363,7 +363,7 @@ export default function GsapExpandingHeader() {
                 <li className="menu-link">
                   <a
                     href="#"
-                    className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                    className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                   >
                     Mandatory Public Disclosure
                   </a>
@@ -371,7 +371,7 @@ export default function GsapExpandingHeader() {
                 <li className="menu-link">
                   <a
                     href="#"
-                    className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                    className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                   >
                     Gallery
                   </a>
@@ -379,7 +379,7 @@ export default function GsapExpandingHeader() {
                 <li className="menu-link">
                   <a
                     href="#"
-                    className="block py-4 text-white text-2xl font-medium hover:text-gray-300 transition-colors"
+                    className="block py-4 text-black text-2xl font-medium hover:text-[var(--palette-magenta)] transition-colors"
                   >
                     Events
                   </a>
@@ -391,7 +391,7 @@ export default function GsapExpandingHeader() {
             <div className="menu-link flex items-center gap-3 pt-8">
               <a
                 href="#"
-                className="w-11 h-11 rounded-full bg-[#2a2a2a] flex items-center justify-center text-[#999] hover:text-white hover:bg-[#333] transition-colors"
+                className="w-11 h-11 rounded-full bg-[#f0f0f0] flex items-center justify-center text-[#666] hover:text-black hover:bg-[#e0e0e0] transition-colors"
               >
                 <svg
                   width="16"
@@ -404,7 +404,7 @@ export default function GsapExpandingHeader() {
               </a>
               <a
                 href="#"
-                className="w-11 h-11 rounded-full bg-[#2a2a2a] flex items-center justify-center text-[#999] hover:text-white hover:bg-[#333] transition-colors"
+                className="w-11 h-11 rounded-full bg-[#f0f0f0] flex items-center justify-center text-[#666] hover:text-black hover:bg-[#e0e0e0] transition-colors"
               >
                 <svg
                   width="16"
@@ -417,7 +417,7 @@ export default function GsapExpandingHeader() {
               </a>
               <a
                 href="#"
-                className="w-11 h-11 rounded-full bg-[#2a2a2a] flex items-center justify-center text-[#999] hover:text-white hover:bg-[#333] transition-colors"
+                className="w-11 h-11 rounded-full bg-[#f0f0f0] flex items-center justify-center text-[#666] hover:text-black hover:bg-[#e0e0e0] transition-colors"
               >
                 <svg
                   width="14"
@@ -432,7 +432,7 @@ export default function GsapExpandingHeader() {
           </div>
 
           {/* Column 3 - Wings Carousel */}
-          <div className="featured-card menu-col border border-[#2a2a2a] rounded-2xl p-6 flex flex-col bg-[#312E2E]/60">
+          <div className="featured-card menu-col border border-[#e5e5e5] rounded-2xl p-6 flex flex-col bg-white">
             <h3 className="text-[#666] text-[11px] font-medium tracking-[0.25em] uppercase mb-4">
               Our Wings
             </h3>
@@ -469,7 +469,7 @@ export default function GsapExpandingHeader() {
                   aria-label={`Show ${w.alt}`}
                   onClick={() => setWingIndex(i)}
                   className={`h-1.5 rounded-full transition-all ${
-                    i === wingIndex ? "w-6 bg-white" : "w-1.5 bg-[#555]"
+                    i === wingIndex ? "w-6 bg-black" : "w-1.5 bg-[#d0d0d0]"
                   }`}
                 />
               ))}
@@ -483,7 +483,7 @@ export default function GsapExpandingHeader() {
           style={{ height: "calc(100dvh - 4rem)" }}
         >
           {/* About Us */}
-          <div className="menu-col border border-[#2a2a2a] rounded-2xl p-4 bg-[#312E2E]/60">
+          <div className="menu-col border border-[#e5e5e5] rounded-2xl p-4 bg-white">
             <h3 className="text-[#666] text-[11px] font-medium tracking-[0.25em] uppercase mb-2">
               About Us
             </h3>
@@ -491,7 +491,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Our Leader and Teachers
                 </a>
@@ -499,7 +499,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   House System
                 </a>
@@ -507,7 +507,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   School Calendar
                 </a>
@@ -515,7 +515,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Career
                 </a>
@@ -523,7 +523,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Infrastructure and Facilities
                 </a>
@@ -531,7 +531,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Testimonials
                 </a>
@@ -539,7 +539,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Documents
                 </a>
@@ -547,7 +547,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-2 text-white text-xl font-medium hover:text-gray-300 transition-colors"
+                  className="block py-2 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors"
                 >
                   Virtual Tour
                 </a>
@@ -561,7 +561,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-3.5 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-3.5 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Mandatory Public Disclosure
                 </a>
@@ -569,7 +569,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-3.5 text-white text-xl font-medium hover:text-gray-300 transition-colors border-b border-[#2a2a2a]"
+                  className="block py-3.5 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors border-b border-[#e5e5e5]"
                 >
                   Gallery
                 </a>
@@ -577,7 +577,7 @@ export default function GsapExpandingHeader() {
               <li className="menu-link">
                 <a
                   href="#"
-                  className="block py-3.5 text-white text-xl font-medium hover:text-gray-300 transition-colors"
+                  className="block py-3.5 text-black text-xl font-medium hover:text-[var(--palette-magenta)] transition-colors"
                 >
                   Events
                 </a>
@@ -587,10 +587,10 @@ export default function GsapExpandingHeader() {
 
           {/* Mobile CTAs */}
           <div className="menu-col mt-auto pt-6 flex flex-col gap-3">
-            <button className="menu-link w-full py-3.5 rounded-full bg-[#2a2a2a] text-white text-base font-medium hover:bg-[#333] transition-colors cursor-pointer">
+            <button className="menu-link w-full py-3.5 rounded-full bg-[#f0f0f0] text-black text-base font-medium hover:bg-[#e0e0e0] transition-colors cursor-pointer">
               Member Login
             </button>
-            <button className="menu-link w-full py-3.5 rounded-full bg-[#a3e635] text-black text-base font-medium hover:bg-[#bef264] transition-colors cursor-pointer">
+            <button className="menu-link w-full py-3.5 rounded-full bg-[#d73572] text-white text-base font-medium hover:bg-[#b82b60] transition-colors cursor-pointer">
               Join Montessori
             </button>
           </div>
