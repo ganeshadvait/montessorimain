@@ -1,4 +1,5 @@
 //File :- src/app/mandatory-public-disclosure/page.tsx
+import PageHero from "../../../components/page-hero";
 
 const PdfIcon = () => (
   <svg
@@ -191,50 +192,13 @@ const generalInfo = [
 export default function MandatoryPublicDisclosurePage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* HERO */}
-      <section
-        className="relative w-full overflow-hidden"
-        style={{ background: "#f3ede4" }}
-      >
-        {/* Decorative teal X / asterisk on the left */}
-        <svg
-          aria-hidden
-          className="absolute left-[4%] top-[58%] w-12 h-12"
-          viewBox="0 0 48 48"
-          fill="none"
-          stroke="#1FBABA"
-          strokeWidth="3"
-          strokeLinecap="round"
-        >
-          <line x1="12" y1="12" x2="36" y2="36" />
-          <line x1="36" y1="12" x2="12" y2="36" />
-        </svg>
-
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pt-8 md:pt-10 pb-16 md:pb-24">
-          {/* Breadcrumb */}
-          <nav
-            aria-label="Breadcrumb"
-            className="text-[15px] flex items-center gap-2"
-          >
-            <a
-              href="/"
-              className="text-[#7a7a85] hover:text-[#1a1a2e] transition-colors"
-            >
-              Home
-            </a>
-            <span className="text-[#b8b8c0]">/</span>
-            <span className="text-[#1a1a2e]">Mandatory Public Disclosure</span>
-          </nav>
-
-          {/* Heading */}
-          <h1
-            className="text-center font-bold tracking-tight mt-12 md:mt-16 text-[32px] md:text-[44px] lg:text-[52px]"
-            style={{ color: "#231a3d" }}
-          >
-            Mandatory Public Disclosure
-          </h1>
-        </div>
-      </section>
+      <PageHero
+        breadcrumb={[
+          { label: "Home", href: "/" },
+          { label: "Mandatory Public Disclosure" },
+        ]}
+        title="Mandatory Public Disclosure"
+      />
 
       {/* A. GENERAL INFORMATION */}
       <section className="w-full">
