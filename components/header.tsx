@@ -8,20 +8,20 @@ import { UserRound, Globe, ChevronDown, Menu, X } from "lucide-react";
 const LOGO_URL =
   "https://www.montessorijnprime.com/montessori/prime/assets/img/logo/logo.png?_=1234";
 
-const PINK = "#E91E63";
+const PINK = "#dd3e74";
 const YELLOW = "#F4B919";
 const INK = "#1a1a1a";
 
-const aboutLinks = [
-  "About School",
-  "Our Leader and Teachers",
-  "House System",
-  "School Calendar",
-  "Career",
-  "Infrastructure and Facilities",
-  "Testimonials",
-  "Documents",
-  "Virtual Tour",
+const aboutLinks: { label: string; href: string }[] = [
+  { label: "About School", href: "/about" },
+  { label: "Our Leader and Teachers", href: "/about/founders" },
+  { label: "House System", href: "#" },
+  { label: "School Calendar", href: "/about/calendar" },
+  { label: "Career", href: "/careers" },
+  { label: "Infrastructure and Facilities", href: "#" },
+  { label: "Testimonials", href: "#" },
+  { label: "Documents", href: "#" },
+  { label: "Virtual Tour", href: "#" },
 ];
 
 type NavLink = { label: string; href: string };
@@ -97,12 +97,12 @@ export default function Header() {
                 <div className="w-[260px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.08)] py-3">
                   {aboutLinks.map((link) => (
                     <a
-                      key={link}
-                      href="#"
+                      key={link.label}
+                      href={link.href}
                       className="block px-6 py-2.5 text-[15px] text-[#1a1a1a] hover:text-[var(--pink)] transition-colors"
                       style={{ ["--pink" as string]: PINK }}
                     >
-                      {link}
+                      {link.label}
                     </a>
                   ))}
                 </div>
@@ -205,12 +205,12 @@ export default function Header() {
                 <div className="pl-4 pb-3 flex flex-col">
                   {aboutLinks.map((link) => (
                     <a
-                      key={link}
-                      href="#"
+                      key={link.label}
+                      href={link.href}
                       onClick={() => setMobileOpen(false)}
                       className="py-2 text-[14px] text-[#1a1a1a]"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   ))}
                 </div>
