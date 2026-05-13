@@ -1,0 +1,584 @@
+//File :- src/app/mandatory-public-disclosure/page.tsx
+
+const PdfIcon = () => (
+  <svg
+    viewBox="0 0 32 36"
+    width="26"
+    height="30"
+    aria-label="PDF document"
+    role="img"
+  >
+    <path
+      d="M2 0h20l8 8v26a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"
+      fill="#E8E1D7"
+    />
+    <path d="M22 0v8h8L22 0z" fill="#C9BFAE" />
+    <rect x="4" y="18" width="24" height="10" rx="1.5" fill="#E53935" />
+    <text
+      x="16"
+      y="25.5"
+      textAnchor="middle"
+      fontFamily="Arial, sans-serif"
+      fontSize="7"
+      fontWeight="bold"
+      fill="#fff"
+    >
+      PDF
+    </text>
+    <text
+      x="16"
+      y="32.5"
+      textAnchor="middle"
+      fontFamily="Arial, sans-serif"
+      fontSize="3"
+      fill="#5a5a5a"
+    >
+      Adobe
+    </text>
+  </svg>
+);
+
+const documents = [
+  "COPIES OF AFFILIATION/UPGRADE LETTER and RECENT EXTENSION of AFFILIATION, IF ANY",
+  "COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE, AS APPLICABLE",
+  "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT",
+  "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT'S RENEWAL IF APPLICABLE",
+  "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
+  "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
+  "COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION OR SELF CERTIFICATION BY SCHOOL",
+  "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
+];
+
+const resultsAndAcademics: { label: string; pdf: boolean }[] = [
+  { label: "FEE STRUCTURE OF THE SCHOOL", pdf: true },
+  { label: "ANNUAL ACADEMIC CALENDAR", pdf: true },
+  { label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)", pdf: true },
+  { label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS", pdf: true },
+  {
+    label: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
+    pdf: false,
+  },
+];
+
+type StaffRow = {
+  sl?: string | number;
+  info: React.ReactNode;
+  details: React.ReactNode;
+};
+
+const schoolInfrastructure: { info: string; details: React.ReactNode }[] = [
+  {
+    info: "TOTAL CAMPUS AREA OF THE SCHOOL (IN SQ MTR)",
+    details: "36583.58 Sq.Mt.",
+  },
+  {
+    info: "NO. AND SIZE OF THE CLASS ROOMS (IN SQ MTR)",
+    details: "48 Rooms; 53 Sq.Mt.",
+  },
+  {
+    info: "NO. AND SIZE OF LABORATORIES INCLUDING COMPUTER LABS (IN SQ MTR)",
+    details: "6 Labs; 69 Sq.Mt.;",
+  },
+  { info: "INTERNET FACILITY (Y/N)", details: "YES" },
+  { info: "NO. OF GIRLS TOILETS", details: "69" },
+  { info: "NO. OF BOYS TOILETS", details: "72" },
+  {
+    info: "LINK OF YOUTUBE VIDEO OF THE INSPECTION OF SCHOOL COVERING THE INFRASTRUCTURE OF THE SCHOOL",
+    details: (
+      <a
+        href="#"
+        className="hover:underline"
+        style={{ color: "#1FBABA" }}
+      >
+        View Video
+      </a>
+    ),
+  },
+  {
+    info: "SARAS MANDATORY PUBLIC DISCLOSURE",
+    details: (
+      <a
+        href="#"
+        aria-label="Download SARAS Mandatory Public Disclosure PDF"
+        className="inline-block hover:opacity-80 transition-opacity"
+      >
+        <PdfIcon />
+      </a>
+    ),
+  },
+];
+
+const staffTeaching: StaffRow[] = [
+  { sl: 1, info: "PRINCIPAL", details: "Ms. Inagala swetha, MBA, B.Ed." },
+  { sl: 2, info: "TOTAL NO. OF TEACHERS", details: "21" },
+  {
+    info: (
+      <span className="flex items-center gap-2 pl-6">
+        <span
+          className="inline-block w-1.5 h-1.5 rounded-full"
+          style={{ background: "#231a3d" }}
+        />
+        PGT
+      </span>
+    ),
+    details: "0",
+  },
+  {
+    info: (
+      <span className="flex items-center gap-2 pl-6">
+        <span
+          className="inline-block w-1.5 h-1.5 rounded-full"
+          style={{ background: "#231a3d" }}
+        />
+        TGT
+      </span>
+    ),
+    details: "13",
+  },
+  {
+    info: (
+      <span className="flex items-center gap-2 pl-6">
+        <span
+          className="inline-block w-1.5 h-1.5 rounded-full"
+          style={{ background: "#231a3d" }}
+        />
+        PRT
+      </span>
+    ),
+    details: "8",
+  },
+  { sl: 3, info: "TEACHERS SECTION RATIO", details: "1 : 1.5" },
+  { sl: 4, info: "DETAILS OF SPECIAL EDUCATOR", details: "Mrs. Sumitha Chakrabarti" },
+  {
+    sl: 5,
+    info: "DETAILS OF COUNSELLOR AND WELLNESS TEACHER",
+    details: "Mr. V Bharat Kumar & Miss. Preechi",
+  },
+];
+
+const generalInfo = [
+  { sl: 1, info: "Name Of The School", details: "MONTESSORI PRIME SCHOOL" },
+  { sl: 2, info: "Affiliation No.", details: "3630485" },
+  { sl: 3, info: "School Code", details: "56771" },
+  {
+    sl: 4,
+    info: "Complete Address with PIN Code",
+    details: (
+      <>
+        H No: 53-1-24/1, Montessori Prime School,
+        <br />
+        Yellapur, Hasanparthy,
+        <br />
+        Hanamkonda – 506 371
+      </>
+    ),
+  },
+  {
+    sl: 5,
+    info: "Principal Name & Qualification",
+    details: (
+      <>
+        Ms. Inagala swetha
+        <br />
+        MBA, B.Ed.
+      </>
+    ),
+  },
+  { sl: 6, info: "School Email ID", details: "info@montessorijnprime.com" },
+  { sl: 7, info: "Contact Details [Landline/Mobile]", details: "7700043030" },
+];
+
+export default function MandatoryPublicDisclosurePage() {
+  return (
+    <main className="min-h-screen bg-white">
+      {/* HERO */}
+      <section
+        className="relative w-full overflow-hidden"
+        style={{ background: "#f3ede4" }}
+      >
+        {/* Decorative teal X / asterisk on the left */}
+        <svg
+          aria-hidden
+          className="absolute left-[4%] top-[58%] w-12 h-12"
+          viewBox="0 0 48 48"
+          fill="none"
+          stroke="#1FBABA"
+          strokeWidth="3"
+          strokeLinecap="round"
+        >
+          <line x1="12" y1="12" x2="36" y2="36" />
+          <line x1="36" y1="12" x2="12" y2="36" />
+        </svg>
+
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pt-8 md:pt-10 pb-16 md:pb-24">
+          {/* Breadcrumb */}
+          <nav
+            aria-label="Breadcrumb"
+            className="text-[15px] flex items-center gap-2"
+          >
+            <a
+              href="/"
+              className="text-[#7a7a85] hover:text-[#1a1a2e] transition-colors"
+            >
+              Home
+            </a>
+            <span className="text-[#b8b8c0]">/</span>
+            <span className="text-[#1a1a2e]">Mandatory Public Disclosure</span>
+          </nav>
+
+          {/* Heading */}
+          <h1
+            className="text-center font-bold tracking-tight mt-12 md:mt-16 text-[32px] md:text-[44px] lg:text-[52px]"
+            style={{ color: "#231a3d" }}
+          >
+            Mandatory Public Disclosure
+          </h1>
+        </div>
+      </section>
+
+      {/* A. GENERAL INFORMATION */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-10 md:pb-12">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            A. GENERAL INFORMATION
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL
+                    <br />
+                    No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[34%]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {generalInfo.map((row) => (
+                  <tr key={row.sl}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.sl}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.info}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.details}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* B. DOCUMENTS AND INFORMATION */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            B. DOCUMENTS AND INFORMATION
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[100px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Documentation/Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[120px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {documents.map((doc, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {i + 1}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {doc}
+                    </td>
+                    <td className="align-middle px-5 py-4 border border-[#d4cfc4]">
+                      <a
+                        href="#"
+                        aria-label={`Download PDF: ${doc}`}
+                        className="inline-block hover:opacity-80 transition-opacity"
+                      >
+                        <PdfIcon />
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* C. RESULT AND ACADEMICS */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            C. RESULT AND ACADEMICS
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[100px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Documents/Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[120px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {resultsAndAcademics.map((row, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {i + 1}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.label}
+                    </td>
+                    <td
+                      className="align-middle px-5 py-4 border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.pdf ? (
+                        <a
+                          href="#"
+                          aria-label={`Download PDF: ${row.label}`}
+                          className="inline-block hover:opacity-80 transition-opacity"
+                        >
+                          <PdfIcon />
+                        </a>
+                      ) : (
+                        <span className="text-[15px]">-</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* D. STAFF(TEACHING) */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            D. STAFF(TEACHING)
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL
+                    <br />
+                    No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[34%]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {staffTeaching.map((row, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.sl ?? ""}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.info}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.details}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* E. SCHOOL INFRASTRUCTURE */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            E. SCHOOL INFRASTRUCTURE
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL
+                    <br />
+                    No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[200px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {schoolInfrastructure.map((row, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {i + 1}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.info}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.details}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
