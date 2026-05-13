@@ -2,6 +2,7 @@
 //File :- components/header.tsx
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { UserRound, Globe, ChevronDown, Menu, X } from "lucide-react";
 
 const LOGO_URL =
@@ -9,6 +10,7 @@ const LOGO_URL =
 
 const PINK = "#dd3e74";
 const YELLOW = "#F4B919";
+const INK = "#1a1a1a";
 
 const aboutLinks: { label: string; href: string }[] = [
   { label: "About School", href: "/about" },
@@ -22,18 +24,29 @@ const aboutLinks: { label: string; href: string }[] = [
   { label: "Virtual Tour", href: "#" },
 ];
 
-const mainLinks = [
-  { label: "Mandatory Public Disclosure", href: "#mandatory-public-disclosure" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Events", href: "#events" },
-  { label: "Blogs", href: "#blogs" },
-  { label: "Contact Us", href: "#contact" },
+type NavLink = { label: string; href: string };
+
+const mainLinks: NavLink[] = [
+  { label: "Mandatory Public Disclosure", href: "/mandatory-public-disclosure" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Events", href: "/events" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Contact Us", href: "/contact" },
 ];
+
+function useIsActive() {
+  const pathname = usePathname() || "/";
+  return (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(href + "/");
+  };
+}
 
 export default function Header() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const isActive = useIsActive();
 
   return (
     <header className="w-full bg-white relative">
@@ -50,13 +63,13 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
-          <a
-            href="#home"
-            className="text-[16px] font-semibold relative pb-1"
-            style={{ color: PINK }}
+          <Link
+            href="/"
+            className="text-[16px] font-semibold pb-1 transition-colors"
+            style={{ color: isActive("/") ? PINK : INK }}
           >
             Home
-          </a>
+          </Link>
 
           {/* About Us with dropdown */}
           <div
@@ -98,22 +111,25 @@ export default function Header() {
           </div>
 
           {mainLinks.map((l) => (
-            <a
+            <Link
               key={l.label}
               href={l.href}
-              className="text-[16px] font-semibold text-[#1a1a1a] hover:text-[var(--hover-pink)] transition-colors"
-              style={{ ["--hover-pink" as string]: PINK }}
+              className="text-[16px] font-semibold transition-colors hover:text-[var(--hover-pink)]"
+              style={{
+                color: isActive(l.href) ? PINK : INK,
+                ["--hover-pink" as string]: PINK,
+              }}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* Desktop CTA buttons */}
         <div className="hidden md:flex flex-col gap-2 items-end">
           {/* Application */}
-          <a
-            href="#application"
+          <Link
+            href="/application"
             className="inline-flex items-center gap-2 rounded-lg pl-1.5 pr-5 py-1.5 text-[15px] font-semibold text-white shadow-[0_4px_10px_rgba(233,30,99,0.3)]"
             style={{ background: PINK }}
           >
@@ -121,11 +137,11 @@ export default function Header() {
               <UserRound size={16} strokeWidth={2.4} />
             </span>
             Application
-          </a>
+          </Link>
 
           {/* Virtual Tour */}
-          <a
-            href="#virtual-tour"
+          <Link
+            href="/virtual-tour"
             className="relative inline-flex items-center gap-2 rounded-lg pl-1.5 pr-5 py-1.5 text-[15px] font-semibold text-[#1a1a1a] shadow-[0_4px_10px_rgba(244,185,25,0.35)]"
             style={{ background: YELLOW }}
           >
@@ -139,7 +155,7 @@ export default function Header() {
             >
               New
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -159,14 +175,14 @@ export default function Header() {
       {mobileOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-[0_8px_24px_rgba(0,0,0,0.08)] z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
           <nav className="flex flex-col px-4 py-3">
-            <a
-              href="#home"
+            <Link
+              href="/"
               onClick={() => setMobileOpen(false)}
               className="py-3 text-[16px] font-semibold border-b border-black/5"
-              style={{ color: PINK }}
+              style={{ color: isActive("/") ? PINK : INK }}
             >
               Home
-            </a>
+            </Link>
 
             {/* About Us — collapsible */}
             <div className="border-b border-black/5">
@@ -202,20 +218,21 @@ export default function Header() {
             </div>
 
             {mainLinks.map((l) => (
-              <a
+              <Link
                 key={l.label}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="py-3 text-[16px] font-semibold text-[#1a1a1a] border-b border-black/5"
+                className="py-3 text-[16px] font-semibold border-b border-black/5"
+                style={{ color: isActive(l.href) ? PINK : INK }}
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
 
             {/* Mobile CTAs */}
             <div className="flex flex-col gap-2 pt-5 pb-2">
-              <a
-                href="#application"
+              <Link
+                href="/application"
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex items-center gap-2 rounded-lg pl-1.5 pr-5 py-2 text-[15px] font-semibold text-white"
                 style={{ background: PINK }}
@@ -224,9 +241,9 @@ export default function Header() {
                   <UserRound size={16} strokeWidth={2.4} />
                 </span>
                 Application
-              </a>
-              <a
-                href="#virtual-tour"
+              </Link>
+              <Link
+                href="/virtual-tour"
                 onClick={() => setMobileOpen(false)}
                 className="relative inline-flex items-center gap-2 rounded-lg pl-1.5 pr-5 py-2 text-[15px] font-semibold text-[#1a1a1a]"
                 style={{ background: YELLOW }}
@@ -241,7 +258,7 @@ export default function Header() {
                 >
                   New
                 </span>
-              </a>
+              </Link>
             </div>
           </nav>
         </div>
