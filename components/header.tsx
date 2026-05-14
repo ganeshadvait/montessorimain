@@ -30,7 +30,7 @@ const mainLinks: NavLink[] = [
   { label: "Mandatory Public Disclosure", href: "/mandatory-public-disclosure" },
   { label: "Gallery", href: "/gallery" },
   { label: "Events", href: "/events" },
-  { label: "Blogs", href: "/blogs" },
+  { label: "Blogs", href: "/news" },
   { label: "Contact Us", href: "/contact" },
 ];
 
