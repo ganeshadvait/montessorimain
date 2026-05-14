@@ -1,53 +1,37 @@
 //File :- src/app/mandatory-public-disclosure/page.tsx
+import Image from "next/image";
 import PageHero from "../../../components/page-hero";
 
 const PdfIcon = () => (
-  <svg
-    viewBox="0 0 32 36"
-    width="26"
-    height="30"
-    aria-label="PDF document"
-    role="img"
-  >
-    <path
-      d="M2 0h20l8 8v26a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"
-      fill="#E8E1D7"
-    />
-    <path d="M22 0v8h8L22 0z" fill="#C9BFAE" />
-    <rect x="4" y="18" width="24" height="10" rx="1.5" fill="#E53935" />
-    <text
-      x="16"
-      y="25.5"
-      textAnchor="middle"
-      fontFamily="Arial, sans-serif"
-      fontSize="7"
-      fontWeight="bold"
-      fill="#fff"
-    >
-      PDF
-    </text>
-    <text
-      x="16"
-      y="32.5"
-      textAnchor="middle"
-      fontFamily="Arial, sans-serif"
-      fontSize="3"
-      fill="#5a5a5a"
-    >
-      Adobe
-    </text>
-  </svg>
+  <Image
+    src="/about/documents/AcrobatDocument_32x32.gif"
+    alt="PDF document"
+    width={26}
+    height={30}
+    unoptimized
+  />
 );
 
-const documents = [
-  "COPIES OF AFFILIATION/UPGRADE LETTER and RECENT EXTENSION of AFFILIATION, IF ANY",
-  "COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE, AS APPLICABLE",
-  "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT",
-  "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT'S RENEWAL IF APPLICABLE",
-  "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
-  "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
-  "COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION OR SELF CERTIFICATION BY SCHOOL",
-  "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
+const documents: { label: string; href?: string }[] = [
+  {
+    label: "COPIES OF AFFILIATION/UPGRADE LETTER and RECENT EXTENSION of AFFILIATION, IF ANY",
+    href: "/Mandatory Public Disclosure/CBSE Affiliation Certificate 3630485.pdf",
+  },
+  {
+    label: "COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE, AS APPLICABLE",
+    href: "/Mandatory Public Disclosure/Society Registration Certificate.pdf",
+  },
+  {
+    label: "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT",
+    href: "/Mandatory Public Disclosure/State NOC.pdf",
+  },
+  { label: "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT'S RENEWAL IF APPLICABLE" },
+  { label: "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE" },
+  { label: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY" },
+  {
+    label: "COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION OR SELF CERTIFICATION BY SCHOOL",
+  },
+  { label: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES" },
 ];
 
 const resultsAndAcademics: { label: string; pdf: boolean }[] = [
@@ -316,16 +300,22 @@ export default function MandatoryPublicDisclosurePage() {
                       className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
                       style={{ color: "#231a3d" }}
                     >
-                      {doc}
+                      {doc.label}
                     </td>
                     <td className="align-middle px-5 py-4 border border-[#d4cfc4]">
-                      <a
-                        href="#"
-                        aria-label={`Download PDF: ${doc}`}
-                        className="inline-block hover:opacity-80 transition-opacity"
-                      >
-                        <PdfIcon />
-                      </a>
+                      {doc.href ? (
+                        <a
+                          href={doc.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Download PDF: ${doc.label}`}
+                          className="inline-block hover:opacity-80 transition-opacity"
+                        >
+                          <PdfIcon />
+                        </a>
+                      ) : (
+                        <span className="text-[15px]">-</span>
+                      )}
                     </td>
                   </tr>
                 ))}
