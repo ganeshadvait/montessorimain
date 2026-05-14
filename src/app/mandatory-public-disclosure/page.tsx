@@ -45,15 +45,15 @@ const documents: { label: string; href?: string }[] = [
 
 const resultsAndAcademics: { label: string; href?: string; pdf: boolean }[] = [
   { label: "FEE STRUCTURE OF THE SCHOOL",
-     href: "/Mandatory Public Disclosure/Fee Structure.pdf",
+     href: "/Mandatory Public Disclosure/latest fee structure.pdf",
     pdf: true },
   { label: "ANNUAL ACADEMIC CALENDAR", 
      href: "/Mandatory Public Disclosure/ACADEMICS.pdf",
     pdf: true },
   { label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)",
-    href: "/Mandatory Public Disclosure/SMC.pdf",
+    href: "/Mandatory Public Disclosure/School Managing Committee.pdf",
      pdf: true },
-  { label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS", href: "/Mandatory Public Disclosure/PTA MEMBERS.pdf", pdf: true },
+  { label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS", href: "/Mandatory Public Disclosure/pta.pdf", pdf: true },
   {
     label: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
     pdf: false,
@@ -395,9 +395,11 @@ export default function MandatoryPublicDisclosurePage() {
                       className="align-middle px-5 py-4 border border-[#d4cfc4]"
                       style={{ color: "#231a3d" }}
                     >
-                      {row.pdf ? (
+                      {row.pdf && row.href ? (
                         <a
-                          href="#"
+                          href={row.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           aria-label={`Download PDF: ${row.label}`}
                           className="inline-block hover:opacity-80 transition-opacity"
                         >

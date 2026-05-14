@@ -15,13 +15,13 @@ const INK = "#1a1a1a";
 const aboutLinks: { label: string; href: string }[] = [
   { label: "About School", href: "/about" },
   { label: "Our Leader and Teachers", href: "/about/founders" },
-  { label: "House System", href: "#" },
+  { label: "House System", href: "/about/house-systems" },
   { label: "School Calendar", href: "/about/calendar" },
   { label: "Career", href: "/careers" },
-  { label: "Infrastructure and Facilities", href: "#" },
-  { label: "Testimonials", href: "#" },
-  { label: "Documents", href: "#" },
-  { label: "Virtual Tour", href: "#" },
+  { label: "Infrastructure and Facilities", href: "/about/infrastructure" },
+  { label: "Testimonials", href: "/about/testimonials" },
+  { label: "Documents", href: "/about/documents" },
+  { label: "Virtual Tour", href: "/about/virtualtour" },
 ];
 
 type NavLink = { label: string; href: string };
