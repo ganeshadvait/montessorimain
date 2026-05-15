@@ -8,10 +8,8 @@ const ORANGE = "#F4831C";
 const INK = "#231a3d";
 const MUTED = "#5e5e6e";
 
-const SHAPE_LEFT =
-  "https://www.montessorijnprime.com/montessori/prime/assets/img/shapes/subscribe-shape1.png";
-const SHAPE_RIGHT =
-  "https://www.montessorijnprime.com/montessori/prime/assets/img/shapes/subscribe-shape2.png";
+const SHAPE_LEFT = "/home/sketboard pink.png";
+const SHAPE_RIGHT = "/home/bulb thread paper rocket.png";
 
 export default function HomeQuickEnquiry() {
   const [name, setName] = useState("");
@@ -29,13 +27,23 @@ export default function HomeQuickEnquiry() {
       className="relative w-full py-16 md:py-20 overflow-hidden"
       style={{ background: "#E9EAF3" }}
     >
+      <style>{`
+        @keyframes enquiry-skateboard-slide {
+          0%, 100% { transform: translateX(-0.4cm); }
+          50% { transform: translateX(0.4cm); }
+        }
+        .enquiry-skateboard {
+          animation: enquiry-skateboard-slide 10s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* Floating decorative — skateboard top-left */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={SHAPE_LEFT}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute left-4 md:left-12 top-4 md:top-8 w-[110px] md:w-[150px] select-none"
+        className="enquiry-skateboard pointer-events-none absolute left-4 md:left-12 top-4 md:top-8 w-[110px] md:w-[150px] select-none"
       />
 
       {/* Floating decorative — paper plane right */}
@@ -44,7 +52,7 @@ export default function HomeQuickEnquiry() {
         src={SHAPE_RIGHT}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-[200px] md:w-[300px] select-none"
+        className="pointer-events-none absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-[200px] md:w-[600px] select-none"
       />
 
       <div className="relative mx-auto max-w-[1200px] px-6 md:px-10 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
