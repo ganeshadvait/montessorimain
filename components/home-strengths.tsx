@@ -179,13 +179,15 @@ export default function HomeStrengths() {
           </p>
 
           {/* Testimonial carousel */}
-          <div className="mt-8 flex items-center gap-4">
-            <div className="flex-1 min-w-0">
-              <TestimonialCard {...active} />
-            </div>
+          <div className="mt-8 relative">
+            <TestimonialCard
+              {...active}
+              background="#ffffff"
+              quoteColor="#7a7d4e"
+            />
 
-            {/* Vertical pagination dots */}
-            <div className="flex flex-col items-center gap-3 flex-shrink-0">
+            {/* Vertical pagination dots (overlaid inside card on right edge) */}
+            <div className="absolute right-4 md:right-5 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
               {testimonials.map((_, i) => {
                 const isActive = i === activeIdx;
                 return (
@@ -195,20 +197,31 @@ export default function HomeStrengths() {
                     onClick={() => setActiveIdx(i)}
                     aria-label={`Show testimonial ${i + 1}`}
                     aria-current={isActive}
-                    className="transition-all rounded-full"
+                    className="transition-all rounded-full flex items-center justify-center"
                     style={{
                       width: "14px",
                       height: "14px",
-                      background: isActive ? PINK : "transparent",
+                      background: "transparent",
                       border: `2px solid ${isActive ? PINK : "#c8c8d0"}`,
                     }}
-                  />
+                  >
+                    {isActive && (
+                      <span
+                        className="rounded-full"
+                        style={{
+                          width: "6px",
+                          height: "6px",
+                          background: PINK,
+                        }}
+                      />
+                    )}
+                  </button>
                 );
               })}
             </div>
           </div>
 
-          <div className="mt-6 flex items-center gap-2 text-[14px]">
+          <div className="mt-6 flex items-center justify-center gap-2 text-[14px]">
             <span style={{ color: MUTED }}>Get into details now?</span>
             <Link
               href="/about/testimonials"

@@ -6,6 +6,8 @@ export type TestimonialCardProps = {
   name: string;
   role?: string;
   avatar?: string;
+  background?: string;
+  quoteColor?: string;
 };
 
 const initialsFor = (name: string) =>
@@ -22,11 +24,13 @@ export default function TestimonialCard({
   name,
   role,
   avatar,
+  background = "#f3ede4",
+  quoteColor = "#5B96AA",
 }: TestimonialCardProps) {
   return (
     <article
       className="relative p-8 md:p-10 pt-12 md:pt-14 rounded-lg max-w-[600px] mx-auto"
-      style={{ background: "#f3ede4" }}
+      style={{ background }}
     >
       {/* Top-left pink fingernail accent */}
       <span
@@ -44,7 +48,7 @@ export default function TestimonialCard({
       {/* Quote text */}
       <p
         className="text-[15px] md:text-[16px] leading-[1.85] mb-8"
-        style={{ color: "#5B96AA" }}
+        style={{ color: quoteColor }}
       >
         {quote}
       </p>
