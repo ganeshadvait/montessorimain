@@ -25,20 +25,35 @@ const documents: { label: string; href?: string }[] = [
     label: "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT",
     href: "/Mandatory Public Disclosure/State NOC.pdf",
   },
-  { label: "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT'S RENEWAL IF APPLICABLE" },
-  { label: "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE" },
-  { label: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY" },
+  { label: "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT'S RENEWAL IF APPLICABLE",
+    href: "/Mandatory Public Disclosure/Recognition.pdf",
+  },
+  { label: "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
+    href: "/Mandatory Public Disclosure/building safety certificate.pdf",
+   },
+  { label: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
+    href: "/Mandatory Public Disclosure/Fire NOC.pdf",
+   },
   {
     label: "COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION OR SELF CERTIFICATION BY SCHOOL",
+    href: "/Mandatory Public Disclosure/Self Declaration.pdf",
   },
-  { label: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES" },
+  { label: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
+    href: "/Mandatory Public Disclosure/sanitary certificate.pdf",
+   },
 ];
 
-const resultsAndAcademics: { label: string; pdf: boolean }[] = [
-  { label: "FEE STRUCTURE OF THE SCHOOL", pdf: true },
-  { label: "ANNUAL ACADEMIC CALENDAR", pdf: true },
-  { label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)", pdf: true },
-  { label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS", pdf: true },
+const resultsAndAcademics: { label: string; href?: string; pdf: boolean }[] = [
+  { label: "FEE STRUCTURE OF THE SCHOOL",
+     href: "/Mandatory Public Disclosure/latest fee structure.pdf",
+    pdf: true },
+  { label: "ANNUAL ACADEMIC CALENDAR", 
+     href: "/Mandatory Public Disclosure/ACADEMICS.pdf",
+    pdf: true },
+  { label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)",
+    href: "/Mandatory Public Disclosure/School Managing Committee.pdf",
+     pdf: true },
+  { label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS", href: "/Mandatory Public Disclosure/pta.pdf", pdf: true },
   {
     label: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
     pdf: false,
@@ -71,7 +86,7 @@ const schoolInfrastructure: { info: string; details: React.ReactNode }[] = [
     info: "LINK OF YOUTUBE VIDEO OF THE INSPECTION OF SCHOOL COVERING THE INFRASTRUCTURE OF THE SCHOOL",
     details: (
       <a
-        href="#"
+        href="https://youtu.be/Fgnyge_ZJLA?si=lOSBchOcJPPOwuzD"
         className="hover:underline"
         style={{ color: "#1FBABA" }}
       >
@@ -83,7 +98,7 @@ const schoolInfrastructure: { info: string; details: React.ReactNode }[] = [
     info: "SARAS MANDATORY PUBLIC DISCLOSURE",
     details: (
       <a
-        href="#"
+        href="/Mandatory Public Disclosure/Mandatory Disclosure Details _ SARAS 4.0.pdf"
         aria-label="Download SARAS Mandatory Public Disclosure PDF"
         className="inline-block hover:opacity-80 transition-opacity"
       >
@@ -380,9 +395,11 @@ export default function MandatoryPublicDisclosurePage() {
                       className="align-middle px-5 py-4 border border-[#d4cfc4]"
                       style={{ color: "#231a3d" }}
                     >
-                      {row.pdf ? (
+                      {row.pdf && row.href ? (
                         <a
-                          href="#"
+                          href={row.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           aria-label={`Download PDF: ${row.label}`}
                           className="inline-block hover:opacity-80 transition-opacity"
                         >
