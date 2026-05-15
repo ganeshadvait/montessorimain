@@ -1,42 +1,17 @@
 //File :- components/home-blogs.tsx
+import Image from "next/image";
+import Link from "next/link";
 import { CalendarDays, ArrowRight } from "lucide-react";
+
+import { blogs as allBlogs } from "../src/app/news/data";
 
 const PINK = "#E91E63";
 const INK = "#231a3d";
 const MUTED = "#5e5e6e";
 
-type Blog = {
-  date: string;
-  title: string;
-  image: string;
-  href: string;
-};
-
-const blogs: Blog[] = [
-  {
-    date: "Jan 26, 2026",
-    title: "Happy Republic Day 2026",
-    image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
-    href: "#blog-republic-day",
-  },
-  {
-    date: "Jan 23, 2026",
-    title: "Happy Vasantha Panchami",
-    image:
-      "https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1200&q=80",
-    href: "#blog-vasantha-panchami",
-  },
-  {
-    date: "Jan 15, 2026",
-    title: "Happy Sankranthi! 2026",
-    image:
-      "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80",
-    href: "#blog-sankranthi",
-  },
-];
-
 export default function HomeBlogs() {
+  const blogs = allBlogs.slice(0, 3);
+
   return (
     <section className="w-full py-16 md:py-20 bg-white">
       <div className="mx-auto max-w-[1200px] px-6 md:px-10">
@@ -64,31 +39,34 @@ export default function HomeBlogs() {
         </div>
 
         {/* Blog cards */}
-        <div className="mt-12 md:mt-14 grid gap-8 md:gap-10 md:grid-cols-3">
+        <div className="mt-12 md:mt-14 grid gap-10 md:gap-12 md:grid-cols-3">
           {blogs.map((b) => (
-            <article key={b.title} className="group relative">
-              {/* Pink offset (top-right) */}
-              <div
-                aria-hidden
-                className="absolute -top-2 -right-2 left-4 bottom-4"
-                style={{ background: PINK }}
-              />
-              {/* Pink offset (bottom-left) */}
-              <div
-                aria-hidden
-                className="absolute top-4 right-4 -bottom-2 -left-2"
-                style={{ background: PINK }}
-              />
-
-              {/* Image card */}
-              <a href={b.href} className="relative block overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={b.image}
-                  alt={b.title}
-                  className="block w-full aspect-[4/5] object-cover"
+            <article key={b.slug} className="group relative">
+              {/* Image with framed pink block crossed behind */}
+              <div className="relative aspect-square">
+                {/* Pink block behind image — rotated slightly */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 rounded-[16px] rotate-[-3deg]"
+                  style={{ background: PINK }}
                 />
-              </a>
+
+                {/* Image card with white border */}
+                <Link
+                  href={`/news/${b.slug}`}
+                  className="relative block w-full h-full overflow-hidden rounded-[16px] bg-white p-2 shadow-sm"
+                >
+                  <div className="relative w-full h-full overflow-hidden rounded-[12px]">
+                    <Image
+                      src={b.image}
+                      alt={b.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 380px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                </Link>
+              </div>
 
               {/* Body */}
               <div className="relative bg-white pt-5">
@@ -103,7 +81,12 @@ export default function HomeBlogs() {
                   className="mt-3 text-[18px] md:text-[20px] font-bold leading-tight tracking-tight"
                   style={{ color: INK }}
                 >
-                  {b.title}
+                  <Link
+                    href={`/news/${b.slug}`}
+                    className="transition-colors group-hover:text-[#E91E63]"
+                  >
+                    {b.title}
+                  </Link>
                 </h3>
 
                 <div className="mt-5 flex items-center justify-between">
@@ -111,17 +94,17 @@ export default function HomeBlogs() {
                     className="h-px flex-1 mr-4"
                     style={{ background: "#e5e5e5" }}
                   />
-                  <a
-                    href={b.href}
+                  <Link
+                    href={`/news/${b.slug}`}
                     aria-label={`Read: ${b.title}`}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border transition-transform hover:translate-x-1"
+                    className="flex h-10 w-10 items-center justify-center rounded-full transition-transform hover:translate-x-1"
                     style={{
-                      borderColor: "#e5e5e5",
+                      background: "#fce4ec",
                       color: PINK,
                     }}
                   >
                     <ArrowRight size={16} strokeWidth={2.4} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>
@@ -134,13 +117,13 @@ export default function HomeBlogs() {
           style={{ borderColor: "#e5e5e5", color: MUTED }}
         >
           Get into details now?
-          <a
-            href="#all-blogs"
+          <Link
+            href="/news"
             className="font-semibold hover:underline"
             style={{ color: PINK }}
           >
             View all Blogs
-          </a>
+          </Link>
         </div>
       </div>
     </section>
