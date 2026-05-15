@@ -35,3 +35,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@keyframes spin-slow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.program-circle-shape {
+  animation: spin-slow 30s linear infinite;
+}
