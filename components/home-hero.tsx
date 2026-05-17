@@ -60,8 +60,7 @@ export default function HomeHero() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-black"
-      style={{ height: "500px" }}
+      className="relative w-full overflow-hidden bg-black aspect-[16/5] min-h-[180px] sm:min-h-[220px] max-h-[640px]"
       aria-roledescription="carousel"
       aria-label="Hero carousel"
     >
@@ -78,7 +77,7 @@ export default function HomeHero() {
           <img
             src={src}
             alt={`Slide ${i + 1}`}
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             loading={i === 0 ? "eager" : "lazy"}
           />
         </div>
@@ -89,9 +88,11 @@ export default function HomeHero() {
         type="button"
         aria-label="Previous slide"
         onClick={handlePrev}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-white/70 hover:bg-white text-[#231a3d] backdrop-blur shadow-md transition-colors"
+        className="group absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 rounded-full border-2 border-dashed border-[#E91E63] p-1 sm:p-1.5 transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E91E63]/40"
       >
-        <ChevronLeft size={26} strokeWidth={2.4} />
+        <span className="flex h-7 w-7 sm:h-9 sm:w-9 md:h-11 md:w-11 items-center justify-center rounded-full bg-white text-[#E91E63] shadow-sm group-hover:bg-[#E91E63] group-hover:text-white transition-colors">
+          <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" strokeWidth={2.5} />
+        </span>
       </button>
 
       {/* Next */}
@@ -99,24 +100,26 @@ export default function HomeHero() {
         type="button"
         aria-label="Next slide"
         onClick={handleNext}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-white/70 hover:bg-white text-[#231a3d] backdrop-blur shadow-md transition-colors"
+        className="group absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 rounded-full border-2 border-dashed border-[#E91E63] p-1 sm:p-1.5 transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E91E63]/40"
       >
-        <ChevronRight size={26} strokeWidth={2.4} />
+        <span className="flex h-7 w-7 sm:h-9 sm:w-9 md:h-11 md:w-11 items-center justify-center rounded-full bg-white text-[#E91E63] shadow-sm group-hover:bg-[#E91E63] group-hover:text-white transition-colors">
+          <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" strokeWidth={2.5} />
+        </span>
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+      <div className="absolute bottom-2 sm:bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 sm:gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
             type="button"
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => handleDot(i)}
-            className="h-2 rounded-full transition-all"
-            style={{
-              width: i === active ? 28 : 8,
-              background: i === active ? "#E91E63" : "rgba(255,255,255,0.7)",
-            }}
+            className={`h-1.5 sm:h-2 rounded-full transition-all ${
+              i === active
+                ? "w-6 sm:w-7 bg-[#E91E63]"
+                : "w-1.5 sm:w-2 bg-white/70"
+            }`}
           />
         ))}
       </div>

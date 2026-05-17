@@ -21,8 +21,8 @@ const stages: Stage[] = [
       "The Pre-Primary Wing focuses on joyful learning through play, exploration, and imagination. Our early learners engage in hands-on activities using Montessori materials and interactive tools that make learning fun and meaningful. The emphasis is on developing fine motor skills, communication, social interaction, and emotional growth. We provide a safe, nurturing, and stimulating environment where every child discovers the joy of learning.",
     image:
       "https://www.montessorijnprime.com/montessori/prime/assets/img/home/programs/1.png?_=1234",
-    bannerBg: "#CFEAE8",
-    accent: "#1FBABA",
+    bannerBg: "#cce7e8",
+    accent: "#5caaac",
   },
   {
     label: "Primary Wing",
@@ -49,13 +49,37 @@ const stages: Stage[] = [
 export default function HomeCurriculum() {
   return (
     <section className="relative w-full py-16 md:py-20 bg-white overflow-hidden">
+      <style>{`
+        @keyframes home-curriculum-star-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .home-curriculum-star {
+          animation: home-curriculum-star-spin 20s linear infinite;
+          transform-origin: center center;
+          will-change: transform;
+        }
+        @keyframes home-curriculum-kite-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-18px); }
+        }
+        .home-curriculum-kite {
+          animation: home-curriculum-kite-float 6s ease-in-out infinite;
+          will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .home-curriculum-star,
+          .home-curriculum-kite { animation: none; }
+        }
+      `}</style>
+
       {/* Floating decorative — kite top right */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/curriculum-sec-floatimages/kiteimage.png"
         alt=""
         aria-hidden
-        className="pointer-events-none absolute right-4 md:right-12 top-6 md:top-10 w-[120px] md:w-[180px] select-none"
+        className="home-curriculum-kite pointer-events-none absolute right-0 top-6 md:top-10 w-[170px] md:w-[240px] lg:w-[280px] select-none hidden md:block"
       />
 
       {/* Floating decorative — star bottom left */}
@@ -64,21 +88,21 @@ export default function HomeCurriculum() {
         src="/curriculum-sec-floatimages/staricon.png"
         alt=""
         aria-hidden
-        className="pointer-events-none absolute left-4 md:left-12 bottom-6 md:bottom-10 w-[70px] md:w-[90px] select-none"
+        className="home-curriculum-star pointer-events-none absolute left-4 md:left-12 bottom-6 md:bottom-10 w-[70px] md:w-[90px] select-none hidden md:block"
       />
 
-      <div className="relative mx-auto max-w-[1200px] px-6 md:px-10">
+      <div className="relative mx-auto max-w-[1340px] px-6 md:px-6 lg:px-8">
         {/* Heading */}
-        <div className="mx-auto max-w-[680px] text-center">
+        <div className="mx-auto max-w-[560px] text-center">
           <span
-            className="text-[13px] font-bold uppercase tracking-[0.18em]"
-            style={{ color: PINK }}
+            className="text-[13px] uppercase tracking-[0.18em]"
+            style={{ color: PINK, fontWeight: 600 }}
           >
             OUR CURRICULUM
           </span>
           <h2
-            className="mt-3 text-[28px] md:text-[36px] lg:text-[40px] font-bold leading-[1.15] tracking-tight"
-            style={{ color: INK }}
+            className="mt-3 text-[28px] md:text-[36px] lg:text-[40px] leading-[1.15] tracking-tight"
+            style={{ color: INK, fontWeight: 900 }}
           >
             We nurture every stage of
             <br />
@@ -97,7 +121,7 @@ export default function HomeCurriculum() {
         </div>
 
         {/* Stage cards */}
-        <div className="mt-14 md:mt-16 grid gap-10 md:gap-8 md:grid-cols-3">
+        <div className="mt-14 md:mt-16 grid gap-12 md:gap-10 lg:gap-14 md:grid-cols-3">
           {stages.map((s) => (
             <article
               key={s.label}
@@ -115,16 +139,19 @@ export default function HomeCurriculum() {
 
               {/* Banner label */}
               <div
-                className="relative mt-2 px-10 py-3"
+                className="relative mt-2 mx-3 sm:mx-4 md:mx-[15px] mb-1 px-6 sm:px-8 md:px-10 pt-[10px] pb-[6px]"
                 style={{
                   background: s.bannerBg,
                   clipPath:
-                    "polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%)",
+                    "polygon(0 0, 100% 0, 99% 100%, 3% 100%)",
                 }}
               >
                 <span
-                  className="text-[18px] md:text-[20px] font-bold tracking-tight whitespace-nowrap"
-                  style={{ color: s.accent }}
+                  className="tracking-tight whitespace-nowrap text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px]"
+                  style={{
+                    color: s.accent,
+                    fontWeight: 900,
+                  }}
                 >
                   {s.label}
                 </span>
@@ -132,7 +159,7 @@ export default function HomeCurriculum() {
 
               {/* Grade */}
               <div
-                className="mt-5 text-[14px] font-semibold"
+                className="mt-1 text-[14px] font-semibold"
                 style={{ color: s.accent }}
               >
                 ({s.grade})
@@ -140,7 +167,7 @@ export default function HomeCurriculum() {
 
               {/* Body */}
               <p
-                className="mt-4 max-w-[360px] text-[14px] leading-[1.75]"
+                className="mt-1 max-w-[360px] text-[14px] leading-[1.75]"
                 style={{ color: MUTED }}
               >
                 {s.body}
