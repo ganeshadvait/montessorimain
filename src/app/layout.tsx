@@ -30,6 +30,11 @@ export const metadata: Metadata = {
   title: "Montessori Prime School",
   description:
     "Montessori Prime School — child-centered education from pre-primary through high school.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
