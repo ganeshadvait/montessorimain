@@ -1,4 +1,6 @@
+"use client";
 //File :- components/home-join.tsx
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
@@ -18,11 +20,13 @@ const features = [
 ];
 
 export default function HomeJoin() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 px-4 md:px-8 overflow-hidden">
-      <div className="mx-auto max-w-[1240px] grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section className="relative w-full bg-white py-20 md:py-28 lg:py-32 px-4 md:px-8 overflow-hidden">
+      <div className="mx-auto max-w-[1240px] grid lg:grid-cols-2 gap-14 lg:gap-24 xl:gap-28 items-center">
         {/* LEFT */}
-        <div>
+        <div className="lg:pr-4">
           <span
             className="text-[13px] font-bold uppercase tracking-[0.18em]"
             style={{ color: PINK }}
@@ -30,7 +34,7 @@ export default function HomeJoin() {
             JOIN OUR MONTESSORI PRIME SCHOOL
           </span>
           <h2
-            className="mt-3 text-[28px] md:text-[34px] lg:text-[38px] font-bold leading-[1.25] tracking-tight"
+            className="mt-5 text-[28px] md:text-[34px] lg:text-[40px] font-bold leading-[1.25] tracking-tight"
             style={{ color: INK }}
           >
             &ldquo;School is a building which has four walls with tomorrow
@@ -38,7 +42,9 @@ export default function HomeJoin() {
           </h2>
 
           <p
-            className="mt-5 text-[15px] md:text-[16px] leading-[1.85]"
+            className={`mt-7 text-[15px] md:text-[16px] leading-[1.95] ${
+              expanded ? "" : "line-clamp-3"
+            }`}
             style={{ color: MUTED }}
           >
             The quest for a good tomorrow ends once you the child joins
@@ -52,18 +58,26 @@ export default function HomeJoin() {
             empathy in our students because the progress the young minds will
             lead to the progress of the nation.
           </p>
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-3 inline-flex items-center gap-1 text-[14px] font-semibold hover:underline"
+            style={{ color: PINK }}
+          >
+            {expanded ? "Read Less" : "Read More"}
+          </button>
 
-          <ul className="mt-7 space-y-3.5">
+          <ul className="mt-10 space-y-5">
             {features.map((f) => (
-              <li key={f} className="flex items-center gap-3">
+              <li key={f} className="flex items-center gap-4">
                 <span
-                  className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center"
+                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
                   style={{ background: TEAL }}
                 >
-                  <Check size={14} strokeWidth={3} className="text-white" />
+                  <Check size={15} strokeWidth={3} className="text-white" />
                 </span>
                 <span
-                  className="text-[15px] font-semibold"
+                  className="text-[15px] md:text-[16px] font-semibold"
                   style={{ color: INK }}
                 >
                   {f}
@@ -74,7 +88,7 @@ export default function HomeJoin() {
 
           <Link
             href="/about/infrastructure"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-md text-[14px] font-semibold transition-opacity hover:opacity-90"
+            className="mt-12 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-md text-[14px] font-semibold transition-opacity hover:opacity-90"
             style={{ background: PINK, color: "#ffffff" }}
           >
             <svg
@@ -97,27 +111,27 @@ export default function HomeJoin() {
 
         {/* RIGHT */}
         <div className="relative w-full">
-          <div className="relative w-full max-w-[600px] ml-auto">
-            {/* Pink top-right corner frame */}
+          <div className="relative w-full max-w-[560px] ml-auto aspect-[4/5]">
+            {/* Pink full-size offset block behind */}
             <div
               aria-hidden
-              className="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-3/4 h-1/2 rounded-md"
+              className="absolute inset-0 translate-x-4 -translate-y-4 md:translate-x-6 md:-translate-y-6 rounded-md"
               style={{ background: PINK }}
             />
 
             {/* Image */}
-            <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden shadow-lg">
+            <div className="relative w-full h-full rounded-md overflow-hidden shadow-[0_20px_50px_rgba(35,26,61,0.18)]">
               <Image
-                src="/montassori.jpg"
+                src="/schoolbuilidngimage.png"
                 alt="Montessori Prime School building"
                 fill
-                sizes="(max-width: 1024px) 100vw, 600px"
+                sizes="(max-width: 1024px) 100vw, 560px"
                 className="object-cover"
               />
 
               {/* Bottom pink bar */}
               <div
-                className="absolute left-0 right-0 bottom-0 py-4 px-6 text-center"
+                className="absolute left-0 right-0 bottom-0 py-5 px-6 text-center"
                 style={{ background: PINK }}
               >
                 <span

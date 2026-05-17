@@ -12,11 +12,21 @@ export default async function SubGalleryPage({
   const gallery = getGalleryBySlug(slug);
   if (!gallery) return notFound();
 
-  // Generate placeholder photo URLs using the same cover (real per-photo
-  // images can be wired up when an endpoint for sub-gallery contents exists).
-  const photos = Array.from({ length: Math.min(gallery.count, 24) }).map(
-    () => gallery.cover,
-  );
+  // Locally-hosted sub-galleries (override the remote cover with real photos).
+  const localOverrides: Record<string, string[]> = {
+    "t-hub-2024": [
+      5476, 5457, 5468, 5432, 5436, 5456, 5424, 5427, 5420, 5422, 5385, 5418,
+      5370, 5379, 5383, 5361, 5367, 5350, 5352, 5345, 5349, 5343, 5344, 5341,
+      5337, 5340, 5329, 5333, 5314, 5323, 5304, 5305, 5310, 5313, 5299, 5300,
+      5296, 5297, 5294, 5295, 5292, 5293, 5290, 5291, 5287, 5288, 5289, 5284,
+      5285, 5286, 5281, 5283, 5278, 5280, 5276, 5277, 5273, 5275, 5270, 5271,
+      5268, 5269, 5251, 5259, 5265, 5266,
+    ].map((id) => `/gallery-images/IMG_${id}.jpg`),
+  };
+
+  const photos =
+    localOverrides[slug] ??
+    Array.from({ length: Math.min(gallery.count, 24) }).map(() => gallery.cover);
 
   return (
     <main className="min-h-screen bg-white">

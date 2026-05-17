@@ -141,7 +141,7 @@ export default function Header() {
 
           {/* Virtual Tour */}
           <Link
-            href="/virtual-tour"
+            href="/about/virtualtour"
             className="relative inline-flex items-center gap-2 rounded-lg pl-1.5 pr-5 py-1.5 text-[15px] font-semibold text-[#1a1a1a] shadow-[0_4px_10px_rgba(244,185,25,0.35)]"
             style={{ background: YELLOW }}
           >

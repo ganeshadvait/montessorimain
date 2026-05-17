@@ -20,7 +20,7 @@ export default function GalleryPage() {
                 href={`/gallery/${g.slug}`}
                 className="group block"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#f5f5f5]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#f5f5f5] rounded-md">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={g.cover}
@@ -28,7 +28,7 @@ export default function GalleryPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/0 to-transparent" />
                   <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3">
                     <h3 className="text-white text-[16px] md:text-[17px] font-bold tracking-tight leading-tight line-clamp-2">
                       {g.name}

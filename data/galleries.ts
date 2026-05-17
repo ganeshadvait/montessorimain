@@ -1,12 +1,15 @@
 //File :- data/galleries.ts
 
-const BASE = "https://www.montessorijnprime.com/montessori/prime";
+const HOST = "https://www.montessorijnprime.com";
+const APP_BASE = `${HOST}/montessori/prime`;
 
 function asset(path: string): string {
-  if (!path) return `${BASE}/assets/img/gallery/defaultcoverimage.jpg`;
+  if (!path) return `${APP_BASE}/assets/img/gallery/defaultcoverimage.jpg`;
   if (path.startsWith("http")) return path;
-  if (path.startsWith("assets/")) return `${BASE}/${path}`;
-  return `${BASE}${path.startsWith("/") ? "" : "/"}${path}`;
+  if (path.startsWith("assets/")) return `${APP_BASE}/${path}`;
+  // /file_source/* paths are served from the host root, NOT the /montessori/prime app base
+  if (path.startsWith("/file_source/")) return `${HOST}${path}`;
+  return `${APP_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 
 export function slugify(name: string): string {

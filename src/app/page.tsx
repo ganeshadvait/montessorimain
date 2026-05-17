@@ -4,7 +4,9 @@ import HomeHighlightCards from "../../components/home-highlight-cards";
 import HomeCurriculum from "../../components/home-curriculum";
 import HomeAboutUs from "../../components/home-about-us";
 import HomeTraining from "../../components/home-training";
+import HomeTrainingV2 from "../../components/home-training-v2";
 import HomeStrengths from "../../components/home-strengths";
+import HomeStrengthsV2 from "../../components/home-strengths-v2";
 import HomeJoin from "../../components/home-join";
 import HomeGallery from "../../components/home-gallery";
 import HomeEvents from "../../components/home-events";
@@ -19,8 +21,10 @@ export default function Home() {
       <HomeHighlightCards />
       <HomeCurriculum />
       <HomeAboutUs />
-      <HomeTraining />
-      <HomeStrengths />
+      {/* <HomeTraining /> */}
+      <HomeTrainingV2 />
+      {/* <HomeStrengths /> */}
+      <HomeStrengthsV2 />
       <HomeJoin />
       <HomeGallery />
       <HomeEvents />
