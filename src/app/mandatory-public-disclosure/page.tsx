@@ -39,7 +39,7 @@ const documents: { label: string; href?: string }[] = [
     href: "/Mandatory Public Disclosure/Self Declaration.pdf",
   },
   { label: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
-    href: "/Mandatory Public Disclosure/sanitary certificate.pdf",
+    href: "/Mandatory Public Disclosure/sanitation certificate.pdf",
    },
 ];
 
