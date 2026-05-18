@@ -19,8 +19,7 @@ const stages: Stage[] = [
     grade: "Classes Jr. KG to Sr. KG",
     body:
       "The Pre-Primary Wing focuses on joyful learning through play, exploration, and imagination. Our early learners engage in hands-on activities using Montessori materials and interactive tools that make learning fun and meaningful. The emphasis is on developing fine motor skills, communication, social interaction, and emotional growth. We provide a safe, nurturing, and stimulating environment where every child discovers the joy of learning.",
-    image:
-      "https://www.montessorijnprime.com/montessori/prime/assets/img/home/programs/1.png?_=1234",
+    image: "/home-curriculum-images/home-curriculum-imageOne.png",
     bannerBg: "#cce7e8",
     accent: "#5caaac",
   },
@@ -29,8 +28,7 @@ const stages: Stage[] = [
     grade: "Grade I to V",
     body:
       "The Primary Wing lays the foundation for academic excellence and curiosity. At this stage, formal learning begins with an emphasis on conceptual understanding rather than rote memorization. Interactive digital classrooms, activity-based learning, and integrated projects make lessons engaging and effective. Alongside academics, students participate in co-curricular and value-based programs that encourage teamwork, confidence, and creativity.",
-    image:
-      "https://www.montessorijnprime.com/montessori/prime/assets/img/home/programs/2.png?_=1234",
+    image: "/home-curriculum-images/home-curriculum-imageTwo.png",
     bannerBg: "#FAD0D5",
     accent: "#E94454",
   },
@@ -39,14 +37,13 @@ const stages: Stage[] = [
     grade: "Grade VI to X",
     body:
       "The High School curriculum is designed to prepare students for academic success and future challenges under the CBSE framework. The focus is on developing analytical, problem-solving, and leadership skills. Students are guided to explore subjects in-depth while balancing academics with sports, arts, and life skill education. With dedicated mentorship and career guidance, learners are equipped to make informed choices for their higher education and professional aspirations.",
-    image:
-      "https://www.montessorijnprime.com/montessori/prime/assets/img/home/programs/3.png?_=1234",
+    image: "/home-curriculum-images/home-curriculum-imageThree.png",
     bannerBg: "#FDE2A8",
     accent: "#E5A92E",
   },
 ];
 
-export default function HomeCurriculum() {
+export default function   HomeCurriculum() {
   return (
     <section className="relative w-full py-16 md:py-20 bg-white overflow-hidden">
       <style>{`

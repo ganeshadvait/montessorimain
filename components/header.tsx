@@ -5,8 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserRound, Globe, ChevronDown, Menu, X } from "lucide-react";
 
-const LOGO_URL =
-  "https://www.montessorijnprime.com/montessori/prime/assets/img/logo/logo.png?_=1234";
+const LOGO_URL = "/headerlogo.png";
 
 const PINK = "#dd3e74";
 const YELLOW = "#F4B919";

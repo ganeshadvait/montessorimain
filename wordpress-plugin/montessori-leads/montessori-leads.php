@@ -85,9 +85,6 @@ function msp_install() {
     if ( false === get_option( 'msp_notify_emails' ) ) {
         add_option( 'msp_notify_emails', '' );
     }
-    if ( false === get_option( 'msp_cors_origins' ) ) {
-        add_option( 'msp_cors_origins', '' );
-    }
 }
 
 /* ---------------------------------------------------------------------
@@ -141,29 +138,6 @@ add_action( 'rest_api_init', function () {
         ) );
     }
 } );
-
-// CORS for the Next.js front-end.
-// If the allowlist is empty, allow any origin (simplest for getting started).
-// If populated, only those origins are allowed.
-add_action( 'rest_api_init', function () {
-    remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
-    add_filter( 'rest_pre_serve_request', function ( $value ) {
-        $origin = get_http_origin();
-        if ( ! $origin ) return $value;
-
-        $raw     = trim( (string) get_option( 'msp_cors_origins', '' ) );
-        $allowed = array_filter( array_map( 'trim', explode( "\n", $raw ) ) );
-        $ok      = empty( $allowed ) || in_array( '*', $allowed, true ) || in_array( $origin, $allowed, true );
-        if ( ! $ok ) return $value;
-
-        header( 'Access-Control-Allow-Origin: ' . esc_url_raw( $origin ) );
-        header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
-        header( 'Access-Control-Allow-Headers: Content-Type, X-WP-Nonce, Authorization' );
-        header( 'Access-Control-Max-Age: 600' );
-        header( 'Vary: Origin' );
-        return $value;
-    } );
-}, 15 );
 
 function msp_save_application( WP_REST_Request $req ) {
     global $wpdb;
@@ -310,7 +284,6 @@ add_action( 'admin_init', function () {
 
     if ( isset( $_POST['msp_save_settings'] ) && check_admin_referer( 'msp_save_settings' ) ) {
         update_option( 'msp_notify_emails', sanitize_textarea_field( $_POST['emails'] ?? '' ) );
-        update_option( 'msp_cors_origins', sanitize_textarea_field( $_POST['cors'] ?? '' ) );
         wp_safe_redirect( add_query_arg( array( 'page' => 'msp-leads', 'saved' => 1 ), admin_url( 'admin.php' ) ) );
         exit;
     }
@@ -331,7 +304,6 @@ add_action( 'admin_init', function () {
 function msp_render_settings() {
     if ( ! current_user_can( 'manage_options' ) ) wp_die();
     $emails = (string) get_option( 'msp_notify_emails', '' );
-    $cors   = (string) get_option( 'msp_cors_origins', '' );
     ?>
     <div class="wrap">
         <h1>MSP Leads — Settings</h1>
@@ -347,10 +319,6 @@ function msp_render_settings() {
             <h2>Notification recipients</h2>
             <p>Comma-, semicolon- or newline-separated. Each address receives an email on every form submission.</p>
             <textarea name="emails" rows="5" class="large-text" placeholder="admissions@school.com, principal@school.com"><?php echo esc_textarea( $emails ); ?></textarea>
-
-            <h2 style="margin-top:24px;">CORS allowed origins (optional)</h2>
-            <p><strong>Leave blank to allow any origin.</strong> If you want to restrict, list the front-end origins (where the React forms are hosted), one per line. Examples: <code>http://localhost:3000</code>, <code>https://montessorijnprime.com</code>. Do NOT put this WordPress site's URL here.</p>
-            <textarea name="cors" rows="3" class="large-text code" placeholder="(empty = allow any origin)"><?php echo esc_textarea( $cors ); ?></textarea>
 
             <p style="margin-top:16px;">
                 <button class="button button-primary" name="msp_save_settings" value="1" type="submit">Save</button>
