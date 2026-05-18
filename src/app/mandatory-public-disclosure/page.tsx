@@ -62,7 +62,7 @@ const resultsAndAcademics: { label: string; href?: string; pdf: boolean }[] = [
   },
   {
     label: "ANNUAL ACADEMIC CALENDAR",
-    href: "/Mandatory Public Disclosure/ACADEMICS.pdf",
+    href: "/FINAL%20ACADEMIC%20CALENDAR%20YEAR%202026%20-%2027%20(As%20per%20CBSE%20Board).xlsx",
     pdf: true,
   },
   {
@@ -120,7 +120,7 @@ const schoolInfrastructure: { info: string; details: React.ReactNode }[] = [
     info: "SARAS MANDATORY PUBLIC DISCLOSURE",
     details: (
       <a
-        href="/Mandatory Public Disclosure/Mandatory Disclosure Details _ SARAS 4.0.pdf"
+        href="/Mandatory%20Disclosure%20Details%20_%20SARAS%207.0%20(1).pdf"
         aria-label="Download SARAS Mandatory Public Disclosure PDF"
         className="inline-block hover:opacity-80 transition-opacity"
       >
@@ -1530,7 +1530,7 @@ export default function MandatoryPublicDisclosurePage() {
       </section> */}
 
       {/* ACADEMIC CALENDAR DOWNLOAD */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -1544,7 +1544,7 @@ export default function MandatoryPublicDisclosurePage() {
             className="w-full inline-flex items-center gap-3 px-5 py-3 border border-[#d4cfc4] hover:bg-[#f6f7f7] transition-colors"
             style={{ color: "#231a3d" }}
           >
-            {/* Excel-style icon */}
+           
             <svg
               width="32"
               height="32"
@@ -1572,7 +1572,7 @@ export default function MandatoryPublicDisclosurePage() {
             </span>
           </a>
         </div>
-      </section>
+      </section>  */}
     </main>
   );
 }
