@@ -9,6 +9,8 @@ function asset(path: string): string {
   if (path.startsWith("assets/")) return `${APP_BASE}/${path}`;
   // /file_source/* paths are served from the host root, NOT the /montessori/prime app base
   if (path.startsWith("/file_source/")) return `${HOST}${path}`;
+  // Local public/ paths — serve as-is.
+  if (path.startsWith("/new-gallery-images/") || path.startsWith("/gallery-images/")) return path;
   return `${APP_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 
@@ -33,6 +35,7 @@ export type Gallery = {
 };
 
 const raw: { name: string; cover: string; count: number; createdOn: string; hasSub?: boolean }[] = [
+  { name: "New Gallery", cover: "/new-gallery-images/1.jpg", count: 52, createdOn: "18/05/2026 12:00:00 PM", hasSub: true },
   { name: "AY 2025-26 Gallery", cover: "/file_source/Gallery/AY 2025-26 Gallery/1.jpg", count: 96, createdOn: "18/09/2025 08:40:10 AM", hasSub: true },
   { name: "Exploring Math Through Fun", cover: "assets/img/gallery/defaultcoverimage.jpg", count: 1, createdOn: "27/08/2025 12:46:52 PM", hasSub: true },
   { name: "Academic Year 2024-25 Gallery", cover: "/file_source/Gallery/Academic Year 2024-25 Gallery/(14).jpg", count: 109, createdOn: "24/04/2025 12:50:05 PM", hasSub: true },
