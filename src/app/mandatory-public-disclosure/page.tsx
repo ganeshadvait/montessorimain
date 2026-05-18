@@ -14,48 +14,70 @@ const PdfIcon = () => (
 
 const documents: { label: string; href?: string }[] = [
   {
-    label: "COPIES OF AFFILIATION/UPGRADE LETTER and RECENT EXTENSION of AFFILIATION, IF ANY",
+    label:
+      "COPIES OF AFFILIATION/UPGRADE LETTER and RECENT EXTENSION of AFFILIATION, IF ANY",
     href: "/Mandatory Public Disclosure/CBSE Affiliation Certificate 3630485.pdf",
   },
   {
-    label: "COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE, AS APPLICABLE",
+    label:
+      "COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL CERTIFICATE, AS APPLICABLE",
     href: "/Mandatory Public Disclosure/Society Registration Certificate.pdf",
   },
   {
-    label: "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT",
+    label:
+      "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF APPLICABLE, BY THE STATE GOVT./UT",
     href: "/Mandatory Public Disclosure/State NOC.pdf",
   },
-  { label: "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT'S RENEWAL IF APPLICABLE",
+  {
+    label:
+      "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009, AND IT'S RENEWAL IF APPLICABLE",
     href: "/Mandatory Public Disclosure/Recognition.pdf",
   },
-  { label: "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
-    href: "/Mandatory Public Disclosure/building safety certificate.pdf",
-   },
-  { label: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
-    href: "/Mandatory Public Disclosure/Fire NOC.pdf",
-   },
   {
-    label: "COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION OR SELF CERTIFICATION BY SCHOOL",
+    label:
+      "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
+    href: "/Mandatory Public Disclosure/building safety certificate.pdf",
+  },
+  {
+    label:
+      "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
+    href: "/Mandatory Public Disclosure/Fire NOC.pdf",
+  },
+  {
+    label:
+      "COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION OR SELF CERTIFICATION BY SCHOOL",
     href: "/Mandatory Public Disclosure/Self Declaration.pdf",
   },
-  { label: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
+  {
+    label: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
     href: "/sanitations%20certifcate.pdf",
-   },
+  },
 ];
 
 const resultsAndAcademics: { label: string; href?: string; pdf: boolean }[] = [
-  { label: "FEE STRUCTURE OF THE SCHOOL",
-     href: "/Mandatory Public Disclosure/latest fee structure.pdf",
-    pdf: true },
-  { label: "ANNUAL ACADEMIC CALENDAR", 
-     href: "/Mandatory Public Disclosure/ACADEMICS.pdf",
-    pdf: true },
-  { label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)",
-    href: "/Mandatory Public Disclosure/School Managing Committee.pdf",
-     pdf: true },
-  { label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS", href: "/Mandatory Public Disclosure/pta.pdf", pdf: true },
   {
-    label: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
+    label: "FEE STRUCTURE OF THE SCHOOL",
+    href: "/Mandatory Public Disclosure/latest fee structure.pdf",
+    pdf: true,
+  },
+  {
+    label: "ANNUAL ACADEMIC CALENDAR",
+    href: "/Mandatory Public Disclosure/ACADEMICS.pdf",
+    pdf: true,
+  },
+  {
+    label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)",
+    href: "/Mandatory Public Disclosure/School Managing Committee.pdf",
+    pdf: true,
+  },
+  {
+    label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS",
+    href: "/Mandatory Public Disclosure/pta.pdf",
+    pdf: true,
+  },
+  {
+    label:
+      "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
     pdf: false,
   },
 ];
@@ -160,7 +182,11 @@ const staffTeaching: StaffRow[] = [
     details: "13",
   },
   { sl: 3, info: "TEACHERS SECTION RATIO", details: "1 : 1.5" },
-  { sl: 4, info: "DETAILS OF SPECIAL EDUCATOR", details: "Mrs. Sumitha Chakrabarti" },
+  {
+    sl: 4,
+    info: "DETAILS OF SPECIAL EDUCATOR",
+    details: "Mrs. Sumitha Chakrabarti",
+  },
   {
     sl: 5,
     info: "DETAILS OF COUNSELLOR AND WELLNESS TEACHER",
@@ -210,7 +236,357 @@ export default function MandatoryPublicDisclosurePage() {
         ]}
         title="Mandatory Public Disclosure"
       />
+      {/* A. GENERAL INFORMATION */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-10 md:pb-12">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            A. GENERAL INFORMATION
+          </h2>
 
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL
+                    <br />
+                    No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[34%]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {generalInfo.map((row) => (
+                  <tr key={row.sl}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.sl}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.info}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.details}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* B. DOCUMENTS AND INFORMATION */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            B. DOCUMENTS AND INFORMATION
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[100px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Documentation/Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[120px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {documents.map((doc, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {i + 1}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {doc.label}
+                    </td>
+                    <td className="align-middle px-5 py-4 border border-[#d4cfc4]">
+                      {doc.href ? (
+                        <a
+                          href={doc.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Download PDF: ${doc.label}`}
+                          className="inline-block hover:opacity-80 transition-opacity"
+                        >
+                          <PdfIcon />
+                        </a>
+                      ) : (
+                        <span className="text-[15px]">-</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* C. RESULT AND ACADEMICS */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            C. RESULT AND ACADEMICS
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[100px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Documents/Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[120px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {resultsAndAcademics.map((row, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {i + 1}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.label}
+                    </td>
+                    <td
+                      className="align-middle px-5 py-4 border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.pdf && row.href ? (
+                        <a
+                          href={row.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Download PDF: ${row.label}`}
+                          className="inline-block hover:opacity-80 transition-opacity"
+                        >
+                          <PdfIcon />
+                        </a>
+                      ) : (
+                        <span className="text-[15px]">-</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* D. STAFF(TEACHING) */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            D. STAFF(TEACHING)
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL
+                    <br />
+                    No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[34%]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {staffTeaching.map((row, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.sl ?? ""}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.info}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.details}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* E. SCHOOL INFRASTRUCTURE */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
+          {/* Section heading */}
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#E91E63" }}
+          >
+            E. SCHOOL INFRASTRUCTURE
+          </h2>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr style={{ background: "#5BC0BE" }}>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    SL
+                    <br />
+                    No.
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Information
+                  </th>
+                  <th
+                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[200px]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {schoolInfrastructure.map((row, i) => (
+                  <tr key={i}>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {i + 1}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.info}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.details}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
       {/* ====================================================== */}
       {/* Official CBSE-format disclosure block (after Section E) */}
@@ -233,7 +609,9 @@ export default function MandatoryPublicDisclosurePage() {
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4] w-[80px]"
                     style={{ color: "#a8a8a8" }}
                   >
-                    SL<br />NO.
+                    SL
+                    <br />
+                    NO.
                   </th>
                   <th
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4]"
@@ -251,14 +629,30 @@ export default function MandatoryPublicDisclosurePage() {
               </thead>
               <tbody>
                 {[
-                  { info: "NAME OF THE SCHOOL", details: "MONTESSORI PRIME SCHOOL" },
-                  { info: "AFFILIATION NO.(IF APPLICABLE)", details: "3630485" },
+                  {
+                    info: "NAME OF THE SCHOOL",
+                    details: "MONTESSORI PRIME SCHOOL",
+                  },
+                  {
+                    info: "AFFILIATION NO.(IF APPLICABLE)",
+                    details: "3630485",
+                  },
                   { info: "SCHOOL CODE (IF APPLICABLE)", details: "56771" },
-                  { info: "COMPLETE ADDRESS WITH PIN CODE", details: "53-1-24/1, YELLAPUR, HASANPARTHY, WARANGAL RURAL, TELANGANA - 506371" },
+                  {
+                    info: "COMPLETE ADDRESS WITH PIN CODE",
+                    details:
+                      "53-1-24/1, YELLAPUR, HASANPARTHY, WARANGAL RURAL, TELANGANA - 506371",
+                  },
                   { info: "PRINCIPAL NAME", details: "Mrs. INAGALA SWETHA" },
                   { info: "PRINCIPAL QUALIFICATION", details: "BA, MBA, BEd" },
-                  { info: "SCHOOL EMAIL ID", details: "montessoriprime27622@gmail.com" },
-                  { info: "CONTACT DETAILS (LANDLINE/MOBILE)", details: "7700043030" },
+                  {
+                    info: "SCHOOL EMAIL ID",
+                    details: "montessoriprime27622@gmail.com",
+                  },
+                  {
+                    info: "CONTACT DETAILS (LANDLINE/MOBILE)",
+                    details: "7700043030",
+                  },
                 ].map((row, i) => (
                   <tr key={i}>
                     <td
@@ -304,7 +698,9 @@ export default function MandatoryPublicDisclosurePage() {
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4] w-[80px]"
                     style={{ color: "#a8a8a8" }}
                   >
-                    SL<br />NO.
+                    SL
+                    <br />
+                    NO.
                   </th>
                   <th
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4]"
@@ -350,7 +746,10 @@ export default function MandatoryPublicDisclosurePage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block px-3 py-2 text-[13px] break-all hover:opacity-80 transition-opacity"
-                        style={{ color: "#1FBABA", border: "1px solid #1FBABA" }}
+                        style={{
+                          color: "#1FBABA",
+                          border: "1px solid #1FBABA",
+                        }}
                       >
                         https://www.montessorijnprime.com/montessori/prime/mandatory-public-disclosure
                       </a>
@@ -401,7 +800,9 @@ export default function MandatoryPublicDisclosurePage() {
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4] w-[80px]"
                     style={{ color: "#a8a8a8" }}
                   >
-                    SL<br />NO.
+                    SL
+                    <br />
+                    NO.
                   </th>
                   <th
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4]"
@@ -421,9 +822,19 @@ export default function MandatoryPublicDisclosurePage() {
                 {[
                   { label: "FEE STRUCTURE OF THE SCHOOL", hasLink: true },
                   { label: "ANNUAL ACADEMIC CALENDER", hasLink: true },
-                  { label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)", hasLink: true },
-                  { label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS", hasLink: true },
-                  { label: "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY", hasLink: false },
+                  {
+                    label: "LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)",
+                    hasLink: true,
+                  },
+                  {
+                    label: "LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS",
+                    hasLink: true,
+                  },
+                  {
+                    label:
+                      "LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER APPLICABILITY",
+                    hasLink: false,
+                  },
                 ].map((row, i) => (
                   <tr key={i}>
                     <td
@@ -445,7 +856,10 @@ export default function MandatoryPublicDisclosurePage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block px-3 py-2 text-[13px] break-all hover:opacity-80 transition-opacity"
-                          style={{ color: "#1FBABA", border: "1px solid #1FBABA" }}
+                          style={{
+                            color: "#1FBABA",
+                            border: "1px solid #1FBABA",
+                          }}
                         >
                           https://www.montessorijnprime.com/montessori/prime/mandatory-public-disclosure
                         </a>
@@ -478,7 +892,9 @@ export default function MandatoryPublicDisclosurePage() {
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4] w-[80px]"
                     style={{ color: "#a8a8a8" }}
                   >
-                    SL<br />NO.
+                    SL
+                    <br />
+                    NO.
                   </th>
                   <th
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4]"
@@ -496,13 +912,36 @@ export default function MandatoryPublicDisclosurePage() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>1</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>PRINCIPAL</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>Mrs. INAGALA SWETHA</td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    1
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    PRINCIPAL
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Mrs. INAGALA SWETHA
+                  </td>
                 </tr>
                 <tr>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>2</td>
-                  <td className="align-top p-0 border border-[#d4cfc4]" colSpan={2}>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    2
+                  </td>
+                  <td
+                    className="align-top p-0 border border-[#d4cfc4]"
+                    colSpan={2}
+                  >
                     <table className="w-full border-collapse">
                       <tbody>
                         {[
@@ -514,7 +953,10 @@ export default function MandatoryPublicDisclosurePage() {
                           <tr key={i}>
                             <td
                               className={`align-top px-5 py-4 text-[14px] ${i < arr.length - 1 ? "border-b" : ""} border-[#d4cfc4]`}
-                              style={{ color: "#231a3d", width: "calc(100% / 1.66)" }}
+                              style={{
+                                color: "#231a3d",
+                                width: "calc(100% / 1.66)",
+                              }}
                             >
                               {row.info}
                             </td>
@@ -531,19 +973,64 @@ export default function MandatoryPublicDisclosurePage() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>3</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>TEACHERS SECTION RATIO</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>1:1.5</td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    3
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    TEACHERS SECTION RATIO
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    1:1.5
+                  </td>
                 </tr>
                 <tr>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>4</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>DETAILS OF SPECIAL EDUCATOR</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>Mrs Sumitha Chakrabarti</td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    4
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    DETAILS OF SPECIAL EDUCATOR
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Mrs Sumitha Chakrabarti
+                  </td>
                 </tr>
                 <tr>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>5</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>DETAILS OF COUNSELLOR AND WELLNESS TEACHER</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>Mr V Bharat Kumar &amp; Miss Preechi</td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    5
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    DETAILS OF COUNSELLOR AND WELLNESS TEACHER
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Mr V Bharat Kumar &amp; Miss Preechi
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -564,7 +1051,14 @@ export default function MandatoryPublicDisclosurePage() {
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  {["SL NO.", "YEAR", "NO. OF REGISTERED STUDENTS", "NO. OF STUDENTS PASSED", "PASS PERCENTAGE", "REMARKS"].map((h, i) => (
+                  {[
+                    "SL NO.",
+                    "YEAR",
+                    "NO. OF REGISTERED STUDENTS",
+                    "NO. OF STUDENTS PASSED",
+                    "PASS PERCENTAGE",
+                    "REMARKS",
+                  ].map((h, i) => (
                     <th
                       key={i}
                       className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4]"
@@ -577,12 +1071,42 @@ export default function MandatoryPublicDisclosurePage() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>1</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>2026</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>103</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>103</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>100</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>Eighty Five Percentage is school average</td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    1
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    2026
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    103
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    103
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    100
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    Eighty Five Percentage is school average
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -603,7 +1127,14 @@ export default function MandatoryPublicDisclosurePage() {
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  {["SL NO.", "YEAR", "NO. OF REGISTERED STUDENTS", "NO. OF STUDENTS PASSED", "PASS PERCENTAGE", "REMARKS"].map((h, i) => (
+                  {[
+                    "SL NO.",
+                    "YEAR",
+                    "NO. OF REGISTERED STUDENTS",
+                    "NO. OF STUDENTS PASSED",
+                    "PASS PERCENTAGE",
+                    "REMARKS",
+                  ].map((h, i) => (
                     <th
                       key={i}
                       className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4]"
@@ -616,12 +1147,42 @@ export default function MandatoryPublicDisclosurePage() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>1</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>&nbsp;</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>&nbsp;</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>&nbsp;</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>&nbsp;</td>
-                  <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>&nbsp;</td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    1
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    &nbsp;
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    &nbsp;
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    &nbsp;
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    &nbsp;
+                  </td>
+                  <td
+                    className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                    style={{ color: "#231a3d" }}
+                  >
+                    &nbsp;
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -646,7 +1207,9 @@ export default function MandatoryPublicDisclosurePage() {
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4] w-[80px]"
                     style={{ color: "#a8a8a8" }}
                   >
-                    SL<br />NO.
+                    SL
+                    <br />
+                    NO.
                   </th>
                   <th
                     className="text-left align-top px-5 py-4 text-[14px] font-semibold border border-[#d4cfc4]"
@@ -664,9 +1227,18 @@ export default function MandatoryPublicDisclosurePage() {
               </thead>
               <tbody>
                 {[
-                  { info: "TOTAL CAMPUS AREA OF THE SCHOOL (IN SQ MTR)", details: "36583.58" },
-                  { info: "NO. AND SIZE OF THE CLASS ROOMS (IN SQ MTR)", details: "48 & 53" },
-                  { info: "NO. AND SIZE OF LABORATORIES INCLUDING COMPUTER LABS (IN SQ MTR)", details: "6 & 69" },
+                  {
+                    info: "TOTAL CAMPUS AREA OF THE SCHOOL (IN SQ MTR)",
+                    details: "36583.58",
+                  },
+                  {
+                    info: "NO. AND SIZE OF THE CLASS ROOMS (IN SQ MTR)",
+                    details: "48 & 53",
+                  },
+                  {
+                    info: "NO. AND SIZE OF LABORATORIES INCLUDING COMPUTER LABS (IN SQ MTR)",
+                    details: "6 & 69",
+                  },
                   { info: "INTERNET FACILITY", details: "YES" },
                   { info: "NO. OF GIRLS TOILETS", details: "69" },
                   { info: "NO. OF BOYS TOILETS", details: "72" },
@@ -753,46 +1325,202 @@ export default function MandatoryPublicDisclosurePage() {
               </thead>
               <tbody>
                 {[
-                  { name: "Jose Kuriyan", designation: "TGT", qualification: "MA BEd" },
-                  { name: "Sajin Thomas", designation: "TGT", qualification: "MSc BEd" },
-                  { name: "P Vamshikrishna", designation: "TGT", qualification: "BSc BEd" },
-                  { name: "Enaganti Sandhya Rani", designation: "TGT", qualification: "MA BEd" },
-                  { name: "Thumma Yakub Reddy", designation: "TGT", qualification: "MCA Bed" },
-                  { name: "Kavita Pandey", designation: "TGT", qualification: "MA BEd" },
-                  { name: "K Shilpa", designation: "PRT", qualification: "M. Tech" },
-                  { name: "Mohammad Abbas Parvez", designation: "PRT", qualification: "MSc BEd" },
-                  { name: "Devullapelli Ramesh", designation: "TGT", qualification: "MA BEd" },
-                  { name: "Kurmachalam Geetha Kumari", designation: "PRT", qualification: "BSc BEd" },
-                  { name: "Parvathy S Nair", designation: "PRT", qualification: "MSc BEd" },
-                  { name: "Gurijala Janaki", designation: "PRT", qualification: "BTech" },
-                  { name: "Gh Hassan Dar", designation: "TGT", qualification: "BA BEd" },
-                  { name: "A Sathish Babu", designation: "TGT", qualification: "MSc BEd" },
-                  { name: "Pramod Nayak", designation: "TGT", qualification: "BA BEd" },
-                  { name: "Mohammed Ashjil N K", designation: "TGT", qualification: "B.Tech Bed" },
-                  { name: "Sravani Sarvam", designation: "TGT", qualification: "M.Tech BEd" },
-                  { name: "A Padma", designation: "PRT", qualification: "MA BEd" },
-                  { name: "K Prasanna Rani", designation: "PRT", qualification: "MA BEd" },
-                  { name: "Sean Jose", designation: "HM", qualification: "BCOM BED" },
-                  { name: "Annarapu Sharanya", designation: "PRT", qualification: "BTech BEd" },
-                  { name: "Kandikonda Rambabu", designation: "PGT", qualification: "MSc B.Ed" },
-                  { name: "Muppidi Vijaya Laxmi", designation: "TGT", qualification: "MA B.Ed" },
-                  { name: "Kolla Srinivas Reddy", designation: "PGT", qualification: "MSc BEd" },
-                  { name: "Praveen Mekala", designation: "PGT", qualification: "MSc BED" },
-                  { name: "Giddigam Shiva Kumar", designation: "TGT", qualification: "MSc BED" },
-                  { name: "Aparnamol Thomas", designation: "PGT", qualification: "MSc B.ED" },
-                  { name: "Vijay Kumar Y", designation: "TGT", qualification: "BA B.ED" },
-                  { name: "Shagufta Baber", designation: "PRT", qualification: "MA BEd" },
-                  { name: "Ashley Mariam Shibu", designation: "PRT", qualification: "MSC BEd" },
-                  { name: "Akshaja A", designation: "PRT", qualification: "MBA Bed" },
-                  { name: "Elizebeth Augustine", designation: "PRT", qualification: "MSc BEd" },
-                  { name: "Gopal Bhunia", designation: "PET", qualification: "BPEd, MPEd" },
-                  { name: "Prasenjit Paria", designation: "PET", qualification: "BPEd, MPEd" },
+                  {
+                    name: "Jose Kuriyan",
+                    designation: "TGT",
+                    qualification: "MA BEd",
+                  },
+                  {
+                    name: "Sajin Thomas",
+                    designation: "TGT",
+                    qualification: "MSc BEd",
+                  },
+                  {
+                    name: "P Vamshikrishna",
+                    designation: "TGT",
+                    qualification: "BSc BEd",
+                  },
+                  {
+                    name: "Enaganti Sandhya Rani",
+                    designation: "TGT",
+                    qualification: "MA BEd",
+                  },
+                  {
+                    name: "Thumma Yakub Reddy",
+                    designation: "TGT",
+                    qualification: "MCA Bed",
+                  },
+                  {
+                    name: "Kavita Pandey",
+                    designation: "TGT",
+                    qualification: "MA BEd",
+                  },
+                  {
+                    name: "K Shilpa",
+                    designation: "PRT",
+                    qualification: "M. Tech",
+                  },
+                  {
+                    name: "Mohammad Abbas Parvez",
+                    designation: "PRT",
+                    qualification: "MSc BEd",
+                  },
+                  {
+                    name: "Devullapelli Ramesh",
+                    designation: "TGT",
+                    qualification: "MA BEd",
+                  },
+                  {
+                    name: "Kurmachalam Geetha Kumari",
+                    designation: "PRT",
+                    qualification: "BSc BEd",
+                  },
+                  {
+                    name: "Parvathy S Nair",
+                    designation: "PRT",
+                    qualification: "MSc BEd",
+                  },
+                  {
+                    name: "Gurijala Janaki",
+                    designation: "PRT",
+                    qualification: "BTech",
+                  },
+                  {
+                    name: "Gh Hassan Dar",
+                    designation: "TGT",
+                    qualification: "BA BEd",
+                  },
+                  {
+                    name: "A Sathish Babu",
+                    designation: "TGT",
+                    qualification: "MSc BEd",
+                  },
+                  {
+                    name: "Pramod Nayak",
+                    designation: "TGT",
+                    qualification: "BA BEd",
+                  },
+                  {
+                    name: "Mohammed Ashjil N K",
+                    designation: "TGT",
+                    qualification: "B.Tech Bed",
+                  },
+                  {
+                    name: "Sravani Sarvam",
+                    designation: "TGT",
+                    qualification: "M.Tech BEd",
+                  },
+                  {
+                    name: "A Padma",
+                    designation: "PRT",
+                    qualification: "MA BEd",
+                  },
+                  {
+                    name: "K Prasanna Rani",
+                    designation: "PRT",
+                    qualification: "MA BEd",
+                  },
+                  {
+                    name: "Sean Jose",
+                    designation: "HM",
+                    qualification: "BCOM BED",
+                  },
+                  {
+                    name: "Annarapu Sharanya",
+                    designation: "PRT",
+                    qualification: "BTech BEd",
+                  },
+                  {
+                    name: "Kandikonda Rambabu",
+                    designation: "PGT",
+                    qualification: "MSc B.Ed",
+                  },
+                  {
+                    name: "Muppidi Vijaya Laxmi",
+                    designation: "TGT",
+                    qualification: "MA B.Ed",
+                  },
+                  {
+                    name: "Kolla Srinivas Reddy",
+                    designation: "PGT",
+                    qualification: "MSc BEd",
+                  },
+                  {
+                    name: "Praveen Mekala",
+                    designation: "PGT",
+                    qualification: "MSc BED",
+                  },
+                  {
+                    name: "Giddigam Shiva Kumar",
+                    designation: "TGT",
+                    qualification: "MSc BED",
+                  },
+                  {
+                    name: "Aparnamol Thomas",
+                    designation: "PGT",
+                    qualification: "MSc B.ED",
+                  },
+                  {
+                    name: "Vijay Kumar Y",
+                    designation: "TGT",
+                    qualification: "BA B.ED",
+                  },
+                  {
+                    name: "Shagufta Baber",
+                    designation: "PRT",
+                    qualification: "MA BEd",
+                  },
+                  {
+                    name: "Ashley Mariam Shibu",
+                    designation: "PRT",
+                    qualification: "MSC BEd",
+                  },
+                  {
+                    name: "Akshaja A",
+                    designation: "PRT",
+                    qualification: "MBA Bed",
+                  },
+                  {
+                    name: "Elizebeth Augustine",
+                    designation: "PRT",
+                    qualification: "MSc BEd",
+                  },
+                  {
+                    name: "Gopal Bhunia",
+                    designation: "PET",
+                    qualification: "BPEd, MPEd",
+                  },
+                  {
+                    name: "Prasenjit Paria",
+                    designation: "PET",
+                    qualification: "BPEd, MPEd",
+                  },
                 ].map((row, i) => (
                   <tr key={i}>
-                    <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>{i + 1}</td>
-                    <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>{row.name}</td>
-                    <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>{row.designation}</td>
-                    <td className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]" style={{ color: "#231a3d" }}>{row.qualification}</td>
+                    <td
+                      className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {i + 1}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.name}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.designation}
+                    </td>
+                    <td
+                      className="align-top px-5 py-4 text-[14px] border border-[#d4cfc4]"
+                      style={{ color: "#231a3d" }}
+                    >
+                      {row.qualification}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -838,7 +1566,9 @@ export default function MandatoryPublicDisclosurePage() {
               <span className="text-[15px] font-semibold">
                 FINAL ACADEMIC CALENDAR YEAR 2026 - 27 (As per CBSE Board).xlsx
               </span>
-              <span className="text-[12px] text-[#5e5e6e]">Click to download</span>
+              <span className="text-[12px] text-[#5e5e6e]">
+                Click to download
+              </span>
             </span>
           </a>
         </div>
