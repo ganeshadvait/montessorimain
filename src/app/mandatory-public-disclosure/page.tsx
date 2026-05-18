@@ -593,7 +593,7 @@ export default function MandatoryPublicDisclosurePage() {
       {/* ====================================================== */}
 
       {/* A : GENERAL INFORMATION */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-10 md:pb-12">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -679,10 +679,10 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* B : DOCUMENTS AND INFORMATION */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-10 md:pb-12">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -760,10 +760,10 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* NOTE */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-10 md:pb-12">
           <h3
             className="text-[15px] md:text-[16px] font-bold underline mb-3"
@@ -781,10 +781,10 @@ export default function MandatoryPublicDisclosurePage() {
             THEN SCHOOL SHALL BE LIABLE FOR ACTION AS PER NORMS.
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* C : RESULT AND ACADEMICS */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -873,10 +873,10 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* D : STAFF (TEACHING) */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -1036,10 +1036,10 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* RESULT CLASS: X */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-10 md:pb-12">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -1112,10 +1112,10 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* RESULT CLASS: XII */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -1188,10 +1188,10 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* E : SCHOOL INFRASTRUCTURE */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -1282,10 +1282,10 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* F : TEACHER DETAILS */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
           <h2
             className="text-[16px] md:text-[17px] font-semibold mb-4"
@@ -1527,7 +1527,7 @@ export default function MandatoryPublicDisclosurePage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ACADEMIC CALENDAR DOWNLOAD */}
       <section className="w-full">
