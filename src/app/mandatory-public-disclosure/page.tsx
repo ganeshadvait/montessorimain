@@ -211,357 +211,6 @@ export default function MandatoryPublicDisclosurePage() {
         title="Mandatory Public Disclosure"
       />
 
-      {/* A. GENERAL INFORMATION */}
-      <section className="w-full">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-10 md:pb-12">
-          {/* Section heading */}
-          <h2
-            className="text-[16px] md:text-[17px] font-semibold mb-4"
-            style={{ color: "#E91E63" }}
-          >
-            A. GENERAL INFORMATION
-          </h2>
-
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr style={{ background: "#5BC0BE" }}>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    SL
-                    <br />
-                    No.
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Information
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[34%]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {generalInfo.map((row) => (
-                  <tr key={row.sl}>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.sl}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.info}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.details}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* B. DOCUMENTS AND INFORMATION */}
-      <section className="w-full">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
-          {/* Section heading */}
-          <h2
-            className="text-[16px] md:text-[17px] font-semibold mb-4"
-            style={{ color: "#E91E63" }}
-          >
-            B. DOCUMENTS AND INFORMATION
-          </h2>
-
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr style={{ background: "#5BC0BE" }}>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[100px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    SL No.
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Documentation/Information
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[120px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {documents.map((doc, i) => (
-                  <tr key={i}>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {i + 1}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {doc.label}
-                    </td>
-                    <td className="align-middle px-5 py-4 border border-[#d4cfc4]">
-                      {doc.href ? (
-                        <a
-                          href={doc.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Download PDF: ${doc.label}`}
-                          className="inline-block hover:opacity-80 transition-opacity"
-                        >
-                          <PdfIcon />
-                        </a>
-                      ) : (
-                        <span className="text-[15px]">-</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* C. RESULT AND ACADEMICS */}
-      <section className="w-full">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
-          {/* Section heading */}
-          <h2
-            className="text-[16px] md:text-[17px] font-semibold mb-4"
-            style={{ color: "#E91E63" }}
-          >
-            C. RESULT AND ACADEMICS
-          </h2>
-
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr style={{ background: "#5BC0BE" }}>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[100px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    SL No.
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Documents/Information
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[120px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {resultsAndAcademics.map((row, i) => (
-                  <tr key={i}>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {i + 1}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.label}
-                    </td>
-                    <td
-                      className="align-middle px-5 py-4 border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.pdf && row.href ? (
-                        <a
-                          href={row.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Download PDF: ${row.label}`}
-                          className="inline-block hover:opacity-80 transition-opacity"
-                        >
-                          <PdfIcon />
-                        </a>
-                      ) : (
-                        <span className="text-[15px]">-</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* D. STAFF(TEACHING) */}
-      <section className="w-full">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-20">
-          {/* Section heading */}
-          <h2
-            className="text-[16px] md:text-[17px] font-semibold mb-4"
-            style={{ color: "#E91E63" }}
-          >
-            D. STAFF(TEACHING)
-          </h2>
-
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr style={{ background: "#5BC0BE" }}>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    SL
-                    <br />
-                    No.
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Information
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[34%]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {staffTeaching.map((row, i) => (
-                  <tr key={i}>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.sl ?? ""}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.info}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.details}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* E. SCHOOL INFRASTRUCTURE */}
-      <section className="w-full">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
-          {/* Section heading */}
-          <h2
-            className="text-[16px] md:text-[17px] font-semibold mb-4"
-            style={{ color: "#E91E63" }}
-          >
-            E. SCHOOL INFRASTRUCTURE
-          </h2>
-
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr style={{ background: "#5BC0BE" }}>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[80px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    SL
-                    <br />
-                    No.
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Information
-                  </th>
-                  <th
-                    className="text-left align-top px-5 py-4 text-[15px] font-bold border border-[#d4cfc4] w-[200px]"
-                    style={{ color: "#231a3d" }}
-                  >
-                    Details
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {schoolInfrastructure.map((row, i) => (
-                  <tr key={i}>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {i + 1}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.info}
-                    </td>
-                    <td
-                      className="align-top px-5 py-4 text-[15px] border border-[#d4cfc4]"
-                      style={{ color: "#231a3d" }}
-                    >
-                      {row.details}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
 
       {/* ====================================================== */}
       {/* Official CBSE-format disclosure block (after Section E) */}
@@ -1149,6 +798,49 @@ export default function MandatoryPublicDisclosurePage() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* ACADEMIC CALENDAR DOWNLOAD */}
+      <section className="w-full">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
+          <h2
+            className="text-[16px] md:text-[17px] font-semibold mb-4"
+            style={{ color: "#F4831C" }}
+          >
+            ACADEMIC CALENDAR :
+          </h2>
+          <a
+            href="/FINAL%20ACADEMIC%20CALENDAR%20YEAR%202026%20-%2027%20(As%20per%20CBSE%20Board).xlsx"
+            download
+            className="w-full inline-flex items-center gap-3 px-5 py-3 border border-[#d4cfc4] hover:bg-[#f6f7f7] transition-colors"
+            style={{ color: "#231a3d" }}
+          >
+            {/* Excel-style icon */}
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" fill="#1F7A45" />
+              <path
+                d="M8 8l3 4-3 4M16 8l-3 4 3 4"
+                stroke="#fff"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="flex flex-col">
+              <span className="text-[15px] font-semibold">
+                FINAL ACADEMIC CALENDAR YEAR 2026 - 27 (As per CBSE Board).xlsx
+              </span>
+              <span className="text-[12px] text-[#5e5e6e]">Click to download</span>
+            </span>
+          </a>
         </div>
       </section>
     </main>
