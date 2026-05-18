@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
-  "/hero-secimages/C:\Users\ganes\montessorischoolsmain\public\herofirstimagesv2.png",
+  "/herofirstimagesv2.png",
   "/hero-secimages/imageone.png",
   "/hero-secimages/imagetwo.png",
   "/hero-secimages/imagethree.png",
