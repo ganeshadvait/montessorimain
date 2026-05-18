@@ -12,10 +12,12 @@ import HomeGallery from "../../components/home-gallery";
 import HomeEvents from "../../components/home-events";
 import HomeBlogs from "../../components/home-blogs";
 import HomeQuickEnquiry from "../../components/home-quick-enquiry";
+import HomeChairmanPopup from "../../components/home-chairman-popup";
 
 export default function Home() {
   return (
     <main>
+      <HomeChairmanPopup />
       <HomeHero />
       <HomeMarquee />
       <HomeHighlightCards />
