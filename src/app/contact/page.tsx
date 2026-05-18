@@ -1,11 +1,98 @@
+"use client";
 //File :- src/app/contact/page.tsx
+import { useState, FormEvent } from "react";
 import PageHero from "../../../components/page-hero";
 import { MapPin, Phone, Clock } from "lucide-react";
 
 const PINK = "#E91E63";
 const RED_BG = "#E94454";
 
+const CONTACT_ENDPOINT =
+  "https://dev.montessorigroups.com/wp-json/msp/v1/contact";
+
+function getTrackingFields() {
+  if (typeof window === "undefined") return {};
+  const sp = new URLSearchParams(window.location.search);
+  const keys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "gclid",
+    "fbclid",
+  ];
+  const out: Record<string, string> = {};
+  for (const k of keys) {
+    const v = sp.get(k);
+    if (v) out[k] = v;
+  }
+  out.page_url = window.location.href;
+  out.referrer = document.referrer || "";
+  return out;
+}
+
+const initialState = { name: "", email: "", mobile: "", message: "" };
+
 export default function ContactPage() {
+  const [data, setData] = useState(initialState);
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<
+    | { kind: "idle" }
+    | { kind: "success"; message: string }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
+
+  const update =
+    (key: keyof typeof initialState) =>
+    (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      setData((d) => ({ ...d, [key]: e.target.value }));
+    };
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    setStatus({ kind: "idle" });
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, ...getTrackingFields() }),
+      });
+      const json = await res.json().catch(() => ({}));
+      const success = res.ok && json?.resp?.success === "1";
+
+      if (success) {
+        setStatus({
+          kind: "success",
+          message:
+            json?.resp?.message ||
+            "Thank you. We will get in touch shortly.",
+        });
+        setData(initialState);
+      } else {
+        setStatus({
+          kind: "error",
+          message:
+            json?.resp?.message ||
+            json?.message ||
+            "Something went wrong. Please try again.",
+        });
+      }
+    } catch {
+      setStatus({
+        kind: "error",
+        message: "Network error. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white">
       <PageHero
@@ -153,42 +240,71 @@ export default function ContactPage() {
                 Get in touch with us
               </p>
 
-              <form className="mt-7 space-y-4">
+              <form onSubmit={onSubmit} className="mt-7 space-y-4">
                 <input
                   type="text"
                   required
+                  disabled={submitting}
+                  value={data.name}
+                  onChange={update("name")}
                   placeholder="Enter Your Name *"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors disabled:opacity-60"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <input
                   type="email"
                   required
+                  disabled={submitting}
+                  value={data.email}
+                  onChange={update("email")}
                   placeholder="Enter Your Email*"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors disabled:opacity-60"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <input
                   type="tel"
                   required
+                  disabled={submitting}
+                  value={data.mobile}
+                  onChange={update("mobile")}
                   placeholder="Enter Mobile Number *"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors disabled:opacity-60"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <textarea
                   required
+                  disabled={submitting}
                   rows={5}
+                  value={data.message}
+                  onChange={update("message")}
                   placeholder="Write your message...*"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors resize-y"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors resize-y disabled:opacity-60"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
 
+                {status.kind !== "idle" && (
+                  <div
+                    role="status"
+                    className="px-5 py-3 text-[14px] font-semibold"
+                    style={{
+                      background:
+                        status.kind === "success"
+                          ? "rgba(255,255,255,0.18)"
+                          : "rgba(0,0,0,0.25)",
+                      color: "#fff",
+                    }}
+                  >
+                    {status.message}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="mt-2 px-7 py-3.5 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity"
+                  disabled={submitting}
+                  className="mt-2 px-7 py-3.5 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ background: "#231a3d" }}
                 >
-                  Send Message
+                  {submitting ? "Sending…" : "Send Message"}
                 </button>
               </form>
             </div>

@@ -39,7 +39,7 @@ const documents: { label: string; href?: string }[] = [
     href: "/Mandatory Public Disclosure/Self Declaration.pdf",
   },
   { label: "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
-    href: "/Mandatory Public Disclosure/sanitation certificate.pdf",
+    href: "/sanitations%20certifcate.pdf",
    },
 ];
 
@@ -100,6 +100,18 @@ const schoolInfrastructure: { info: string; details: React.ReactNode }[] = [
       <a
         href="/Mandatory Public Disclosure/Mandatory Disclosure Details _ SARAS 4.0.pdf"
         aria-label="Download SARAS Mandatory Public Disclosure PDF"
+        className="inline-block hover:opacity-80 transition-opacity"
+      >
+        <PdfIcon />
+      </a>
+    ),
+  },
+  {
+    info: "VALID WATER, HEALTH AND SANITATION CERTIFICATES",
+    details: (
+      <a
+        href="/sanitations%20certifcate.pdf"
+        aria-label="Download Water, Health and Sanitation Certificate PDF"
         className="inline-block hover:opacity-80 transition-opacity"
       >
         <PdfIcon />

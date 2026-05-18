@@ -11,15 +11,84 @@ const MUTED = "#5e5e6e";
 const SHAPE_LEFT = "/home/sketboard pink.png";
 const SHAPE_RIGHT = "/home/bulb thread paper rocket.png";
 
+const ENQUIRY_ENDPOINT =
+  "https://dev.montessorigroups.com/wp-json/msp/v1/enquiry";
+
+function getTrackingFields() {
+  if (typeof window === "undefined") return {};
+  const sp = new URLSearchParams(window.location.search);
+  const keys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "gclid",
+    "fbclid",
+  ];
+  const out: Record<string, string> = {};
+  for (const k of keys) {
+    const v = sp.get(k);
+    if (v) out[k] = v;
+  }
+  out.page_url = window.location.href;
+  out.referrer = document.referrer || "";
+  return out;
+}
+
 export default function HomeQuickEnquiry() {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<
+    | { kind: "idle" }
+    | { kind: "success"; message: string }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
     if (!name.trim() || !mobile.trim()) return;
-    // Hook into your real backend here.
-    console.log({ name, mobile });
+
+    setSubmitting(true);
+    setStatus({ kind: "idle" });
+
+    try {
+      const res = await fetch(ENQUIRY_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, mobile, ...getTrackingFields() }),
+      });
+      const json = await res.json().catch(() => ({}));
+      const success = res.ok && json?.resp?.success === "1";
+
+      if (success) {
+        setStatus({
+          kind: "success",
+          message:
+            json?.resp?.message ||
+            "Thank you. We will get in touch shortly.",
+        });
+        setName("");
+        setMobile("");
+      } else {
+        setStatus({
+          kind: "error",
+          message:
+            json?.resp?.message ||
+            json?.message ||
+            "Something went wrong. Please try again.",
+        });
+      }
+    } catch {
+      setStatus({
+        kind: "error",
+        message: "Network error. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -84,29 +153,44 @@ export default function HomeQuickEnquiry() {
           <input
             type="text"
             required
+            disabled={submitting}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Your Name"
-            className="w-full bg-white px-5 py-4 text-[15px] outline-none border border-transparent focus:border-[#E91E63] transition-colors"
+            className="w-full bg-white px-5 py-4 text-[15px] outline-none border border-transparent focus:border-[#E91E63] transition-colors disabled:opacity-60"
             style={{ color: INK }}
           />
           <input
             type="tel"
             required
+            disabled={submitting}
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
             placeholder="Enter Mobile Number"
-            className="w-full bg-white px-5 py-4 text-[15px] outline-none border border-transparent focus:border-[#E91E63] transition-colors"
+            className="w-full bg-white px-5 py-4 text-[15px] outline-none border border-transparent focus:border-[#E91E63] transition-colors disabled:opacity-60"
             style={{ color: INK }}
           />
           <button
             type="submit"
-            className="mt-2 inline-flex items-center gap-2 w-fit px-5 py-2.5 text-[14px] font-semibold text-white"
+            disabled={submitting}
+            className="mt-2 inline-flex items-center gap-2 w-fit px-5 py-2.5 text-[14px] font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed"
             style={{ background: PINK }}
           >
             <UserRound size={16} strokeWidth={2.4} />
-            Get In Touch
+            {submitting ? "Sending…" : "Get In Touch"}
           </button>
+
+          {status.kind !== "idle" && (
+            <p
+              role="status"
+              className="mt-1 text-[13px] font-medium"
+              style={{
+                color: status.kind === "success" ? "#1b5e20" : "#b71c1c",
+              }}
+            >
+              {status.message}
+            </p>
+          )}
         </form>
       </div>
     </section>

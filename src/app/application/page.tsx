@@ -5,8 +5,30 @@ import PageHero from "../../../components/page-hero";
 
 const RED_BG = "#E94454";
 
-// TODO: swap with the real endpoint
-const APPLICATION_ENDPOINT = "/api/application";
+const APPLICATION_ENDPOINT =
+  "https://dev.montessorigroups.com/wp-json/msp/v1/application";
+
+function getTrackingFields() {
+  if (typeof window === "undefined") return {};
+  const sp = new URLSearchParams(window.location.search);
+  const keys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "gclid",
+    "fbclid",
+  ];
+  const out: Record<string, string> = {};
+  for (const k of keys) {
+    const v = sp.get(k);
+    if (v) out[k] = v;
+  }
+  out.page_url = window.location.href;
+  out.referrer = document.referrer || "";
+  return out;
+}
 
 type FormState = {
   studentName: string;
@@ -119,7 +141,7 @@ export default function ApplicationPage() {
       const res = await fetch(APPLICATION_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(toPayload(data)),
+        body: JSON.stringify({ ...toPayload(data), ...getTrackingFields() }),
       });
 
       const json: ApiResponse = await res.json();
