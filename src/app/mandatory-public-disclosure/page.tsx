@@ -120,7 +120,7 @@ const schoolInfrastructure: { info: string; details: React.ReactNode }[] = [
     info: "SARAS MANDATORY PUBLIC DISCLOSURE",
     details: (
       <a
-        href="/Mandatory%20Disclosure%20Details%20_%20SARAS%207.0%20(1).pdf"
+        href="/Mandatory%20Disclosure%20Details%20_%2019052026.pdf"
         aria-label="Download SARAS Mandatory Public Disclosure PDF"
         className="inline-block hover:opacity-80 transition-opacity"
       >
