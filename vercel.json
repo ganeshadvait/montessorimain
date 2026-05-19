@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "source": "/montessori/prime/about/careers",
+      "destination": "/careers",
+      "permanent": true
+    },
+    {
+      "source": "/montessori/prime/about/founders",
+      "destination": "/about/founders",
+      "permanent": true
+    },
+    {
+      "source": "/montessori/prime/about",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/montessori/prime/gallery",
+      "destination": "/gallery",
+      "permanent": true
+    },
+    {
+      "source": "/montessori/prime/contact",
+      "destination": "/contact",
+      "permanent": true
+    }
+  ]
+}
