@@ -17,7 +17,6 @@ import HomeChairmanPopup from "../../components/home-chairman-popup";
 export default function Home() {
   return (
     <main>
-      <HomeChairmanPopup />
       <HomeHero />
       <HomeMarquee />
       <HomeHighlightCards />

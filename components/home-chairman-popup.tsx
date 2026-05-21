@@ -1,17 +1,47 @@
 "use client";
 //File :- components/home-chairman-popup.tsx
-import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { useEffect, useState, FormEvent } from "react";
+import { X, Send } from "lucide-react";
 
+const PINK = "#E91E63";
 const INK = "#231a3d";
-const MUTED = "#5e5e6e";
-const NAME_BLUE = "#1F8BE0";
-const CLOSE_RED = "#EF4444";
 
-const CHAIRMAN_IMAGE = "/home/chairman jose nedumthundam.webp";
+const CONTACT_ENDPOINT =
+  "https://dev.montessorigroups.com/wp-json/msp/v1/contact";
+
+function getTrackingFields() {
+  if (typeof window === "undefined") return {};
+  const sp = new URLSearchParams(window.location.search);
+  const keys = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "gclid",
+    "fbclid",
+  ];
+  const out: Record<string, string> = {};
+  for (const k of keys) {
+    const v = sp.get(k);
+    if (v) out[k] = v;
+  }
+  out.page_url = window.location.href;
+  out.referrer = document.referrer || "";
+  return out;
+}
+
+const initialState = { name: "", email: "", mobile: "" };
 
 export default function HomeChairmanPopup() {
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState(initialState);
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<
+    | { kind: "idle" }
+    | { kind: "success"; message: string }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
 
   useEffect(() => {
     setOpen(true);
@@ -34,91 +64,220 @@ export default function HomeChairmanPopup() {
     };
   }, [open]);
 
+  const update =
+    (key: keyof typeof initialState) =>
+    (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      setData((d) => ({ ...d, [key]: e.target.value }));
+    };
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    setStatus({ kind: "idle" });
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, ...getTrackingFields() }),
+      });
+      const json = await res.json().catch(() => ({}));
+      const success = res.ok && json?.resp?.success === "1";
+
+      if (success) {
+        setStatus({
+          kind: "success",
+          message:
+            json?.resp?.message ||
+            "Thank you. We will get in touch shortly.",
+        });
+        setData(initialState);
+      } else {
+        setStatus({
+          kind: "error",
+          message:
+            json?.resp?.message ||
+            json?.message ||
+            "Something went wrong. Please try again.",
+        });
+      }
+    } catch {
+      setStatus({
+        kind: "error",
+        message: "Network error. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   if (!open) return null;
 
   return (
     <div
       role="dialog"
       aria-modal="true"
-      aria-labelledby="chairman-popup-title"
+      aria-labelledby="contact-popup-title"
       className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8"
     >
       {/* Backdrop */}
       <button
         type="button"
-        aria-label="Close Chairman's Message"
+        aria-label="Close"
         onClick={() => setOpen(false)}
-        className="absolute inset-0 w-full h-full bg-black/55 backdrop-blur-[2px] cursor-default"
+        className="absolute inset-0 w-full h-full bg-black/60 backdrop-blur-[3px] cursor-default"
       />
 
       {/* Dialog */}
-      <div className="relative w-full max-w-[760px] bg-white rounded-2xl shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+        {/* Top accent strip */}
+        <div
+          className="h-1.5 w-full"
+          style={{
+            background: `linear-gradient(90deg, ${PINK} 0%, #F4831C 100%)`,
+          }}
+        />
+
         {/* Close button */}
         <button
           type="button"
           aria-label="Close"
           onClick={() => setOpen(false)}
-          className="absolute top-3 right-3 inline-flex items-center justify-center w-9 h-9 rounded-full text-white hover:opacity-90 transition-opacity"
-          style={{ background: CLOSE_RED }}
+          className="absolute top-4 right-4 inline-flex items-center justify-center w-9 h-9 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors"
         >
-          <X size={18} strokeWidth={2.6} />
+          <X size={20} strokeWidth={2.2} />
         </button>
 
-        <div className="px-6 md:px-10 pt-8 pb-8 md:pb-10">
-          <h2
-            id="chairman-popup-title"
-            className="text-center text-[22px] md:text-[26px] font-semibold tracking-tight"
-            style={{ color: INK }}
-          >
-            Chairman&rsquo;s Message
-          </h2>
-
-          <div className="mt-6 md:mt-8 grid md:grid-cols-[200px_1fr] gap-6 md:gap-8 items-start">
-            {/* Left — portrait */}
-            <div className="flex flex-col items-center text-center">
-              <div className="w-[140px] h-[140px] md:w-[160px] md:h-[160px] rounded-full overflow-hidden bg-gray-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={CHAIRMAN_IMAGE}
-                  alt="Shri. Jose Nedumthundam, Chairman & Founder"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div
-                className="mt-4 text-[15px] md:text-[16px] font-semibold leading-tight"
-                style={{ color: NAME_BLUE }}
-              >
-                Shri. Jose Nedumthundam
-              </div>
-              <div
-                className="mt-1 text-[13px] md:text-[14px]"
-                style={{ color: INK }}
-              >
-                Chairman &amp; Founder
-              </div>
-            </div>
-
-            {/* Right — message */}
-            <div
-              className="space-y-4 text-[14px] md:text-[15px] leading-[1.75]"
-              style={{ color: MUTED }}
+        <div className="px-7 md:px-10 pt-8 pb-8 md:pb-10">
+          {/* Header */}
+          <div>
+            <h2
+              id="contact-popup-title"
+              className="text-[24px] md:text-[28px] font-bold tracking-tight"
+              style={{ color: INK }}
             >
-              <p>
-                At Montessori Prime School, our vision is to provide a
-                nurturing and enriching environment where students can learn,
-                grow, and excel. Our Yellapur branch is committed to delivering
-                quality education that prepares children for a bright and
-                successful future.
-              </p>
-              <p>
-                We aim to foster creativity, discipline, responsibility, and
-                empathy in our students, shaping them into ethical and
-                responsible citizens of tomorrow.
-              </p>
-            </div>
+              Get in Touch
+            </h2>
+            <p className="mt-2 text-[14px] text-gray-500 leading-relaxed">
+              Have a question? Send us a message and we&rsquo;ll get back to you
+              shortly.
+            </p>
           </div>
+
+          {/* Form */}
+          <form onSubmit={onSubmit} className="mt-7 space-y-4">
+            <Field
+              label="Full Name"
+              type="text"
+              required
+              disabled={submitting}
+              value={data.name}
+              onChange={update("name")}
+              placeholder="Your name"
+            />
+            <Field
+              label="Email"
+              type="email"
+              required
+              disabled={submitting}
+              value={data.email}
+              onChange={update("email")}
+              placeholder="name@example.com"
+            />
+            <Field
+              label="Mobile"
+              type="tel"
+              required
+              disabled={submitting}
+              value={data.mobile}
+              onChange={update("mobile")}
+              placeholder="+91 12345 67890"
+            />
+
+            {status.kind !== "idle" && (
+              <div
+                role="status"
+                className="px-4 py-3 text-[13px] font-medium rounded-lg"
+                style={{
+                  background:
+                    status.kind === "success"
+                      ? "rgba(34,197,94,0.12)"
+                      : "rgba(239,68,68,0.12)",
+                  color: status.kind === "success" ? "#15803d" : "#b91c1c",
+                  border: `1px solid ${
+                    status.kind === "success"
+                      ? "rgba(34,197,94,0.3)"
+                      : "rgba(239,68,68,0.3)"
+                  }`,
+                }}
+              >
+                {status.message}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="group w-full mt-2 inline-flex items-center justify-center gap-2 px-6 py-3.5 text-[14px] font-semibold text-white rounded-lg hover:opacity-95 hover:shadow-lg active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none"
+              style={{
+                background: `linear-gradient(135deg, ${PINK} 0%, #c2185b 100%)`,
+                boxShadow: "0 4px 14px rgba(233,30,99,0.35)",
+              }}
+            >
+              {submitting ? (
+                "Sending…"
+              ) : (
+                <>
+                  Send Message
+                  <Send
+                    size={16}
+                    strokeWidth={2.4}
+                    className="transition-transform group-hover:translate-x-0.5"
+                  />
+                </>
+              )}
+            </button>
+          </form>
         </div>
       </div>
+    </div>
+  );
+}
+
+type FieldProps = {
+  label: string;
+  type: string;
+  required?: boolean;
+  disabled?: boolean;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+};
+
+function Field({ label, type, ...rest }: FieldProps) {
+  return (
+    <div>
+      <label
+        className="block text-[13px] font-semibold mb-1.5"
+        style={{ color: INK }}
+      >
+        {label}
+      </label>
+      <input
+        type={type}
+        {...rest}
+        className="w-full px-4 py-3 text-[14px] bg-gray-50 border border-gray-200 rounded-lg outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-[var(--pink)] focus:ring-2 focus:ring-[var(--pink-soft)] disabled:opacity-60"
+        style={
+          {
+            color: INK,
+            ["--pink" as string]: PINK,
+            ["--pink-soft" as string]: "rgba(233,30,99,0.15)",
+          } as React.CSSProperties
+        }
+      />
     </div>
   );
 }

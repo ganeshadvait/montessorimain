@@ -4,6 +4,7 @@ import "./globals.css";
 import "./flaticon.css";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import HomeChairmanPopup from "../../components/home-chairman-popup";
 
 const nunito = Nunito({
   variable: "--font-family",
@@ -49,6 +50,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <HomeChairmanPopup />
         <Footer />
       </body>
     </html>
