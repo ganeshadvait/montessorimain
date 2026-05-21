@@ -50,9 +50,9 @@ const YoutubeIcon = () => (
 );
 
 const socials = [
-  { Icon: FacebookIcon, href: "#", label: "Facebook" },
+  { Icon: FacebookIcon, href: "https://www.facebook.com/montessorijnprime", label: "Facebook" },
   { Icon: TwitterIcon, href: "#", label: "Twitter" },
-  { Icon: InstagramIcon, href: "#", label: "Instagram" },
+  { Icon: InstagramIcon, href: "https://www.instagram.com/montessorijnprime/", label: "Instagram" },
   { Icon: YoutubeIcon, href: "#", label: "YouTube" },
 ];
 
