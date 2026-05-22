@@ -7,7 +7,7 @@ const PINK = "#E91E63";
 const INK = "#231a3d";
 
 const CONTACT_ENDPOINT =
-  "https://dev.montessorigroups.com/wp-json/msp/v1/contact";
+  "https://script.google.com/macros/s/AKfycbz0Tsjqpe4UHV3sKs4AnpYp0iLGgrhHYLKrbCEUcwbiL-rvFYXnC7eVm5iSf36w7aAd8A/exec";
 
 function getTrackingFields() {
   if (typeof window === "undefined") return {};
@@ -27,7 +27,6 @@ function getTrackingFields() {
     if (v) out[k] = v;
   }
   out.page_url = window.location.href;
-  out.referrer = document.referrer || "";
   return out;
 }
 
@@ -72,6 +71,12 @@ export default function HomeChairmanPopup() {
       setData((d) => ({ ...d, [key]: e.target.value }));
     };
 
+  useEffect(() => {
+    if (status.kind === "idle") return;
+    const t = setTimeout(() => setStatus({ kind: "idle" }), 4000);
+    return () => clearTimeout(t);
+  }, [status]);
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (submitting) return;
@@ -79,29 +84,23 @@ export default function HomeChairmanPopup() {
     setStatus({ kind: "idle" });
 
     try {
-      const res = await fetch(CONTACT_ENDPOINT, {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, ...getTrackingFields() }),
       });
-      const json = await res.json().catch(() => ({}));
-      const success = res.ok && json?.resp?.success === "1";
+      const result = await response.json().catch(() => ({}));
+      const success = result?.success === true;
 
       if (success) {
         setStatus({
           kind: "success",
-          message:
-            json?.resp?.message ||
-            "Thank you. We will get in touch shortly.",
+          message: result?.message || "Form Submitted Successfully",
         });
         setData(initialState);
       } else {
         setStatus({
           kind: "error",
-          message:
-            json?.resp?.message ||
-            json?.message ||
-            "Something went wrong. Please try again.",
+          message: result?.message || "Something went wrong. Please try again.",
         });
       }
     } catch {

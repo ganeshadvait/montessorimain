@@ -1,6 +1,6 @@
 "use client";
 //File :- components/home-quick-enquiry.tsx
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { UserRound } from "lucide-react";
 
 const PINK = "#E91E63";
@@ -12,7 +12,7 @@ const SHAPE_LEFT = "/home/sketboard pink.png";
 const SHAPE_RIGHT = "/home/bulb thread paper rocket.png";
 
 const ENQUIRY_ENDPOINT =
-  "https://dev.montessorigroups.com/wp-json/msp/v1/enquiry";
+  "https://script.google.com/macros/s/AKfycbzrvkIEA0DdyqmAF7VnL49MPjBboYCz-qGooNhqyT_nogBAPqQCSJ1XECLsJ6AUnuLs/exec";
 
 function getTrackingFields() {
   if (typeof window === "undefined") return {};
@@ -46,6 +46,12 @@ export default function HomeQuickEnquiry() {
     | { kind: "error"; message: string }
   >({ kind: "idle" });
 
+  useEffect(() => {
+    if (status.kind === "idle") return;
+    const t = setTimeout(() => setStatus({ kind: "idle" }), 4000);
+    return () => clearTimeout(t);
+  }, [status]);
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (submitting) return;
@@ -55,30 +61,24 @@ export default function HomeQuickEnquiry() {
     setStatus({ kind: "idle" });
 
     try {
-      const res = await fetch(ENQUIRY_ENDPOINT, {
+      const response = await fetch(ENQUIRY_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, mobile, ...getTrackingFields() }),
       });
-      const json = await res.json().catch(() => ({}));
-      const success = res.ok && json?.resp?.success === "1";
+      const result = await response.json().catch(() => ({}));
+      const success = result?.success === true;
 
       if (success) {
         setStatus({
           kind: "success",
-          message:
-            json?.resp?.message ||
-            "Thank you. We will get in touch shortly.",
+          message: result?.message || "Form Submitted Successfully",
         });
         setName("");
         setMobile("");
       } else {
         setStatus({
           kind: "error",
-          message:
-            json?.resp?.message ||
-            json?.message ||
-            "Something went wrong. Please try again.",
+          message: result?.message || "Something went wrong. Please try again.",
         });
       }
     } catch {

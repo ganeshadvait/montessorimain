@@ -26,7 +26,6 @@ function getTrackingFields() {
     if (v) out[k] = v;
   }
   out.page_url = window.location.href;
-  out.referrer = document.referrer || "";
   return out;
 }
 

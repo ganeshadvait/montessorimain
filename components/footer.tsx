@@ -8,11 +8,11 @@ const PINK = "#E91E63";
 const YELLOW = "#F4B919";
 
 const exploreLinks = [
-  { label: "About Us", href: "#" },
-  { label: "Gallery", href: "#" },
-  { label: "Events", href: "#" },
-  { label: "Blogs", href: "#" },
-  { label: "Virtual Tour", href: "#", highlight: true },
+  { label: "About Us", href: "https://www.montessorijnprime.com/about" },
+  { label: "Gallery", href: "https://www.montessorijnprime.com/gallery" },
+  { label: "Events", href: "https://www.montessorijnprime.com/events" },
+  { label: "Blogs", href: "https://www.montessorijnprime.com/news" },
+  { label: "Virtual Tour", href: "https://www.montessorijnprime.com/about/virtualtour", highlight: true },
   { label: "Privacy Policy", href: "#" },
 ];
 
