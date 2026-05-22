@@ -1,6 +1,6 @@
 "use client";
 //File :- src/app/application/page.tsx
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import PageHero from "../../../components/page-hero";
 
 const RED_BG = "#E94454";
@@ -122,6 +122,12 @@ export default function ApplicationPage() {
     ) => {
       setData((d) => ({ ...d, [key]: e.target.value }));
     };
+
+  useEffect(() => {
+    if (status.kind === "idle") return;
+    const t = setTimeout(() => setStatus({ kind: "idle" }), 4000);
+    return () => clearTimeout(t);
+  }, [status]);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 "use client";
 //File :- src/app/contact/page.tsx
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import PageHero from "../../../components/page-hero";
 import { MapPin, Phone, Clock } from "lucide-react";
 
@@ -8,35 +8,12 @@ const PINK = "#E91E63";
 const RED_BG = "#E94454";
 
 const CONTACT_ENDPOINT =
-  "https://dev.montessorigroups.com/wp-json/msp/v1/contact";
-
-function getTrackingFields() {
-  if (typeof window === "undefined") return {};
-  const sp = new URLSearchParams(window.location.search);
-  const keys = [
-    "utm_source",
-    "utm_medium",
-    "utm_campaign",
-    "utm_term",
-    "utm_content",
-    "gclid",
-    "fbclid",
-  ];
-  const out: Record<string, string> = {};
-  for (const k of keys) {
-    const v = sp.get(k);
-    if (v) out[k] = v;
-  }
-  out.page_url = window.location.href;
-  out.referrer = document.referrer || "";
-  return out;
-}
+  "https://script.google.com/macros/s/AKfycbzoUsdJTFPEVA4U814rcuuiZKeLns0AR-coLKXaiAKshQIWzBGYP2gloFdo7N91eJ2E/exec";
 
 const initialState = { name: "", email: "", mobile: "", message: "" };
 
 export default function ContactPage() {
   const [data, setData] = useState(initialState);
-  const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<
     | { kind: "idle" }
     | { kind: "success"; message: string }
@@ -51,45 +28,39 @@ export default function ContactPage() {
       setData((d) => ({ ...d, [key]: e.target.value }));
     };
 
+  useEffect(() => {
+    if (status.kind === "idle") return;
+    const t = setTimeout(() => setStatus({ kind: "idle" }), 4000);
+    return () => clearTimeout(t);
+  }, [status]);
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (submitting) return;
-    setSubmitting(true);
     setStatus({ kind: "idle" });
 
     try {
-      const res = await fetch(CONTACT_ENDPOINT, {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, ...getTrackingFields() }),
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          mobile: data.mobile,
+          message: data.message,
+          page_url: typeof window !== "undefined" ? window.location.href : "",
+        }),
       });
-      const json = await res.json().catch(() => ({}));
-      const success = res.ok && json?.resp?.success === "1";
 
-      if (success) {
-        setStatus({
-          kind: "success",
-          message:
-            json?.resp?.message ||
-            "Thank you. We will get in touch shortly.",
-        });
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus({ kind: "success", message: "Form Submitted Successfully" });
         setData(initialState);
       } else {
-        setStatus({
-          kind: "error",
-          message:
-            json?.resp?.message ||
-            json?.message ||
-            "Something went wrong. Please try again.",
-        });
+        setStatus({ kind: "error", message: result.message || "Something went wrong." });
       }
-    } catch {
-      setStatus({
-        kind: "error",
-        message: "Network error. Please try again.",
-      });
-    } finally {
-      setSubmitting(false);
+    } catch (error) {
+      console.log(error);
+      setStatus({ kind: "error", message: "Submission Failed" });
     }
   };
 
@@ -244,68 +215,64 @@ export default function ContactPage() {
                 <input
                   type="text"
                   required
-                  disabled={submitting}
                   value={data.name}
                   onChange={update("name")}
                   placeholder="Enter Your Name *"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors disabled:opacity-60"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <input
                   type="email"
                   required
-                  disabled={submitting}
                   value={data.email}
                   onChange={update("email")}
                   placeholder="Enter Your Email*"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors disabled:opacity-60"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <input
                   type="tel"
                   required
-                  disabled={submitting}
                   value={data.mobile}
                   onChange={update("mobile")}
                   placeholder="Enter Mobile Number *"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors disabled:opacity-60"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <textarea
                   required
-                  disabled={submitting}
                   rows={5}
                   value={data.message}
                   onChange={update("message")}
                   placeholder="Write your message...*"
-                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors resize-y disabled:opacity-60"
+                  className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors resize-y"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
+
+                <button
+                  type="submit"
+                  className="mt-2 px-7 py-3.5 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity"
+                  style={{ background: "#231a3d" }}
+                >
+                  Send Message
+                </button>
 
                 {status.kind !== "idle" && (
                   <div
                     role="status"
-                    className="px-5 py-3 text-[14px] font-semibold"
+                    aria-live="polite"
+                    className="mt-3 px-5 py-3 text-[14px] font-semibold rounded"
                     style={{
                       background:
                         status.kind === "success"
-                          ? "rgba(255,255,255,0.18)"
-                          : "rgba(0,0,0,0.25)",
+                          ? "rgba(40, 167, 69, 0.95)"
+                          : "rgba(220, 53, 69, 0.95)",
                       color: "#fff",
                     }}
                   >
                     {status.message}
                   </div>
                 )}
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="mt-2 px-7 py-3.5 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
-                  style={{ background: "#231a3d" }}
-                >
-                  {submitting ? "Sending…" : "Send Message"}
-                </button>
               </form>
             </div>
           </div>
