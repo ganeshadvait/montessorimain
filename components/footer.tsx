@@ -8,11 +8,11 @@ const PINK = "#E91E63";
 const YELLOW = "#F4B919";
 
 const exploreLinks = [
-  { label: "About Us", href: "#" },
-  { label: "Gallery", href: "#" },
-  { label: "Events", href: "#" },
-  { label: "Blogs", href: "#" },
-  { label: "Virtual Tour", href: "#", highlight: true },
+  { label: "About Us", href: "https://www.montessorijnprime.com/about" },
+  { label: "Gallery", href: "https://www.montessorijnprime.com/gallery" },
+  { label: "Events", href: "https://www.montessorijnprime.com/events" },
+  { label: "Blogs", href: "https://www.montessorijnprime.com/news" },
+  { label: "Virtual Tour", href: "https://www.montessorijnprime.com/about/virtualtour", highlight: true },
   { label: "Privacy Policy", href: "#" },
 ];
 
@@ -50,9 +50,9 @@ const YoutubeIcon = () => (
 );
 
 const socials = [
-  { Icon: FacebookIcon, href: "#", label: "Facebook" },
+  { Icon: FacebookIcon, href: "https://www.facebook.com/montessorijnprime", label: "Facebook" },
   { Icon: TwitterIcon, href: "#", label: "Twitter" },
-  { Icon: InstagramIcon, href: "#", label: "Instagram" },
+  { Icon: InstagramIcon, href: "https://www.instagram.com/montessorijnprime/", label: "Instagram" },
   { Icon: YoutubeIcon, href: "#", label: "YouTube" },
 ];
 
@@ -148,6 +148,8 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded bg-white/10 hover:bg-white/20 transition-colors text-white"
                 >
                   <Icon />

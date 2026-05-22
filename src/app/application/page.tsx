@@ -1,12 +1,12 @@
 "use client";
 //File :- src/app/application/page.tsx
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import PageHero from "../../../components/page-hero";
 
 const RED_BG = "#E94454";
 
 const APPLICATION_ENDPOINT =
-  "https://dev.montessorigroups.com/wp-json/msp/v1/application";
+  "https://script.google.com/macros/s/AKfycbwlZm6pw5dFSnE4eb_pHoyqVennPRaWkxF4m4EcESIHlXp3imjAoHJqst3H-uFk9bIw/exec";
 
 function getTrackingFields() {
   if (typeof window === "undefined") return {};
@@ -26,7 +26,6 @@ function getTrackingFields() {
     if (v) out[k] = v;
   }
   out.page_url = window.location.href;
-  out.referrer = document.referrer || "";
   return out;
 }
 
@@ -79,37 +78,29 @@ const inputClass =
 const inputStyle = { background: "rgba(0,0,0,0.08)" };
 const labelClass = "block text-[14px] font-semibold text-white mb-2";
 
-type ApiResponse = {
-  resp?: { success?: string; message?: string };
-};
-
 function toPayload(d: FormState) {
   return {
     source: "website",
-    name: d.studentName,
+    studentName: d.studentName,
     dob: d.dob,
-    admittingclass: d.admittingClass,
-    presentschool: d.presentSchool,
+    admittingClass: d.admittingClass,
+    presentSchoolName: d.presentSchool,
     nationality: d.nationality,
     place: d.place,
-    fathername: d.fatherName,
-    fatherqualification: d.fatherQualification,
-    fatheroccupation: d.fatherOccupation,
-    mothername: d.motherName,
-    motherqualification: d.motherQualification,
-    motheroccupation: d.motherOccupation,
+    fatherName: d.fatherName,
+    fatherQualification: d.fatherQualification,
+    fatherOccupation: d.fatherOccupation,
+    motherName: d.motherName,
+    motherQualification: d.motherQualification,
+    motherOccupation: d.motherOccupation,
     mobile: d.mobile,
-    alternatemobile: d.altMobile,
+    alternateMobile: d.altMobile,
     email: d.email,
-    address: d.address,
+    residentialAddress: d.address,
     pincode: d.pincode,
-    admissionsought: d.admissionSought,
+    admissionSought: d.admissionSought,
     transportation: d.transportation,
   };
-}
-
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>/g, "");
 }
 
 export default function ApplicationPage() {
@@ -131,6 +122,12 @@ export default function ApplicationPage() {
       setData((d) => ({ ...d, [key]: e.target.value }));
     };
 
+  useEffect(() => {
+    if (status.kind === "idle") return;
+    const t = setTimeout(() => setStatus({ kind: "idle" }), 4000);
+    return () => clearTimeout(t);
+  }, [status]);
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (submitting) return;
@@ -138,20 +135,19 @@ export default function ApplicationPage() {
     setStatus({ kind: "idle" });
 
     try {
-      const res = await fetch(APPLICATION_ENDPOINT, {
+      const response = await fetch(APPLICATION_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ ...toPayload(data), ...getTrackingFields() }),
       });
 
-      const json: ApiResponse = await res.json();
-      const success = json?.resp?.success === "1";
-      const message = stripHtml(
-        json?.resp?.message ||
-          (success
-            ? "Your request was submitted successfully."
-            : "Something went wrong. Please try again."),
-      );
+      const result = await response.json();
+      const success = result?.success === true;
+      const message =
+        result?.message ||
+        (success
+          ? "Your request was submitted successfully."
+          : "Something went wrong. Please try again.");
 
       if (success) {
         setStatus({ kind: "success", message });
