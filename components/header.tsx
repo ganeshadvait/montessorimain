@@ -46,6 +46,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const isActive = useIsActive();
+  const isAboutActive = aboutLinks.some((l) => isActive(l.href));
 
   return (
     <header className="w-full bg-white relative">
@@ -79,7 +80,7 @@ export default function Header() {
             <button
               type="button"
               className="flex items-center gap-1 text-[16px] font-semibold pb-1 relative"
-              style={{ color: PINK }}
+              style={{ color: isAboutActive ? PINK : INK }}
             >
               About Us
               <ChevronDown size={16} strokeWidth={2.4} />
@@ -189,7 +190,7 @@ export default function Header() {
                 type="button"
                 onClick={() => setMobileAboutOpen((v) => !v)}
                 className="flex w-full items-center justify-between py-3 text-[16px] font-semibold"
-                style={{ color: PINK }}
+                style={{ color: isAboutActive ? PINK : INK }}
               >
                 About Us
                 <ChevronDown

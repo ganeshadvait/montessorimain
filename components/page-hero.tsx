@@ -20,7 +20,7 @@ export default function PageHero({ breadcrumb, title }: PageHeroProps) {
       {/* Decorative teal X */}
       <svg
         aria-hidden
-        className="absolute left-[4%] top-[58%] w-12 h-12"
+        className="absolute left-[4%] top-[58%] w-12 h-12 animate-[spin_20s_linear_infinite] [transform-origin:center]"
         viewBox="0 0 48 48"
         fill="none"
         stroke="#1FBABA"

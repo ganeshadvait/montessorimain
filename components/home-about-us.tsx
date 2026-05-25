@@ -77,7 +77,7 @@ export default function HomeAboutUs() {
 
           {/* CTA */}
           <a
-            href="#about-more"
+            href="https://www.montessorijnprime.com/about"
             className="mt-8 inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-[14px] font-semibold text-white"
             style={{ background: PINK }}
           >
