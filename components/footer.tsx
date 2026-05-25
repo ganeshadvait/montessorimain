@@ -1,8 +1,6 @@
 //File :- components/footer.tsx
 import { MapPin, Phone, Mail } from "lucide-react";
-
-const LOGO_URL =
-  "https://www.montessorijnprime.com/montessori/prime/assets/img/logo/logo.png?_=1234";
+const LOGO_URL = "/headerlogo.png";
 
 const PINK = "#E91E63";
 const YELLOW = "#F4B919";
@@ -58,10 +56,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer
-      className="w-full text-white"
-      style={{ background: "#0d0c1f" }}
-    >
+    <footer className="w-full text-white" style={{ background: "#0d0c1f" }}>
       <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-14">
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1.1fr_1.4fr] gap-10 md:gap-12 relative">
           {/* Column 1 — Logo + tagline */}
@@ -106,7 +101,10 @@ export default function Footer() {
             <h3 className="text-[20px] font-bold mb-5">Opening Hours</h3>
             <ul className="space-y-3">
               {hours.map((h) => (
-                <li key={h.day} className="flex items-baseline gap-4 text-[14px]">
+                <li
+                  key={h.day}
+                  className="flex items-baseline gap-4 text-[14px]"
+                >
                   <span className="font-semibold text-white w-8">{h.day}</span>
                   <span className="text-white/85">{h.time}</span>
                 </li>
@@ -119,7 +117,11 @@ export default function Footer() {
             <h3 className="text-[20px] font-bold mb-5">Get In Touch</h3>
             <ul className="space-y-4 text-[14px] text-white/85">
               <li className="flex items-start gap-3">
-                <MapPin size={16} strokeWidth={2} className="mt-0.5 flex-shrink-0" />
+                <MapPin
+                  size={16}
+                  strokeWidth={2}
+                  className="mt-0.5 flex-shrink-0"
+                />
                 <span>
                   3FRR+5F3, Bavupet, X Road, Yellapur,
                   <br />
