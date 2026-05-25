@@ -122,11 +122,16 @@ export default function Footer() {
                   strokeWidth={2}
                   className="mt-0.5 flex-shrink-0"
                 />
-                <span>
+                <a
+                  href="https://maps.app.goo.gl/y5cU7mD94Sm6CKRw6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
                   3FRR+5F3, Bavupet, X Road, Yellapur,
                   <br />
                   Warangal, Telangana 506371
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} strokeWidth={2} className="flex-shrink-0" />
