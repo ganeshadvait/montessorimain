@@ -153,20 +153,29 @@ export default function HomeQuickEnquiry() {
           <input
             type="text"
             required
+            minLength={2}
+            maxLength={60}
+            autoComplete="name"
             disabled={submitting}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Your Name"
+            title="Please enter your name (at least 2 characters)"
             className="w-full bg-white px-5 py-4 text-[15px] outline-none border border-transparent focus:border-[#E91E63] transition-colors disabled:opacity-60"
             style={{ color: INK }}
           />
           <input
             type="tel"
             required
+            pattern="[6-9][0-9]{9}"
+            maxLength={10}
+            inputMode="numeric"
+            autoComplete="tel"
             disabled={submitting}
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
-            placeholder="Enter Mobile Number"
+            placeholder="Enter 10-digit Mobile Number"
+            title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
             className="w-full bg-white px-5 py-4 text-[15px] outline-none border border-transparent focus:border-[#E91E63] transition-colors disabled:opacity-60"
             style={{ color: INK }}
           />

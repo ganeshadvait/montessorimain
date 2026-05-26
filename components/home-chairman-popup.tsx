@@ -43,6 +43,9 @@ export default function HomeChairmanPopup() {
   >({ kind: "idle" });
 
   useEffect(() => {
+    // Intentional: defer opening the popup until after first paint so it
+    // animates in rather than being present on initial render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(true);
   }, []);
 
@@ -172,28 +175,40 @@ export default function HomeChairmanPopup() {
               label="Full Name"
               type="text"
               required
+              minLength={2}
+              maxLength={60}
+              autoComplete="name"
               disabled={submitting}
               value={data.name}
               onChange={update("name")}
               placeholder="Your name"
+              title="Please enter your name (at least 2 characters)"
             />
             <Field
               label="Email"
               type="email"
               required
+              maxLength={120}
+              autoComplete="email"
               disabled={submitting}
               value={data.email}
               onChange={update("email")}
               placeholder="name@example.com"
+              title="Please enter a valid email address"
             />
             <Field
               label="Mobile"
               type="tel"
               required
+              pattern="[6-9][0-9]{9}"
+              maxLength={10}
+              inputMode="numeric"
+              autoComplete="tel"
               disabled={submitting}
               value={data.mobile}
               onChange={update("mobile")}
-              placeholder="+91 12345 67890"
+              placeholder="10-digit mobile (e.g. 9876543210)"
+              title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
             />
 
             {status.kind !== "idle" && (
@@ -254,6 +269,12 @@ type FieldProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  pattern?: string;
+  minLength?: number;
+  maxLength?: number;
+  inputMode?: "text" | "numeric" | "tel" | "email" | "url" | "search" | "decimal" | "none";
+  autoComplete?: string;
+  title?: string;
 };
 
 function Field({ label, type, ...rest }: FieldProps) {
