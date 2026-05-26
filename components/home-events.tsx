@@ -28,7 +28,7 @@ const events: EventItem[] = [
     title: "Annual Day 2026 Celebrations",
     day: "6",
     month: "Dec",
-    href: "/events/annual-day-2026",
+    href: "/events/annual-day-2026-celebrations",
   },
 ];
 

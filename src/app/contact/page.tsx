@@ -146,8 +146,8 @@ export default function ContactPage() {
                     className="mt-1 text-[15px] leading-[1.7]"
                     style={{ color: "#5e5e6e" }}
                   >
-                    <a href="tel:+917700043030">+91 77000 43030</a>,{" "}
-                    <a href="tel:+917700053030">+91 77000 53030</a>
+                    <a href="tel:+917700043030">+91 77000 43030</a>{" "}
+                    {/* <a href="tel:+917700053030">+91 77000 53030</a> */}
                   </p>
                   <p
                     className="mt-1 text-[15px] leading-[1.7]"
