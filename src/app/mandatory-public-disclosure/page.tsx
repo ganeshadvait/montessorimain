@@ -29,7 +29,7 @@ const documents: { label: string; href?: string }[] = [
     href: "/Mandatory Public Disclosure/Recognition.pdf",
   },
   { label: "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
-    href: "/Mandatory Public Disclosure/building safety certificate.pdf",
+    href: "/Mandatory Public Disclosure/Structural and Soundness Certificate.pdf",
    },
   { label: "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
     href: "/Mandatory Public Disclosure/Fire NOC.pdf",
