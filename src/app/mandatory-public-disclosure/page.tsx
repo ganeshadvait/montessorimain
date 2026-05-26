@@ -36,7 +36,7 @@ const documents: { label: string; href?: string }[] = [
   {
     label:
       "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE NATIONAL BUILDING CODE",
-    href: "/Mandatory Public Disclosure/building safety certificate.pdf",
+    href: "/Mandatory Public Disclosure/Structural and Soundness Certificate.pdf",
   },
   {
     label:
