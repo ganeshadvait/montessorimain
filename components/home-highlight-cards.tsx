@@ -1,8 +1,6 @@
 //File :- components/home-highlight-cards.tsx
-import { BrainCog, Monitor, LucideIcon } from "lucide-react";
-
 type Card = {
-  Icon: LucideIcon;
+  iconClass: string;
   title: string;
   body: string;
   borderColor: string;
@@ -11,20 +9,20 @@ type Card = {
 
 const cards: Card[] = [
   {
-    Icon: BrainCog,
+    iconClass: "flaticon-brain-process",
     title: "Residential and Day Scholar",
     body:
       "We provide best facilities for students for their overall development. We have air-conditioned Campus and hostel with separate accommodation provided for boys and girls. The meals provided in mess are healthy and tasty keeping balance diet in mind.",
     borderColor: "#E91E63",
-    bgImage: "/second-sec/image.png",
+    bgImage: "/home/icon-shape.png",
   },
   {
-    Icon: Monitor,
+    iconClass: "flaticon-computer",
     title: "Integrated CBSE Curriculum",
     body:
       "Our school follows CBSE curriculum as it renders more knowledge for many competitive exams and prepares students well for their future.",
     borderColor: "#1FBABA",
-    bgImage: "/second-sec/imageone.png",
+    bgImage: "/home/icon-shape.png",
   },
 ];
 
@@ -33,7 +31,7 @@ export default function HomeHighlightCards() {
     <section className="w-full py-16 md:py-20 bg-white">
       <div className="mx-auto max-w-[1000px] px-6 md:px-10">
         <div className="grid gap-8 md:grid-cols-2">
-          {cards.map(({ Icon, title, body, borderColor, bgImage }) => (
+          {cards.map(({ iconClass, title, body, borderColor, bgImage }) => (
             <article
               key={title}
               className="group relative overflow-hidden bg-white px-8 py-12 md:px-12 md:py-14 text-center transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_22px_40px_-14px_var(--card-glow)] cursor-pointer"
@@ -45,7 +43,7 @@ export default function HomeHighlightCards() {
             >
               <div className="relative">
                 {/* Icon with background pattern behind */}
-                <div className="relative flex justify-center mb-8 h-[140px]">
+                <div className="relative flex justify-center items-center mb-8 h-[140px]">
                   {bgImage && (
                     <div
                       aria-hidden
@@ -56,11 +54,10 @@ export default function HomeHighlightCards() {
                       }}
                     />
                   )}
-                  <Icon
-                    size={70}
-                    strokeWidth={1.2}
-                    color="#1a1a1a"
-                    className="relative self-center"
+                  <i
+                    aria-hidden
+                    className={`${iconClass} relative`}
+                    style={{ fontSize: 70, color: "#1a1a1a", lineHeight: 1 }}
                   />
                 </div>
 

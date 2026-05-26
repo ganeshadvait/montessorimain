@@ -5,7 +5,30 @@ import PageHero from "../../../components/page-hero";
 
 const RED_BG = "#E94454";
 
-type FormState = Record<string, string>;
+// TODO: swap with the real endpoint
+const APPLICATION_ENDPOINT = "/api/application";
+
+type FormState = {
+  studentName: string;
+  dob: string;
+  admittingClass: string;
+  presentSchool: string;
+  nationality: string;
+  place: string;
+  fatherName: string;
+  fatherQualification: string;
+  fatherOccupation: string;
+  motherName: string;
+  motherQualification: string;
+  motherOccupation: string;
+  mobile: string;
+  altMobile: string;
+  email: string;
+  address: string;
+  pincode: string;
+  admissionSought: string;
+  transportation: string;
+};
 
 const initialState: FormState = {
   studentName: "",
@@ -30,23 +53,98 @@ const initialState: FormState = {
 };
 
 const inputClass =
-  "w-full px-5 py-3.5 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/15 transition-colors";
+  "w-full px-5 py-3.5 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/15 transition-colors disabled:opacity-60";
 const inputStyle = { background: "rgba(0,0,0,0.08)" };
-const labelClass =
-  "block text-[14px] font-semibold text-white mb-2";
+const labelClass = "block text-[14px] font-semibold text-white mb-2";
+
+type ApiResponse = {
+  resp?: { success?: string; message?: string };
+};
+
+function toPayload(d: FormState) {
+  return {
+    source: "website",
+    name: d.studentName,
+    dob: d.dob,
+    admittingclass: d.admittingClass,
+    presentschool: d.presentSchool,
+    nationality: d.nationality,
+    place: d.place,
+    fathername: d.fatherName,
+    fatherqualification: d.fatherQualification,
+    fatheroccupation: d.fatherOccupation,
+    mothername: d.motherName,
+    motherqualification: d.motherQualification,
+    motheroccupation: d.motherOccupation,
+    mobile: d.mobile,
+    alternatemobile: d.altMobile,
+    email: d.email,
+    address: d.address,
+    pincode: d.pincode,
+    admissionsought: d.admissionSought,
+    transportation: d.transportation,
+  };
+}
+
+function stripHtml(html: string) {
+  return html.replace(/<[^>]*>/g, "");
+}
 
 export default function ApplicationPage() {
   const [data, setData] = useState<FormState>(initialState);
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<
+    | { kind: "idle" }
+    | { kind: "success"; message: string }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
 
-  const update = (key: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const update =
+    (key: keyof FormState) =>
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >,
+    ) => {
       setData((d) => ({ ...d, [key]: e.target.value }));
     };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Hook into your real backend here.
-    console.log(data);
+    if (submitting) return;
+    setSubmitting(true);
+    setStatus({ kind: "idle" });
+
+    try {
+      const res = await fetch(APPLICATION_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(toPayload(data)),
+      });
+
+      const json: ApiResponse = await res.json();
+      const success = json?.resp?.success === "1";
+      const message = stripHtml(
+        json?.resp?.message ||
+          (success
+            ? "Your request was submitted successfully."
+            : "Something went wrong. Please try again."),
+      );
+
+      if (success) {
+        setStatus({ kind: "success", message });
+        setData(initialState);
+      } else {
+        setStatus({ kind: "error", message });
+      }
+    } catch {
+      setStatus({
+        kind: "error",
+        message: "Network error. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -311,8 +409,8 @@ export default function ApplicationPage() {
                       style={inputStyle}
                     >
                       <option value="" className="text-black">Select Admission Sought</option>
-                      <option value="day-scholar" className="text-black">Day Scholar</option>
-                      <option value="residential" className="text-black">Residential</option>
+                      <option value="Day Scholar" className="text-black">Day Scholar</option>
+                      <option value="Residential" className="text-black">Residential</option>
                     </select>
                   </div>
                   <div>
@@ -324,20 +422,38 @@ export default function ApplicationPage() {
                       style={inputStyle}
                     >
                       <option value="" className="text-black">Select Transportation</option>
-                      <option value="own" className="text-black">Own</option>
-                      <option value="school-bus" className="text-black">School Bus</option>
+                      <option value="Yes" className="text-black">Yes</option>
+                      <option value="No" className="text-black">No</option>
                     </select>
                   </div>
                 </div>
+
+                {/* Status message */}
+                {status.kind !== "idle" && (
+                  <div
+                    role="status"
+                    className="mt-4 px-5 py-3 text-[14px] font-semibold"
+                    style={{
+                      background:
+                        status.kind === "success"
+                          ? "rgba(255,255,255,0.18)"
+                          : "rgba(0,0,0,0.25)",
+                      color: "#fff",
+                    }}
+                  >
+                    {status.message}
+                  </div>
+                )}
 
                 {/* Submit */}
                 <div className="pt-6 flex justify-center">
                   <button
                     type="submit"
-                    className="px-16 py-3.5 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity"
+                    disabled={submitting}
+                    className="px-16 py-3.5 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
                     style={{ background: "#231a3d" }}
                   >
-                    Submit
+                    {submitting ? "Submitting…" : "Submit"}
                   </button>
                 </div>
               </form>

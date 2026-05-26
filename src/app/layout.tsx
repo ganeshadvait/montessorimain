@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Playfair_Display, Jost } from "next/font/google";
 import "./globals.css";
+import "./flaticon.css";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -29,6 +30,11 @@ export const metadata: Metadata = {
   title: "Montessori Prime School",
   description:
     "Montessori Prime School — child-centered education from pre-primary through high school.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
