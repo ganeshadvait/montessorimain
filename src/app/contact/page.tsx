@@ -211,40 +211,55 @@ export default function ContactPage() {
                 Get in touch with us
               </p>
 
-              <form onSubmit={onSubmit} className="mt-7 space-y-4">
+              <form onSubmit={onSubmit} className="mt-7 space-y-4" noValidate={false}>
                 <input
                   type="text"
                   required
+                  minLength={2}
+                  maxLength={60}
+                  autoComplete="name"
                   value={data.name}
                   onChange={update("name")}
                   placeholder="Enter Your Name *"
+                  title="Please enter your name (at least 2 characters)"
                   className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <input
                   type="email"
                   required
+                  maxLength={120}
+                  autoComplete="email"
                   value={data.email}
                   onChange={update("email")}
                   placeholder="Enter Your Email*"
+                  title="Please enter a valid email address"
                   className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <input
                   type="tel"
                   required
+                  pattern="[6-9][0-9]{9}"
+                  maxLength={10}
+                  inputMode="numeric"
+                  autoComplete="tel"
                   value={data.mobile}
                   onChange={update("mobile")}
-                  placeholder="Enter Mobile Number *"
+                  placeholder="Enter 10-digit Mobile Number *"
+                  title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
                   className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />
                 <textarea
                   required
+                  minLength={5}
+                  maxLength={1000}
                   rows={5}
                   value={data.message}
                   onChange={update("message")}
                   placeholder="Write your message...*"
+                  title="Please write a message (at least 5 characters)"
                   className="w-full px-5 py-4 text-[15px] text-white placeholder-white/85 outline-none focus:bg-black/10 transition-colors resize-y"
                   style={{ background: "rgba(0,0,0,0.08)" }}
                 />

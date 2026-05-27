@@ -198,9 +198,13 @@ export default function ApplicationPage() {
                     <input
                       type="text"
                       required
+                      minLength={2}
+                      maxLength={60}
+                      autoComplete="name"
                       value={data.studentName}
                       onChange={update("studentName")}
                       placeholder="Enter Student Name *"
+                      title="Please enter student's name (at least 2 characters)"
                       className={inputClass}
                       style={inputStyle}
                     />
@@ -360,9 +364,14 @@ export default function ApplicationPage() {
                     <input
                       type="tel"
                       required
+                      pattern="[6-9][0-9]{9}"
+                      maxLength={10}
+                      inputMode="numeric"
+                      autoComplete="tel"
                       value={data.mobile}
                       onChange={update("mobile")}
-                      placeholder="Enter Mobile Number *"
+                      placeholder="Enter 10-digit Mobile Number *"
+                      title="Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
                       className={inputClass}
                       style={inputStyle}
                     />
@@ -371,9 +380,14 @@ export default function ApplicationPage() {
                     <label className={labelClass}>Alternate Mobile</label>
                     <input
                       type="tel"
+                      pattern="[6-9][0-9]{9}"
+                      maxLength={10}
+                      inputMode="numeric"
+                      autoComplete="tel"
                       value={data.altMobile}
                       onChange={update("altMobile")}
-                      placeholder="Enter Alternate Mobile"
+                      placeholder="Enter 10-digit Alternate Mobile"
+                      title="If provided, must be a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
                       className={inputClass}
                       style={inputStyle}
                     />
@@ -382,9 +396,12 @@ export default function ApplicationPage() {
                     <label className={labelClass}>Email</label>
                     <input
                       type="email"
+                      maxLength={120}
+                      autoComplete="email"
                       value={data.email}
                       onChange={update("email")}
                       placeholder="Enter Email"
+                      title="Please enter a valid email address"
                       className={inputClass}
                       style={inputStyle}
                     />
@@ -397,9 +414,13 @@ export default function ApplicationPage() {
                   <input
                     type="text"
                     required
+                    minLength={5}
+                    maxLength={250}
+                    autoComplete="street-address"
                     value={data.address}
                     onChange={update("address")}
                     placeholder="Enter Residential Address*"
+                    title="Please enter a valid residential address (at least 5 characters)"
                     className={inputClass}
                     style={inputStyle}
                   />
@@ -411,9 +432,14 @@ export default function ApplicationPage() {
                     <label className={labelClass}>Pincode</label>
                     <input
                       type="text"
+                      pattern="[0-9]{6}"
+                      maxLength={6}
+                      inputMode="numeric"
+                      autoComplete="postal-code"
                       value={data.pincode}
                       onChange={update("pincode")}
-                      placeholder="Enter Pincode"
+                      placeholder="Enter 6-digit Pincode"
+                      title="If provided, must be a valid 6-digit Indian pincode"
                       className={inputClass}
                       style={inputStyle}
                     />
