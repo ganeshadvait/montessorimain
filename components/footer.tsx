@@ -10,7 +10,7 @@ const exploreLinks = [
   { label: "Gallery", href: "https://www.montessorijnprime.com/gallery" },
   { label: "Events", href: "https://www.montessorijnprime.com/events" },
   { label: "Blogs", href: "https://www.montessorijnprime.com/news" },
-  { label: "Virtual Tour", href: "https://www.montessorijnprime.com/about/virtualtour", highlight: true },
+  { label: "Virtual Tour", href: "https://www.montessorijnprime.com/about/virtualtour" },
   { label: "Privacy Policy", href: "#" },
 ];
 
@@ -84,9 +84,6 @@ export default function Footer() {
                   <a
                     href={link.href}
                     className="text-[15px] hover:opacity-80 transition-opacity"
-                    style={{
-                      color: link.highlight ? YELLOW : "rgba(255,255,255,0.85)",
-                    }}
                   >
                     <span className="mr-1.5">»</span>
                     {link.label}
