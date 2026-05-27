@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Don't scan static assets for class names. Tailwind reads non-blocklisted
+   binary files (e.g. .HEIC) as text, extracting garbage that compiles to
+   invalid CSS. public/ never contains Tailwind classes. */
+@source not "../../public";
+
 :root {
   /* Brand color tokens — match original Montessori site */
   --mainColor: #dd3e74;
