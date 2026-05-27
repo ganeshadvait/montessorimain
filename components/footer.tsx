@@ -3,14 +3,13 @@ import { MapPin, Phone, Mail } from "lucide-react";
 const LOGO_URL = "/headerlogo.png";
 
 const PINK = "#E91E63";
-const YELLOW = "#F4B919";
 
 const exploreLinks = [
   { label: "About Us", href: "https://www.montessorijnprime.com/about" },
   { label: "Gallery", href: "https://www.montessorijnprime.com/gallery" },
   { label: "Events", href: "https://www.montessorijnprime.com/events" },
   { label: "Blogs", href: "https://www.montessorijnprime.com/news" },
-  { label: "Virtual Tour", href: "https://www.montessorijnprime.com/about/virtualtour", highlight: true },
+  { label: "Virtual Tour", href: "https://www.montessorijnprime.com/about/virtualtour" },
   { label: "Privacy Policy", href: "#" },
 ];
 
@@ -83,10 +82,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-[15px] hover:opacity-80 transition-opacity"
-                    style={{
-                      color: link.highlight ? YELLOW : "rgba(255,255,255,0.85)",
-                    }}
+                    className="text-[15px] text-white/85 hover:opacity-80 transition-opacity"
                   >
                     <span className="mr-1.5">»</span>
                     {link.label}
