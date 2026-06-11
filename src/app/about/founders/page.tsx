@@ -14,7 +14,7 @@ type Faculty = {
 };
 
 const faculty: Faculty[] = [
-  { name: "A. Sharanya, B.Tech(IT),B.Ed", subject: "Science Faculty", image: "/aparnamol thomas img.jpg" },
+  { name: "A. Sharanya, B.Tech(IT),B.Ed", subject: "Science Faculty", image: "/sharanya img.jpg" },
   { name: "Amin Baby", subject: "Social", image: "/amin baby img.jpg" },
   { name: "Aparnamol Thomas", subject: "Chemistry", image: "/aparnamol thomas img.jpg" },
   { name: "Enaganti Sandhya Rani", subject: "Biology", image: "/sandhya rani img.jpg" },

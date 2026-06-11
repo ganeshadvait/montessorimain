@@ -2,6 +2,7 @@
 import { notFound } from "next/navigation";
 import PageHero from "../../../../components/page-hero";
 import { getGalleryBySlug } from "../../../../data/galleries";
+import { getSchoolGalleryBySlug } from "../../../../data/schoolGallery";
 
 export default async function SubGalleryPage({
   params,
@@ -9,6 +10,53 @@ export default async function SubGalleryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  // Local image galleries (public/schoolimages + public/groupedImages) carry their
+  // own photo list with descriptive alt text — render those directly.
+  const local = getSchoolGalleryBySlug(slug);
+  if (local) {
+    return (
+      <main className="min-h-screen bg-white">
+        <PageHero
+          breadcrumb={[
+            { label: "Home", href: "/" },
+            { label: "Gallery", href: "/gallery" },
+            { label: local.name },
+          ]}
+          title={local.name}
+        />
+
+        <section className="w-full py-12 md:py-16">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+            <div className="mb-8 text-[14px] text-[#5e5e6e]">
+              {local.count} photos · Added {local.createdOn}
+            </div>
+
+            <div className="grid gap-3 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {local.photos.map((photo, i) => (
+                <a
+                  key={i}
+                  href={photo.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block aspect-square overflow-hidden bg-[#f5f5f5]"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   const gallery = getGalleryBySlug(slug);
   if (!gallery) return notFound();
 

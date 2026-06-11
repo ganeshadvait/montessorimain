@@ -1,7 +1,16 @@
 //File :- src/app/gallery/page.tsx
 import Link from "next/link";
 import PageHero from "../../../components/page-hero";
-import { galleries } from "../../../data/galleries";
+import { schoolGalleries } from "../../../data/schoolGallery";
+
+// Local image galleries (public/schoolimages + public/groupedImages) only.
+// The list ends at "Campus Life" — no remote galleries are shown after it.
+const cards = schoolGalleries.map((g) => ({
+  name: g.name,
+  slug: g.slug,
+  cover: g.cover,
+  count: g.count,
+}));
 
 export default function GalleryPage() {
   return (
@@ -14,7 +23,7 @@ export default function GalleryPage() {
       <section className="w-full py-12 md:py-16">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {galleries.map((g) => (
+            {cards.map((g) => (
               <Link
                 key={g.slug}
                 href={`/gallery/${g.slug}`}
