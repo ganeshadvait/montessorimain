@@ -3,7 +3,6 @@ import { MapPin, Phone, Mail } from "lucide-react";
 const LOGO_URL = "/headerlogo.png";
 
 const PINK = "#E91E63";
-const YELLOW = "#F4B919";
 
 const exploreLinks = [
   { label: "About Us", href: "https://www.montessorijnprime.com/about" },
@@ -83,7 +82,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-[15px] hover:opacity-80 transition-opacity"
+                    className="text-[15px] text-white/85 hover:opacity-80 transition-opacity"
                   >
                     <span className="mr-1.5">»</span>
                     {link.label}
