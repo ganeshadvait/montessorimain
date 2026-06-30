@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -nA25 -iE \"remotePatterns|hostname|protocol\")",
+      "Bash(grep -rnoE \"https://images\\\\.unsplash\\\\.com[^\\\\\"'\\\\\\\\\\\\` ]*\" *.tsx)",
+      "Bash(grep -ivE \"lucide|className|//\")",
+      "Bash(perl -i -pe ' *)",
+      "Bash(ls public/headerlogo.png)",
+      "Bash(ls src/app/header-variants)",
+      "Bash(git pull *)"
+    ]
+  }
+}

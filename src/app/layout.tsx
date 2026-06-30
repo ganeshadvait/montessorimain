@@ -3,7 +3,7 @@ import { Nunito, Playfair_Display, Jost } from "next/font/google";
 import "./globals.css";
 import "./flaticon.css";
 import Header from "../../components/header";
-import Footer from "../../components/footer";
+import Footer from "../../components/footer-modern";
 import HomeChairmanPopup from "../../components/home-chairman-popup";
 
 const nunito = Nunito({

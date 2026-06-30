@@ -47,6 +47,10 @@ export default function Header() {
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const isActive = useIsActive();
   const isAboutActive = aboutLinks.some((l) => isActive(l.href));
+  const pathname = usePathname() || "/";
+
+  // /new-page uses its own header variant — skip the global one there.
+  if (pathname === "/new-page") return null;
 
   return (
     <header className="w-full bg-white relative">
