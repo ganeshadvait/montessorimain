@@ -7,7 +7,9 @@
       "Bash(perl -i -pe ' *)",
       "Bash(ls public/headerlogo.png)",
       "Bash(ls src/app/header-variants)",
-      "Bash(git pull *)"
+      "Bash(git pull *)",
+      "Bash(ls -la \"src/app/about/testimonials/\")",
+      "Bash(find src/app/about -maxdepth 2 -name \"page.tsx\")"
     ]
   }
 }

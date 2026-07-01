@@ -1,29 +1,18 @@
 import type { Metadata } from "next";
-import { Nunito, Playfair_Display, Jost } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./flaticon.css";
-import Header from "../../components/header";
+import { HeaderVariantB as Header } from "../../components/header-variants";
 import Footer from "../../components/footer-modern";
 import HomeChairmanPopup from "../../components/home-chairman-popup";
 
-const nunito = Nunito({
-  variable: "--font-family",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-family2",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const jost = Jost({
-  variable: "--font-family4",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+// Chirag — used site-wide for all font roles.
+const chirag = localFont({
+  src: [
+    { path: "../../public/chirag-font/chirag-regular.woff2", weight: "400", style: "normal" },
+    { path: "../../public/chirag-font/chirag-bold.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-chirag",
   display: "swap",
 });
 
@@ -46,7 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nunito.variable} ${playfair.variable} ${jost.variable} antialiased`}
+        className={`${chirag.variable} antialiased`}
+        style={
+          {
+            // Point every theme font token at Chirag so the whole site uses it.
+            "--font-family": "var(--font-chirag)",
+            "--font-family2": "var(--font-chirag)",
+            "--font-family4": "var(--font-chirag)",
+          } as React.CSSProperties
+        }
       >
         <Header />
         {children}

@@ -9,7 +9,7 @@ const branch = {
   name: "Yellapur",
   address:
     "Bavupet, X Road, Yellapur, Telangana 506371",
-  phone: "7700053030",
+  phone: "08065064810",
   email: "info@montessorijnprime.com",
   hours: "Mon – Sun : 8:30 AM – 5:30 PM",
   // Random Yellandu coordinates for embed
@@ -175,13 +175,11 @@ export function DoctorsSection() {
                 Call Now
               </a>
               <a
-                href={`https://wa.me/91${branch.phone}?text=Hi%2C%20I%27m%20interested%20in%20admissions`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center justify-center gap-2 bg-green-600 text-secondary-foreground px-6 py-4 rounded-full text-sm font-medium tracking-wide boty-transition hover:brightness-110 flex-1"
+                href="tel:08065064810"
+                className="hidden md:inline-flex items-center justify-center gap-2 bg-secondary text-secondary-foreground px-6 py-4 rounded-full text-sm font-medium tracking-wide boty-transition hover:brightness-110 flex-1"
               >
-                <Image src="/_boty-images/Whatsapp white.svg" alt="WhatsApp" width={24} height={24} className="w-6 h-6" />
-                WhatsApp Us
+                <Image src="/_boty-images/Call white.svg" alt="Call" width={24} height={24} className="w-6 h-6" />
+                08065064810
               </a>
             </div>
           </div>

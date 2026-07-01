@@ -46,7 +46,7 @@ export function Hero() {
             excel in life, both inside and outside the classroom.
           </p>
 
-          <div className="hidden md:flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="#enquiry"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary px-8 py-4 text-secondary-foreground font-semibold text-lg shadow-lg hover:brightness-110 boty-transition"
@@ -56,7 +56,7 @@ export function Hero() {
               Book A Campus Tour
             </a>
             <a
-              href="tel:7700053030"
+              href="tel:08065064810"
               className="md:hidden inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-white font-semibold text-lg hover:bg-white/10 boty-transition"
             >
               <img
@@ -67,17 +67,15 @@ export function Hero() {
               Call Now
             </a>
             <a
-              href="https://wa.me/917700053030?text=Hi%2C%20I%27m%20interested%20in%20admissions"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="tel:08065064810"
               className="hidden md:inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-white font-semibold text-lg hover:bg-white/10 boty-transition"
             >
               <img
-                src="/_boty-images/Whatsapp white.svg"
-                alt="WhatsApp"
+                src="/_boty-images/Call white.svg"
+                alt="Call"
                 className="w-6 h-6"
               />
-              WhatsApp Us
+              08065064810
             </a>
           </div>
 

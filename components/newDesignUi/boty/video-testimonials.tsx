@@ -157,7 +157,7 @@ export function VideoTestimonials() {
       {/* Know More CTA */}
       <div className="relative mt-12">
         <a
-          href="/about"
+          href="/about/testimonials"
           className="inline-flex items-center justify-center gap-2 bg-white text-[#178085] px-8 py-4 rounded-full text-sm font-medium tracking-wide boty-transition hover:bg-secondary hover:text-[#2a1a4a]"
         >
           Know More

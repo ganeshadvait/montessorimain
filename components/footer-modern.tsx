@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { MapPin, Phone, Mail, ArrowRight, Clock, ChevronDown } from "lucide-react";
 
-const LOGO_URL = "/headerlogo.png";
+const LOGO_URL = "https://admissions.montessorigroups.com/montessori%20footer%20logo%20website.png";
 
 const PINK = "#E91E63";
 const YELLOW = "#F4B919";
@@ -70,8 +70,8 @@ const contact = [
       </span>
     ),
   },
-  { Icon: Phone, node: <a href="tel:+917700043030" className="hover:text-white">+91 77000 43030</a> },
-  { Icon: Phone, node: <a href="tel:+917700053030" className="hover:text-white">+91 77000 53030</a> },
+  { Icon: Phone, node: <a href="tel:08065064810" className="hover:text-white">08065064810</a> },
+  { Icon: Phone, node: <a href="tel:08065064810" className="hover:text-white">08065064810</a> },
   {
     Icon: Mail,
     node: (

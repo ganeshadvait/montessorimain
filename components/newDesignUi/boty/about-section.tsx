@@ -150,20 +150,18 @@ export function AboutSection() {
               }
             >
               <a
-                href="tel:7700053030"
+                href="tel:08065064810"
                 className="md:hidden inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-full text-sm font-medium tracking-wide boty-transition hover:bg-primary/90"
               >
                 <img src="/_boty-images/Call white.svg" alt="Call" className="w-6 h-6" />
                 Call Now
               </a>
               <a
-                href="https://wa.me/917700053030?text=Hi%2C%20I%27m%20interested%20in%20admissions"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="tel:08065064810"
                 className="hidden md:inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-4 rounded-full text-sm font-medium tracking-wide boty-transition hover:bg-green-700"
               >
-                <img src="/_boty-images/Whatsapp white.svg" alt="WhatsApp" className="w-6 h-6" />
-                WhatsApp Us
+                <img src="/_boty-images/Call white.svg" alt="Call" className="w-6 h-6" />
+                08065064810
               </a>
               <a
                 href="/about"

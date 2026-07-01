@@ -2,6 +2,7 @@
 //File :- components/newDesignUi/boty/hostel-section.tsx
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import { ChevronDown } from "lucide-react"
 const hostelFeatures = [
   {
     image: "/hostel-images/Comfortable Rooms.png",
@@ -107,6 +108,7 @@ export function HostelSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [headerVisible, setHeaderVisible] = useState(false)
   const [statsVisible, setStatsVisible] = useState(false)
+  const [showFeatures, setShowFeatures] = useState(false)
   const gridRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
@@ -191,9 +193,31 @@ export function HostelSection() {
             </div>
           ))}
         </div>
+        {/* Mobile: toggle to reveal features */}
+        <div className="text-center my-8 md:hidden">
+          <button
+            type="button"
+            onClick={() => setShowFeatures((v) => !v)}
+            aria-expanded={showFeatures}
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium boty-transition hover:scale-105"
+          >
+            {showFeatures ? "View Less" : "View More"}
+            <ChevronDown
+              className={`w-5 h-5 transition-transform duration-300 ${
+                showFeatures ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+        </div>
 
-        {/* Features Grid */}
-        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Features Grid — collapsible on mobile, always open on desktop */}
+        <div
+          className={`grid transition-[grid-template-rows] duration-500 ease-in-out md:grid-rows-[1fr] ${
+            showFeatures ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="overflow-hidden md:overflow-visible">
+            <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-1">
           {hostelFeatures.map((feature, index) => (
             <div
               key={feature.title}
@@ -216,6 +240,8 @@ export function HostelSection() {
               <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
           ))}
+            </div>
+          </div>
         </div>
 
         {/* Stats Bar */}

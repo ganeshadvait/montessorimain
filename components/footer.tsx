@@ -131,7 +131,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} strokeWidth={2} className="flex-shrink-0" />
-                <a href="tel:+917700043030">+91 77000 43030</a>
+                <a href="tel:08065064810">08065064810</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} strokeWidth={2} className="flex-shrink-0" />
@@ -141,7 +141,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} strokeWidth={2} className="flex-shrink-0" />
-                <a href="tel:+917700053030">+91 77000 53030</a>
+                <a href="tel:08065064810">08065064810</a>
               </li>
             </ul>
 
