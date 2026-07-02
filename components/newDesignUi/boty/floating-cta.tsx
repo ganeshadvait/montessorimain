@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Phone, MapPin, Globe } from "lucide-react"
+import { Phone, MapPin, Calendar } from "lucide-react"
 
 const PHONE_URL = "tel:08065064810"
 const CALL_URL = "tel:08065064810"
@@ -27,12 +27,14 @@ function FloatingButton({
   label,
   bgClass,
   icon,
+  onClick,
 }: {
   href: string
   target?: string
   label: string
   bgClass: string
   icon: React.ReactNode
+  onClick?: () => void
 }) {
   const [hovered, setHovered] = useState(false)
 
@@ -42,6 +44,14 @@ function FloatingButton({
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : undefined}
       aria-label={label}
+      onClick={
+        onClick
+          ? (e) => {
+              e.preventDefault()
+              onClick()
+            }
+          : undefined
+      }
       className={`flex items-center rounded-full shadow-lg transition-all duration-300 overflow-hidden ${bgClass}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -74,10 +84,11 @@ export default function FloatingCTA() {
           icon={<Phone className="w-5 h-5 shrink-0" />}
         />
         <FloatingButton
-          href={CALL_URL}
+          href="#enquiry"
           label="Enroll Now"
+          onClick={() => window.dispatchEvent(new Event("open-enquiry"))}
           bgClass="bg-[#DD3E74] hover:bg-[#c4365f] text-white"
-          icon={<Globe className="w-5 h-5 shrink-0" />}
+          icon={<Calendar className="w-5 h-5 shrink-0" />}
         />
         <FloatingButton
           href={DIRECTIONS_URL}
