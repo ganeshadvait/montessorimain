@@ -211,7 +211,7 @@ export function HeaderVariantB() {
             </a>
           </div>
           <div className="flex items-center gap-4 font-semibold">
-            <Link href="/careers" className="hover:opacity-80">
+            <Link href="https://admissions.montessorigroups.com/" className="hover:opacity-80">
               Admissions
             </Link>
             <span className="opacity-40">|</span>
