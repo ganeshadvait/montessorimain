@@ -5,6 +5,7 @@ import "./flaticon.css";
 import { HeaderVariantB as Header } from "../../components/header-variants";
 import Footer from "../../components/footer-modern";
 import HomeChairmanPopup from "../../components/home-chairman-popup";
+import FloatingCTA from "../../components/newDesignUi/boty/floating-cta";
 
 // Chirag — used site-wide for all font roles.
 const chirag = localFont({
@@ -49,6 +50,7 @@ export default function RootLayout({
         {children}
         <HomeChairmanPopup />
         <Footer />
+        <FloatingCTA />
       </body>
     </html>
   );

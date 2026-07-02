@@ -50,6 +50,13 @@ export default function HomeChairmanPopup() {
     setOpen(true);
   }, []);
 
+  // Allow other components (e.g. the floating "Enroll Now" button) to open it.
+  useEffect(() => {
+    const openHandler = () => setOpen(true);
+    window.addEventListener("open-enquiry", openHandler);
+    return () => window.removeEventListener("open-enquiry", openHandler);
+  }, []);
+
   useEffect(() => {
     if (!open) return;
 
