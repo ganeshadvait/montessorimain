@@ -2,6 +2,7 @@
 //File :- components/home-chairman-popup.tsx
 import { useEffect, useState, FormEvent } from "react";
 import { X, Send } from "lucide-react";
+import { sendLeadToWhatsApp } from "@/lib/whatsapp";
 
 const PINK = "#E91E63";
 const INK = "#231a3d";
@@ -90,6 +91,15 @@ export default function HomeChairmanPopup() {
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (submitting) return;
+
+    // Additive: open WhatsApp with the lead pre-filled (runs within the submit
+    // gesture). The CONTACT_ENDPOINT POST below is unchanged.
+    sendLeadToWhatsApp("Enquiry", [
+      ["Name", data.name],
+      ["Email", data.email],
+      ["Mobile", data.mobile],
+    ]);
+
     setSubmitting(true);
     setStatus({ kind: "idle" });
 

@@ -2,6 +2,7 @@
 //File :- components/home-quick-enquiry.tsx
 import { useState, useEffect, FormEvent } from "react";
 import { UserRound } from "lucide-react";
+import { sendLeadToWhatsApp } from "@/lib/whatsapp";
 
 const PINK = "#E91E63";
 const ORANGE = "#F4831C";
@@ -56,6 +57,14 @@ export default function HomeQuickEnquiry() {
     e.preventDefault();
     if (submitting) return;
     if (!name.trim() || !mobile.trim()) return;
+
+    // Additive: open WhatsApp with the lead pre-filled. Runs before the fetch
+    // (within the submit gesture) so pop-up blockers allow it. The Google Sheet
+    // POST below is unchanged.
+    sendLeadToWhatsApp("Quick Enquiry", [
+      ["Name", name],
+      ["Mobile", mobile],
+    ]);
 
     setSubmitting(true);
     setStatus({ kind: "idle" });

@@ -2,9 +2,10 @@
 @import "tw-animate-css";
 
 /* Don't scan static assets for class names. Tailwind reads non-blocklisted
-   binary files (e.g. .HEIC) as text, extracting garbage that compiles to
-   invalid CSS. public/ never contains Tailwind classes. */
+   binary files (e.g. .HEIC, .zip) as text, extracting garbage that compiles to
+   invalid CSS. Neither directory contains Tailwind classes. */
 @source not "../../public";
+@source not "../../wordpress-plugin";
 
 :root {
   /* Brand color tokens — match original Montessori site */
