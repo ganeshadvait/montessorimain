@@ -2,6 +2,7 @@
 //File :- src/app/application/page.tsx
 import { useState, useEffect, FormEvent } from "react";
 import PageHero from "../../../components/page-hero";
+import { sendLeadToWhatsApp } from "@/lib/whatsapp";
 
 const RED_BG = "#E94454";
 
@@ -131,6 +132,22 @@ export default function ApplicationPage() {
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (submitting) return;
+
+    // Additive: open WhatsApp with the application summary pre-filled (runs
+    // within the submit gesture). The APPLICATION_ENDPOINT POST below is unchanged.
+    sendLeadToWhatsApp("Admission Application", [
+      ["Student", data.studentName],
+      ["DOB", data.dob],
+      ["Class Sought", data.admissionSought || data.admittingClass],
+      ["Father", data.fatherName],
+      ["Mother", data.motherName],
+      ["Mobile", data.mobile],
+      ["Alt Mobile", data.altMobile],
+      ["Email", data.email],
+      ["Place", data.place],
+      ["Pincode", data.pincode],
+    ]);
+
     setSubmitting(true);
     setStatus({ kind: "idle" });
 

@@ -4,6 +4,7 @@ import React from "react"
 
 import { useState } from "react"
 import { ArrowRight, Check } from "lucide-react"
+import { sendLeadToWhatsApp } from "@/lib/whatsapp"
 
 export function Newsletter() {
   const [email, setEmail] = useState("")
@@ -12,6 +13,8 @@ export function Newsletter() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (email) {
+      // Additive: forward the newsletter signup to WhatsApp.
+      sendLeadToWhatsApp("Newsletter Signup", [["Email", email]])
       setIsSubscribed(true)
       setEmail("")
     }

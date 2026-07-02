@@ -3,6 +3,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import PageHero from "../../../components/page-hero";
 import { MapPin, Phone, Clock } from "lucide-react";
+import { sendLeadToWhatsApp } from "@/lib/whatsapp";
 
 const PINK = "#E91E63";
 const RED_BG = "#E94454";
@@ -37,6 +38,15 @@ export default function ContactPage() {
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus({ kind: "idle" });
+
+    // Additive: open WhatsApp with the lead pre-filled (runs within the submit
+    // gesture). The CONTACT_ENDPOINT POST below is unchanged.
+    sendLeadToWhatsApp("Contact Form", [
+      ["Name", data.name],
+      ["Email", data.email],
+      ["Mobile", data.mobile],
+      ["Message", data.message],
+    ]);
 
     try {
       const response = await fetch(CONTACT_ENDPOINT, {

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { ArrowRight, CheckCircle, ChevronDown } from "lucide-react"
+import { sendLeadToWhatsApp } from "@/lib/whatsapp"
 
 const branches = [
   "Yellandu", "Bhupalpally", "Bhongir", "Bibinagar", "Huzurabad",
@@ -103,6 +104,19 @@ export function BookAppointment() {
     const errors = validate()
     setFieldErrors(errors)
     if (Object.keys(errors).length > 0) return
+
+    // Additive: open WhatsApp with the appointment details pre-filled (runs
+    // within the submit gesture). The POSTs below are unchanged.
+    sendLeadToWhatsApp("Appointment Request", [
+      ["Student", formData.student_name],
+      ["Parent", formData.parent_name],
+      ["Phone", formData.phone],
+      ["Alt Phone", formData.alt_phone],
+      ["Email", formData.email],
+      ["Previous School", formData.previous_school],
+      ["Class / Grade", formData.class_grade],
+    ])
+
     setSubmitting(true)
     setError("")
 
