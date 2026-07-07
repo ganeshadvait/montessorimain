@@ -71,7 +71,6 @@ const contact = [
     ),
   },
   { Icon: Phone, node: <a href="tel:08065064810" className="hover:text-white">08065064810</a> },
-  { Icon: Phone, node: <a href="tel:08065064810" className="hover:text-white">08065064810</a> },
   {
     Icon: Mail,
     node: (
@@ -177,7 +176,7 @@ export default function FooterModern() {
                   <a
                     href={link.href}
                     className="text-[15px] transition-colors hover:text-white"
-                    style={{ color: link.highlight ? YELLOW : "rgba(255,255,255,0.78)" }}
+                    //style={{ color: link.highlight ? YELLOW : "rgba(255,255,255,0.78)" }}
                   >
                     {link.label}
                   </a>
