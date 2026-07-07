@@ -71,7 +71,6 @@ const contact = [
     ),
   },
   { Icon: Phone, node: <a href="tel:08065064810" className="hover:text-white">08065064810</a> },
-  { Icon: Phone, node: <a href="tel:08065064810" className="hover:text-white">08065064810</a> },
   {
     Icon: Mail,
     node: (
