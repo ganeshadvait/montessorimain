@@ -28,7 +28,7 @@ export function AdmissionPopup() {
           <span className="flex-shrink-0 w-3 h-3 rounded-full bg-green-500 animate-pulse" />
           <div className="flex-1 min-w-0">
             <p className="font-serif text-sm font-semibold text-foreground leading-tight">
-              Admissions Open 2025 – 2026
+              Admissions Open 2026 – 2027
             </p>
             <p className="text-xs text-muted-foreground mt-0.5">
               Enroll your child at Montessori Prime School today!

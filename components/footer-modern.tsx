@@ -176,7 +176,7 @@ export default function FooterModern() {
                   <a
                     href={link.href}
                     className="text-[15px] transition-colors hover:text-white"
-                    style={{ color: link.highlight ? YELLOW : "rgba(255,255,255,0.78)" }}
+                    //style={{ color: link.highlight ? YELLOW : "rgba(255,255,255,0.78)" }}
                   >
                     {link.label}
                   </a>

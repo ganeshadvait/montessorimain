@@ -72,7 +72,7 @@ function NavDropdown({
       <button
         type="button"
         className="flex items-center gap-1 text-[16px] font-semibold pb-1 relative whitespace-nowrap"
-        style={{ color: PINK }}
+        // style={{ color: PINK }}
       >
         {label}
         <ChevronDown size={16} strokeWidth={2.4} />
