@@ -1,6 +1,7 @@
 "use client";
 //File :- components/home-chairman-popup.tsx
 import { useEffect, useState, FormEvent } from "react";
+import { usePathname } from "next/navigation";
 import { X, Send } from "lucide-react";
 import { sendLeadToWhatsApp } from "@/lib/whatsapp";
 
@@ -34,6 +35,8 @@ function getTrackingFields() {
 const initialState = { name: "", email: "", mobile: "" };
 
 export default function HomeChairmanPopup() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(initialState);
   const [submitting, setSubmitting] = useState(false);
@@ -44,18 +47,24 @@ export default function HomeChairmanPopup() {
   >({ kind: "idle" });
 
   useEffect(() => {
+    if (!isHome) return;
     // Intentional: defer opening the popup until after first paint so it
     // animates in rather than being present on initial render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(true);
-  }, []);
+  }, [isHome]);
 
   // Allow other components (e.g. the floating "Enroll Now" button) to open it.
   useEffect(() => {
+    if (!isHome) return;
     const openHandler = () => setOpen(true);
     window.addEventListener("open-enquiry", openHandler);
     return () => window.removeEventListener("open-enquiry", openHandler);
-  }, []);
+  }, [isHome]);
+
+  useEffect(() => {
+    if (!isHome) setOpen(false);
+  }, [isHome]);
 
   useEffect(() => {
     if (!open) return;
