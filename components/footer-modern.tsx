@@ -54,9 +54,9 @@ const YoutubeIcon = () => (
 
 const socials = [
   { Icon: FacebookIcon, href: "https://www.facebook.com/montessorijnprime", label: "Facebook" },
-  { Icon: TwitterIcon, href: "#", label: "Twitter" },
+  { Icon: TwitterIcon, href: "https://twitter.com/mjnprime", label: "Twitter" },
   { Icon: InstagramIcon, href: "https://www.instagram.com/montessorijnprime/", label: "Instagram" },
-  { Icon: YoutubeIcon, href: "#", label: "YouTube" },
+  { Icon: YoutubeIcon, href: "https://www.youtube.com/@montessorijnprime", label: "YouTube" },
 ];
 
 const contact = [
