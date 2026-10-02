@@ -41,7 +41,7 @@ const documents: { label: string; href?: string }[] = [
   {
     label:
       "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE COMPETENT AUTHORITY",
-    href: "/Mandatory Public Disclosure/Fire NOC.pdf",
+    href: "/disclosures/montessori  fire noc  oct 2026.pdf",
   },
   {
     label:
